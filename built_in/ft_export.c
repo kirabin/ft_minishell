@@ -6,7 +6,12 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/07 09:47:28 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/07 12:50:44 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**   Set environment variable
+**    - No options
+**    - Args: NAME=VALUE NAME2=VALUE2
+*/

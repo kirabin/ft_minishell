@@ -6,14 +6,18 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/07 10:06:14 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/07 13:24:16 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+extern int errno;
+
 int		main(void)
 {
-	ft_pwd();
+	ft_pwd(); // remove
+	ft_cd("..");
+	ft_pwd(); // remove
 	return (0);
 }
