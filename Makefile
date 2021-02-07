@@ -6,16 +6,16 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2020/12/24 11:52:27 by dmilan           ###   ########.fr        #
+#    Updated: 2021/02/07 10:55:26 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
 LIB			= libft/libft.a
-FLAGS		= -Wall -Wextra -Werror
-SRC			= 
+FLAGS		= -Wall -Wextra -Werror -g
+SRC			= built_in/ft_pwd.c
 OBJ			= $(SRC:.c=.o)
-HEADER		= 
+HEADER		= minishell.h
 
 all: $(NAME)
 
@@ -26,11 +26,11 @@ $(NAME): $(OBJ) $(LIB)
 	ar -rcs $(NAME) $(OBJ) libft/*.o libft/*/*.o
 
 build:
-	gcc $(FLAGS) main.c $(SRC)
+	gcc $(FLAGS) minishell.c $(SRC) $(NAME) -I.  # change to obj###################################
 	./a.out
 
 %.o: %.c $(HEADER)
-	gcc -g -c $(FLAGS) $<
+	gcc -g -c $(FLAGS) $< -o $@ -I.
 
 clean:
 	$(MAKE) clean -C libft/
