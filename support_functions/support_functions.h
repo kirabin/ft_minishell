@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   support_functions.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/07 15:57:09 by dmilan           ###   ########.fr       */
+/*   Created: 2021/02/07 15:15:44 by dmilan            #+#    #+#             */
+/*   Updated: 2021/02/07 15:16:42 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-# include "libft/libft.h"
-# include "built_in/built_in.h"
-# include "support_functions/support_functions.h"
-# include <unistd.h>
-# include <sys/errno.h>
-# include <stdlib.h>
-# include <string.h>
+#ifndef SUPPORT_FUNCTIONS_H
+# define SUPPORT_FUNCTIONS_H
 
-typedef struct	s_vars
-{
-	char		*raw_string;
-	char		**envp;
-}				t_vars;
+char	*get_env_value(char **envp, char *key);
 
 #endif

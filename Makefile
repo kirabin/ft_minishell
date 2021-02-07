@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/02/07 13:45:49 by dmilan           ###   ########.fr        #
+#    Updated: 2021/02/07 15:15:20 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC			= built_in/ft_pwd.c \
 			  built_in/ft_env.c \
 			  built_in/ft_exit.c \
 			  built_in/ft_export.c \
-			  built_in/ft_unset.c
+			  built_in/ft_unset.c \
+			  support_functions/env_dict.c
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= minishell.h

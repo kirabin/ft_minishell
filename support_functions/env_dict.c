@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   env_dict.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/07 15:57:09 by dmilan           ###   ########.fr       */
+/*   Created: 2021/02/07 15:13:46 by dmilan            #+#    #+#             */
+/*   Updated: 2021/02/07 15:54:33 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-# include "libft/libft.h"
-# include "built_in/built_in.h"
-# include "support_functions/support_functions.h"
-# include <unistd.h>
-# include <sys/errno.h>
-# include <stdlib.h>
-# include <string.h>
+#include "minishell.h"
 
-typedef struct	s_vars
+char		*get_env_value(char **envp, char *key)
 {
-	char		*raw_string;
-	char		**envp;
-}				t_vars;
-
-#endif
+	char	*value;
+	char	*temp; //rm
+	int		len;
+	int		i;
+	
+	i = 0;
+	value = NULL;
+	if (!envp)
+		return (NULL);
+	len = ft_strlen(key);
+	while (envp[i])
+	{
+		temp = envp[i]; //rm
+		if (ft_strncmp(key, envp[i], len) == 0)
+		{
+			value = envp[i] + len + 1;
+			return (value);      // should I return a copy ?
+		}
+		i++;
+	}
+	return (NULL);
+}
