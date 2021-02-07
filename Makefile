@@ -6,13 +6,13 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/02/07 13:03:58 by dmilan           ###   ########.fr        #
+#    Updated: 2021/02/07 13:45:49 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
 LIB			= libft/libft.a
-FLAGS		= -Wall -Wextra -Werror -g
+FLAGS		= -Wall -Wextra -g    # remove -g flag
 SRC			= built_in/ft_pwd.c \
 			  built_in/ft_cd.c \
 			  built_in/ft_echo.c \
