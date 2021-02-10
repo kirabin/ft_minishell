@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2020/12/19 16:49:29 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/10 10:22:41 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_itoa(int n);
 char				*ft_strnew(int n);
 char				*ft_strjoinfree(char *s1, const char *s2);
+char				*ft_strjoinfreerev(const char *s1, char *s2);
 int					ft_strcount(const char *s, char c);
 const char			*ft_strskip(const char *s, int (*is_that)(int));
 
@@ -95,6 +96,7 @@ void				ft_putui_hex_fd(unsigned int n, int is_upper, int fd);
 void				ft_putul_hex_fd(unsigned long n, int is_upper, int fd);
 void				ft_putcpp_fd(char **arr, int fd);
 void				ft_putcppn_fd(char **arr, int n, int fd);
+void				ft_putendl(void);
 
 /*
 **  ft_int

@@ -6,12 +6,13 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/02/07 15:15:20 by dmilan           ###   ########.fr        #
+#    Updated: 2021/02/10 09:29:57 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libftprintf.a
+NAME		= minishell
 LIB			= libft/libft.a
+SHELL_LIB	= libftshell.a
 FLAGS		= -Wall -Wextra -g    # remove -g flag
 SRC			= built_in/ft_pwd.c \
 			  built_in/ft_cd.c \
@@ -31,11 +32,13 @@ $(LIB):
 	make all -C libft/
 
 $(NAME): $(OBJ) $(LIB)
-	ar -rcs $(NAME) $(OBJ) libft/*.o libft/*/*.o
+	ar -rcs $(SHELL_LIB) $(OBJ) libft/*.o libft/*/*.o
 
 build:
-	gcc $(FLAGS) minishell.c $(SRC) $(NAME) -I.  # change to obj###################################
-	./a.out
+	gcc $(FLAGS) minishell.c $(SRC) $(SHELL_LIB) -o $(NAME) -I.  # change to obj###################################
+
+run: build
+	./$(NAME)
 
 %.o: %.c $(HEADER)
 	gcc -g -c $(FLAGS) $< -o $@ -I.
@@ -49,6 +52,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-run: 
-	./$(NAME)
