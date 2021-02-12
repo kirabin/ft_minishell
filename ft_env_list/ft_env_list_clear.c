@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 09:18:54 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 10:17:08 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 13:14:56 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static	void	del(t_env_item *item)
+void	ft_env_item_del(t_env_item *item)
 {
 	free(item->key);
 	free(item->value);
@@ -29,7 +29,7 @@ void	ft_env_list_clear(t_env_list **lst)
 		return ;
 	while (node)
 	{
-		del(node->item);
+		ft_env_item_del(node->item);
 		temp = node;
 		node = node->next;
 		free(temp);

@@ -1,7 +1,8 @@
-*.o
-*.a
+*/*.o
+*/*.a
+*/*.dSYM
 *.dSYM
-.DS_Store
+*/.DS_Store
 .vscode/
 a.out*
 minishell

@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/02/12 12:46:25 by dmilan           ###   ########.fr        #
+#    Updated: 2021/02/12 13:32:19 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC			= built_in/ft_pwd.c \
 			  ft_env_list/ft_env_list_clear.c \
 			  ft_env_list/ft_env_list_get_value.c \
 			  ft_env_list/ft_env_item_new.c \
+			  ft_env_list/ft_env_list_remove.c \
 			  ft_env_list/ft_env_list_replace.c \
 			  ft_env_list/ft_env_key_exists.c \
 			  ft_env_list/ft_env_list_print.c

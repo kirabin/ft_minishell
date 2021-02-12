@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 12:45:30 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 13:31:05 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int		main(int argc, char **argv, char **envp)
 	ft_export(ft_strdup("bbb"), ft_strdup("sdfsdf"), &vars.env_list);
 	ft_export(ft_strdup("sd"), NULL, &vars.env_list);
 	ft_export(ft_strdup("USER"), NULL, &vars.env_list);
+	ft_export(NULL, NULL, &vars.env_list);
+	ft_unset(&vars.env_list, "aaa");
 	ft_export(NULL, NULL, &vars.env_list);
 	// ft_env_list_print(vars.env_list);
 	ft_env_list_clear(&vars.env_list);
