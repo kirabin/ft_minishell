@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 12:46:52 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 14:01:19 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_export(char *key, char *value, t_env_list **env_list)
 		if (ft_env_key_exists(*env_list, key))
 		{
 			ft_env_list_replace(*env_list, key, value);
+			free(key);
 		}
 		else
 		{

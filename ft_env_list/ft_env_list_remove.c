@@ -6,16 +6,11 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 10:53:10 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 13:34:38 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 14:01:50 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	list_item_compare(t_env_item *src, t_env_item *ref)
-{
-	return (0);
-}
 
 void	ft_env_list_remove(t_env_list **list, char *key)
 {
