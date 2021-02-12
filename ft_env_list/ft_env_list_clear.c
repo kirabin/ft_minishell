@@ -1,54 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_env_list_clear.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/07 09:47:21 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 08:49:45 by dmilan           ###   ########.fr       */
+/*   Created: 2021/02/12 09:18:54 by dmilan            #+#    #+#             */
+/*   Updated: 2021/02/12 09:22:55 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-**   Print environment variables
-*/
-
-int		ft_env(char **envp)
+static	void	del(t_env_item *item)
 {
-	int i;
-
-	if (!envp)
-	{
-		//error
-	}
-	i = 0;
-	while (envp[i])
-	{
-		ft_putstr_fd(envp[i], 1);
-		ft_putc_fd('\n', 1);
-		i++;
-	}
-	return (1);
+	free(item->key);
+	free(item->value);
 }
 
-int		ft_env_declare(char **envp)
+void	ft_env_list_clear(t_env_list **lst)
 {
-	int i;
-	
-	if (!envp)
+	t_env_list	*node;
+	t_env_list	*temp;
+
+	node = *lst;
+	if (!*lst)
+		return ;
+	while (node)
 	{
-		//error
+		del(node->item);
+		free(node->item);
+		temp = node;
+		node = node->next;
+		free(temp);
 	}
-	i = 0;
-	while (envp[i])
-	{
-		ft_putstr_fd("declare -x ", 1);
-		ft_putstr_fd(envp[i], 1);
-		ft_putc_fd('\n', 1);
-		i++;
-	}
-	return (1);
+	*lst = NULL;
 }

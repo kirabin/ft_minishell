@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/07 15:57:09 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 09:08:26 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,31 @@
 # include <stdlib.h>
 # include <string.h>
 
-typedef struct	s_vars
+/*
+**  ft_env_list
+*/
+typedef struct			s_env_item
 {
-	char		*raw_string;
-	char		**envp;
-}				t_vars;
+	char				*key;
+	char				*value;
+}						t_env_item;
+
+typedef struct			s_env_list
+{
+	t_env_item			*item;
+	struct s_env_list	*next;
+}						t_env_list;
+
+t_env_list				*ft_env_list_new(t_env_item *env_item);
+void					ft_env_list_add_back(t_env_list **env_list,
+												t_env_list *new);
+
+
+typedef struct			s_vars
+{
+	t_env_list			*env_list;
+	char				*raw_string;
+	char				**envp;
+}						t_vars;
 
 #endif

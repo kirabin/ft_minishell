@@ -1,54 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_env_list_new.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/07 09:47:21 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 08:49:45 by dmilan           ###   ########.fr       */
+/*   Created: 2021/02/12 08:40:59 by dmilan            #+#    #+#             */
+/*   Updated: 2021/02/12 09:09:31 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-**   Print environment variables
-*/
-
-int		ft_env(char **envp)
+t_env_list		*ft_env_list_new(t_env_item *env_item)
 {
-	int i;
+	t_env_list	*node;
 
-	if (!envp)
-	{
-		//error
-	}
-	i = 0;
-	while (envp[i])
-	{
-		ft_putstr_fd(envp[i], 1);
-		ft_putc_fd('\n', 1);
-		i++;
-	}
-	return (1);
-}
-
-int		ft_env_declare(char **envp)
-{
-	int i;
-	
-	if (!envp)
-	{
-		//error
-	}
-	i = 0;
-	while (envp[i])
-	{
-		ft_putstr_fd("declare -x ", 1);
-		ft_putstr_fd(envp[i], 1);
-		ft_putc_fd('\n', 1);
-		i++;
-	}
-	return (1);
+	node = malloc(sizeof(t_env_list));
+	if (!node)
+		return (0);
+	node->item = env_item;
+	node->next = 0;
+	return (node);
 }

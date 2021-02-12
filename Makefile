@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/02/10 09:29:57 by dmilan           ###   ########.fr        #
+#    Updated: 2021/02/12 09:25:22 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,10 @@ SRC			= built_in/ft_pwd.c \
 			  built_in/ft_exit.c \
 			  built_in/ft_export.c \
 			  built_in/ft_unset.c \
-			  support_functions/env_dict.c
+			  support_functions/env_dict.c \
+			  ft_env_list/ft_env_list_new.c \
+			  ft_env_list/ft_env_list_add_back.c \
+			  ft_env_list/ft_env_list_clear.c
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= minishell.h
@@ -37,8 +40,9 @@ $(NAME): $(OBJ) $(LIB)
 build:
 	gcc $(FLAGS) minishell.c $(SRC) $(SHELL_LIB) -o $(NAME) -I.  # change to obj###################################
 
-run: build
-	./$(NAME)
+run:
+	@echo "\n"
+	@./$(NAME)
 
 %.o: %.c $(HEADER)
 	gcc -g -c $(FLAGS) $< -o $@ -I.

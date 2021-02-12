@@ -6,10 +6,17 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:24 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/07 12:52:14 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 08:26:10 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 /*
 **   Stop execution of program
 */
+
+int ft_exit(int code)
+{
+	exit(code);
+}

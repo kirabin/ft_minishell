@@ -1,54 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_env_list_add_back.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/07 09:47:21 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 08:49:45 by dmilan           ###   ########.fr       */
+/*   Created: 2021/02/12 09:00:35 by dmilan            #+#    #+#             */
+/*   Updated: 2021/02/12 09:11:29 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-**   Print environment variables
-*/
-
-int		ft_env(char **envp)
+void	ft_env_list_add_back(t_env_list **env_list, t_env_list *new)
 {
-	int i;
+	t_env_list	*node;
 
-	if (!envp)
+	node = *env_list;
+	if (!*env_list)
 	{
-		//error
+		*env_list = new;
+		return ;
 	}
-	i = 0;
-	while (envp[i])
-	{
-		ft_putstr_fd(envp[i], 1);
-		ft_putc_fd('\n', 1);
-		i++;
-	}
-	return (1);
-}
-
-int		ft_env_declare(char **envp)
-{
-	int i;
-	
-	if (!envp)
-	{
-		//error
-	}
-	i = 0;
-	while (envp[i])
-	{
-		ft_putstr_fd("declare -x ", 1);
-		ft_putstr_fd(envp[i], 1);
-		ft_putc_fd('\n', 1);
-		i++;
-	}
-	return (1);
+	if (!new)
+		return ;
+	while (node->next)
+		node = node->next;
+	node->next = new;
 }
