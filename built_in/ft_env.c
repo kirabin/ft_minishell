@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:21 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 08:49:45 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 09:35:16 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,7 @@
 **   Print environment variables
 */
 
-int		ft_env(char **envp)
+void	ft_env(t_env_list *env_list)
 {
-	int i;
-
-	if (!envp)
-	{
-		//error
-	}
-	i = 0;
-	while (envp[i])
-	{
-		ft_putstr_fd(envp[i], 1);
-		ft_putc_fd('\n', 1);
-		i++;
-	}
-	return (1);
-}
-
-int		ft_env_declare(char **envp)
-{
-	int i;
-	
-	if (!envp)
-	{
-		//error
-	}
-	i = 0;
-	while (envp[i])
-	{
-		ft_putstr_fd("declare -x ", 1);
-		ft_putstr_fd(envp[i], 1);
-		ft_putc_fd('\n', 1);
-		i++;
-	}
-	return (1);
+	ft_env_list_print(env_list);
 }

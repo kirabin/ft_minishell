@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 09:08:24 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 09:49:43 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char				*ft_strrchr(const char *s, int c);
 void				ft_strfill(char fill, int n);
 char				*ft_strnstr(const char *haystack, const char *needle,
 								size_t len);
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
 char				*ft_strdup(const char *s1);

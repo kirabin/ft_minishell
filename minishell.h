@@ -6,15 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 09:08:26 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 09:51:20 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include "libft/libft.h"
-# include "built_in/built_in.h"
-# include "support_functions/support_functions.h"
 # include <unistd.h>
 # include <sys/errno.h>
 # include <stdlib.h>
@@ -38,7 +36,9 @@ typedef struct			s_env_list
 t_env_list				*ft_env_list_new(t_env_item *env_item);
 void					ft_env_list_add_back(t_env_list **env_list,
 												t_env_list *new);
-
+void					ft_env_list_print(t_env_list *env_list);
+void					ft_env_list_print_with_declare(t_env_list *env_list);
+char					*ft_env_list_get_value(t_env_list *env_list, char *key);
 
 typedef struct			s_vars
 {
@@ -46,5 +46,12 @@ typedef struct			s_vars
 	char				*raw_string;
 	char				**envp;
 }						t_vars;
+
+/*
+**	Built_IN
+*/
+int		ft_pwd();
+int		ft_cd(const char *new_path);
+void	ft_env(t_env_list *env_list);
 
 #endif
