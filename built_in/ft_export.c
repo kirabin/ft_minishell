@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 10:08:02 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 12:46:52 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@
 */
 
 
-
-
-
-
 // errors ?
 void	ft_export(char *key, char *value, t_env_list **env_list)
 {
@@ -31,8 +27,15 @@ void	ft_export(char *key, char *value, t_env_list **env_list)
 
 	if (key)
 	{
-		item = ft_env_item_new(key, value);
-		ft_env_list_add_back(env_list, ft_env_list_new(item));
+		if (ft_env_key_exists(*env_list, key))
+		{
+			ft_env_list_replace(*env_list, key, value);
+		}
+		else
+		{
+			item = ft_env_item_new(key, value);
+			ft_env_list_add_back(env_list, ft_env_list_new(item));
+		}
 	}
 	else
 	{

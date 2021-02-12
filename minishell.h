@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 10:14:00 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 12:47:33 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void					ft_env_list_add_back(t_env_list **env_list,
 void					ft_env_list_print(t_env_list *env_list);
 void					ft_env_list_print_with_declare(t_env_list *env_list);
 char					*ft_env_list_get_value(t_env_list *env_list, char *key);
+bool					ft_env_key_exists(t_env_list *list, char *key);
+t_env_item				*ft_env_item_new(char *key, char *value);
+void					ft_env_list_replace(t_env_list *list, char *key,
+												char *new_value);
 
 typedef struct			s_vars
 {
