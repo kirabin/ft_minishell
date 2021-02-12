@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 09:51:20 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/12 10:14:00 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct			s_env_list
 	struct s_env_list	*next;
 }						t_env_list;
 
+t_env_item				*ft_env_item_new(char *key, char *value);
 t_env_list				*ft_env_list_new(t_env_item *env_item);
 void					ft_env_list_add_back(t_env_list **env_list,
 												t_env_list *new);
@@ -50,8 +51,10 @@ typedef struct			s_vars
 /*
 **	Built_IN
 */
-int		ft_pwd();
-int		ft_cd(const char *new_path);
-void	ft_env(t_env_list *env_list);
+int						ft_pwd();
+int						ft_cd(const char *new_path);
+void					ft_env(t_env_list *env_list);
+void					ft_export(char *key, char *value,
+									t_env_list **env_list);
 
 #endif

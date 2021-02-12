@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_export.c                                        :+:      :+:    :+:   */
+/*   ft_env_item_new.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 10:08:02 by dmilan           ###   ########.fr       */
+/*   Created: 2021/02/12 10:06:39 by dmilan            #+#    #+#             */
+/*   Updated: 2021/02/12 10:06:48 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-**   Set environment variable
-**    - No options
-**    - Args: NAME=VALUE NAME2=VALUE2
-*/
-
-
-
-
-
-
-// errors ?
-void	ft_export(char *key, char *value, t_env_list **env_list)
+t_env_item	*ft_env_item_new(char *key, char *value)
 {
 	t_env_item	*item;
-	// no args -> ft_env_list_print_with_declare()
 
-	if (key)
-	{
-		item = ft_env_item_new(key, value);
-		ft_env_list_add_back(env_list, ft_env_list_new(item));
-	}
-	else
-	{
-		ft_env_list_print_with_declare(*env_list);
-	}
+	if (!(item = malloc(sizeof(t_env_item))))
+		return (NULL);
+	item->key = key;
+	item->value = value;
+	return (item);
 }

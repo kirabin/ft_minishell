@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/02/12 09:51:32 by dmilan           ###   ########.fr        #
+#    Updated: 2021/02/12 10:07:06 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC			= built_in/ft_pwd.c \
 			  ft_env_list/ft_env_list_add_back.c \
 			  ft_env_list/ft_env_list_clear.c \
 			  ft_env_list/ft_env_list_get_value.c \
+			  ft_env_list/ft_env_item_new.c \
 			  ft_env_list/ft_env_list_print.c
 
 OBJ			= $(SRC:.c=.o)
