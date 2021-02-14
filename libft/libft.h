@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 09:49:43 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/14 10:10:10 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdarg.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdio.h>
 
 # include <stddef.h>
 # include <stdbool.h>

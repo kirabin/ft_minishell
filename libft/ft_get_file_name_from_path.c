@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*   ft_get_file_name_from_path.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/07 09:46:52 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/14 10:13:35 by dmilan           ###   ########.fr       */
+/*   Created: 2021/02/14 10:04:06 by dmilan            #+#    #+#             */
+/*   Updated: 2021/02/14 10:11:14 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-/*
-**   Change Directory
-*/
-
-int		ft_cd(const char *new_path)
+char	*ft_get_file_name_from_path(char *path)
 {
-	if (chdir(new_path) == -1)
+	char	*file_name;
+
+	file_name = path;
+	while (*path)
 	{
-		// error
-		ft_putstr_fd(strerror(errno), 2);
+		if (*path++ == '/')
+			file_name = path;
 	}
-	return (1);
+	return (file_name);
 }
