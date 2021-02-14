@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 13:31:05 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/14 10:40:06 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,28 @@ t_env_list	*convert_envp_to_list(char **envp)
 	return (env_list);
 }
 
+void	handle_signal(int signal_code)
+{
+	ft_putendl();
+	ft_putstr_fd("sigal caught", 1);
+	ft_putendl();
+	exit(0);
+}
+
 int		main(int argc, char **argv, char **envp)
 {
 	t_vars	vars;
 
 	vars.env_list = convert_envp_to_list(envp);
-	// ft_env(envp);
-	// ft_putendl();
-	// ft_putendl();
-	// ft_putendl();
-	// ft_putstr_fd(ft_env_list_get_value(vars.env_list, "PATH"), 1);
-	ft_env_list_print(vars.env_list);
-	ft_export(ft_strdup("aaa"), NULL, &vars.env_list);
-	ft_export(ft_strdup("bbb"), ft_strdup("sdfsdf"), &vars.env_list);
-	ft_export(ft_strdup("sd"), NULL, &vars.env_list);
-	ft_export(ft_strdup("USER"), NULL, &vars.env_list);
-	ft_export(NULL, NULL, &vars.env_list);
-	ft_unset(&vars.env_list, "aaa");
-	ft_export(NULL, NULL, &vars.env_list);
-	// ft_env_list_print(vars.env_list);
+	signal(SIGINT, handle_signal);
+	while (1)
+	{
+		ft_putstr_fd("minishell> ", 1);
+		get_next_line(0, &vars.raw_input);
+		ft_putstr_fd(vars.raw_input, 1);
+		ft_putendl();
+		free(vars.raw_input);
+	}
 	ft_env_list_clear(&vars.env_list);
 	return (0);
 }

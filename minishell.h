@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 13:30:26 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/14 10:33:08 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <sys/errno.h>
 # include <stdlib.h>
 # include <string.h>
+# include <signal.h>
 
 /*
 **  ft_env_list
@@ -50,8 +51,7 @@ void					ft_env_list_remove(t_env_list **list, char *key);
 typedef struct			s_vars
 {
 	t_env_list			*env_list;
-	char				*raw_string;
-	char				**envp;
+	char				*raw_input;
 }						t_vars;
 
 /*
