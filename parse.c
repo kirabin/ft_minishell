@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl.c                                       :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 10:08:58 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/14 12:08:35 by msamual          ###   ########.fr       */
+/*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
+/*   Updated: 2021/02/14 12:04:39 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_putendl(char *str)
+void	parse_row_string(t_vars *vars)
 {
-	if (str)
-		while (*str)
-			write(1, str++, 1);
-	ft_putc_fd('\n', 1);
+	char	*str;
+
+	str = vars->raw_input;
+	ft_putendl(str);
 }

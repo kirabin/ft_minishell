@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/14 10:10:10 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/14 12:08:59 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void				ft_putui_hex_fd(unsigned int n, int is_upper, int fd);
 void				ft_putul_hex_fd(unsigned long n, int is_upper, int fd);
 void				ft_putcpp_fd(char **arr, int fd);
 void				ft_putcppn_fd(char **arr, int n, int fd);
-void				ft_putendl(void);
+void				ft_putendl(char *str);
 
 /*
 **  ft_int

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/14 10:44:30 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/14 12:09:34 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ t_env_list	*convert_envp_to_list(char **envp)
 
 void	handle_signal(int signal_code)
 {
-	ft_putendl();
+	ft_putendl(NULL);
 	ft_putstr_fd("sigal caught: ", 1);
 	ft_puti_fd(signal_code, 1);
-	ft_putendl();
+	ft_putendl(NULL);
 	exit(0); // not proper way to exit
 }
 
@@ -84,8 +84,7 @@ int		main(int argc, char **argv, char **envp)
 	{
 		ft_putstr_fd("minishell> ", 1);
 		get_next_line(0, &vars.raw_input);
-		ft_putstr_fd(vars.raw_input, 1);
-		ft_putendl();
+		parse_row_string(&vars);
 		free(vars.raw_input);
 	}
 	ft_env_list_clear(&vars.env_list);

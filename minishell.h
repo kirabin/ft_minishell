@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/14 10:33:08 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/14 12:05:43 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ typedef struct			s_env_list
 	struct s_env_list	*next;
 }						t_env_list;
 
+typedef struct			s_vars
+{
+	t_env_list			*env_list;
+	char				*raw_input;
+	char				**commands;
+}						t_vars;
+
 t_env_item				*ft_env_item_new(char *key, char *value);
 t_env_list				*ft_env_list_new(t_env_item *env_item);
 void					ft_env_list_add_back(t_env_list **env_list,
@@ -48,11 +55,8 @@ void					ft_env_list_replace(t_env_list *list, char *key,
 void					ft_env_item_del(t_env_item *item);
 void					ft_env_list_remove(t_env_list **list, char *key);
 
-typedef struct			s_vars
-{
-	t_env_list			*env_list;
-	char				*raw_input;
-}						t_vars;
+void					parse_row_string(t_vars *vars);
+
 
 /*
 **	Built_IN

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
+#    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/02/12 13:32:19 by dmilan           ###   ########.fr        #
+#    Updated: 2021/02/14 12:10:59 by msamual          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,10 @@ $(LIB):
 
 $(NAME): $(OBJ) $(LIB)
 	ar -rcs $(SHELL_LIB) $(OBJ) libft/*.o libft/*/*.o
+	make build
 
 build:
-	gcc $(FLAGS) minishell.c $(SRC) $(SHELL_LIB) -o $(NAME) -I.  # change to obj###################################
+	gcc $(FLAGS) minishell.c parse.c $(SRC) $(SHELL_LIB) -o $(NAME) -I.  # change to obj###################################
 
 run:
 	@echo "\n"
@@ -59,5 +60,6 @@ clean:
 fclean: clean
 	$(MAKE) fclean -C libft/
 	rm -f $(NAME)
+	rm -f $(SHELL_LIB)
 
 re: fclean all
