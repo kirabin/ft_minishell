@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/14 10:40:06 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/14 10:44:30 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,10 @@ t_env_list	*convert_envp_to_list(char **envp)
 void	handle_signal(int signal_code)
 {
 	ft_putendl();
-	ft_putstr_fd("sigal caught", 1);
+	ft_putstr_fd("sigal caught: ", 1);
+	ft_puti_fd(signal_code, 1);
 	ft_putendl();
-	exit(0);
+	exit(0); // not proper way to exit
 }
 
 int		main(int argc, char **argv, char **envp)
