@@ -6,14 +6,14 @@
 #    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/02/14 12:10:59 by msamual          ###   ########.fr        #
+#    Updated: 2021/02/27 13:37:36 by msamual          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 LIB			= libft/libft.a
 SHELL_LIB	= libftshell.a
-FLAGS		= -Wall -Wextra -g    # remove -g flag
+FLAGS		= -Wall -Wextra -Werror -g    # remove -g flag
 SRC			= built_in/ft_pwd.c \
 			  built_in/ft_cd.c \
 			  built_in/ft_echo.c \
@@ -29,29 +29,32 @@ SRC			= built_in/ft_pwd.c \
 			  ft_env_list/ft_env_list_remove.c \
 			  ft_env_list/ft_env_list_replace.c \
 			  ft_env_list/ft_env_key_exists.c \
-			  ft_env_list/ft_env_list_print.c
+			  ft_env_list/ft_env_list_print.c \
+			  minishell.c \
+			  parse.c
 
 OBJ			= $(SRC:.c=.o)
-HEADER		= minishell.h
+HEADER		= includes/minishell.h
+INC			= includes/
 
-all: $(NAME)
+all:  $(lib) $(NAME)
 
 $(LIB):
 	make all -C libft/
 
-$(NAME): $(OBJ) $(LIB)
-	ar -rcs $(SHELL_LIB) $(OBJ) libft/*.o libft/*/*.o
-	make build
 
-build:
-	gcc $(FLAGS) minishell.c parse.c $(SRC) $(SHELL_LIB) -o $(NAME) -I.  # change to obj###################################
+$(NAME): $(OBJ) $(LIB)
+	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIB)
+
+$(INC):
+	make re
 
 run:
 	@echo "\n"
 	@./$(NAME)
 
 %.o: %.c $(HEADER)
-	gcc -g -c $(FLAGS) $< -o $@ -I.
+	gcc $(FLAGS) -o $@ -c $< -I $(INC)
 
 clean:
 	$(MAKE) clean -C libft/
