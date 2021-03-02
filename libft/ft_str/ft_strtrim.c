@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 12:03:07 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/05 18:17:45 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/02/27 15:22:36 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ char		*ft_strtrim(char const *s1, char const *set)
 	while (++i <= end)
 		res[i - start] = s1[i];
 	res[end - start + 1] = '\0';
+	free(res);
 	return (res);
 }

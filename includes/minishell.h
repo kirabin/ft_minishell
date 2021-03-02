@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/02 12:24:52 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/03/02 12:45:05 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# include "libft/libft.h"
+# include "libft.h"
 # include <unistd.h>
 # include <sys/errno.h>
 # include <stdlib.h>
@@ -33,6 +33,22 @@ typedef struct			s_env_list
 	t_env_item			*item;
 	struct s_env_list	*next;
 }						t_env_list;
+
+typedef struct			s_redirection
+{
+	char				*in;
+	char				*out;
+	char				*err;
+}						t_redir;
+
+
+typedef struct			s_command
+{
+	int					index;
+	char				*name;
+	char				**arguments;
+}						t_command;
+
 
 typedef struct			s_vars
 {
@@ -57,8 +73,9 @@ void					ft_env_list_remove(t_env_list **list, char *key);
 int						ft_env_list_len(t_env_list *env_list);
 t_env_list				*convert_envp_to_list(char **envp);
 char					**ft_env_to_charpp(t_env_list *list);
-
+void					ft_env_list_clear(t_env_list **lst);
 void					parse_row_string(t_vars *vars);
+void					replacement(t_vars *vars);
 
 
 /*

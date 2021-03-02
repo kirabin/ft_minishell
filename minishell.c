@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/14 12:09:34 by msamual          ###   ########.fr       */
+/*   Updated: 2021/02/27 13:31:01 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int		main(int argc, char **argv, char **envp)
 {
 	t_vars	vars;
 
+	if (argc && argv)
+		;
 	vars.env_list = convert_envp_to_list(envp);
 	signal(SIGINT, handle_signal);
 	while (1)
