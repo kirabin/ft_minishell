@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
+#    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/02/14 12:10:59 by msamual          ###   ########.fr        #
+#    Updated: 2021/03/02 12:20:03 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,11 @@ SRC			= built_in/ft_pwd.c \
 			  ft_env_list/ft_env_list_remove.c \
 			  ft_env_list/ft_env_list_replace.c \
 			  ft_env_list/ft_env_key_exists.c \
-			  ft_env_list/ft_env_list_print.c
+			  ft_env_list/ft_env_list_print.c \
+			  ft_env_list/ft_env_list_len.c \
+			  ft_env_list/convert_envp_to_list.c \
+			  ft_env_list/ft_env_to_charpp.c
+			  
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= minishell.h
