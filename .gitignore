@@ -9,3 +9,4 @@
 .vscode/
 a.out*
 minishell
+minishell.dSYM
