@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/02/27 20:01:15 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/02 12:34:20 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 	ft_bzero(buffer, 9999);
 	while(ft_isalnum(**input))
 		joinchar(buffer, *(*input)++);
-	//joinchar(buffer, '\0');
+	joinchar(buffer, '\0');
 	if ((var = ft_env_list_get_value(vars->env_list, buffer)))
 		joinstr(buf, var);
 }
@@ -49,12 +49,14 @@ void	parse_row_string(t_vars *vars)
 {
 	char	buf[9999];
 	char	*input;
+	char	*tmp;
 
 	ft_bzero(buf, 9999);
-	input = ft_strtrim(ft_strdup(vars->raw_input), " \t\r");
-	while(1)
+	tmp = ft_strdup(vars->raw_input);
+	input = ft_strtrim(tmp, " \t\r");
+	while(*input)
 	{
-		if (ft_isalnum(*input) || *input == '-' || *input == '.' || *input == '/')
+		if (ft_isalnum(*input) || *input == '/' || *input == '-')
 			joinchar(buf, *input++);
 		else if (ft_strchr(" \t\r", *input))
 			skip_spaces(&input, buf);
