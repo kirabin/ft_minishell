@@ -6,7 +6,7 @@
 #    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/03/02 12:44:01 by msamual          ###   ########.fr        #
+#    Updated: 2021/03/07 16:20:22 by msamual          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC			= built_in/ft_pwd.c \
 			  ft_env_list/convert_envp_to_list.c \
 			  ft_env_list/ft_env_to_charpp.c \
 			  minishell.c \
-			  parse.c
+			  parse.c \
+			  parse_command.c
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= includes/minishell.h

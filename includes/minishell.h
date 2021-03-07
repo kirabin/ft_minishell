@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/02 12:45:05 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/07 16:19:39 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,11 @@ typedef struct			s_env_list
 	struct s_env_list	*next;
 }						t_env_list;
 
-typedef struct			s_redirection
-{
-	char				*in;
-	char				*out;
-	char				*err;
-}						t_redir;
-
-
 typedef struct			s_command
 {
-	int					index;
-	char				*name;
-	char				**arguments;
+	char				**com;
+	int					pipein;
+	int					pipeout;
 }						t_command;
 
 
@@ -54,8 +46,9 @@ typedef struct			s_vars
 {
 	t_env_list			*env_list;
 	char				*raw_input;
-	char				**commands;
 }						t_vars;
+
+# define BUFF_SIZE 999
 
 t_env_item				*ft_env_item_new(char *key, char *value);
 t_env_list				*ft_env_list_new(t_env_item *env_item);
@@ -76,7 +69,8 @@ char					**ft_env_to_charpp(t_env_list *list);
 void					ft_env_list_clear(t_env_list **lst);
 void					parse_row_string(t_vars *vars);
 void					replacement(t_vars *vars);
-
+int						parse_command(char **cur_ptr, char **buf, 
+												int *pipein, int *pipeout);
 
 /*
 **	Built_IN
