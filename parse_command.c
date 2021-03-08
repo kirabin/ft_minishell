@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/07 17:55:45 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/08 18:52:25 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,34 +45,37 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 		joinstr(buf, var);
 }
 
-void	spec_symb(char **cur_ptr, char ***buf, int *pipein, int *pipeout)
+void		spec_symb(char **cur_ptr, char ***buf, t_command *com, t_vars *vars)
 {
-	(void)cur_ptr;
-	(void)pipein;
-	(void)pipeout;
+	
 	if (is_separator(**cur_ptr))
 	{
-		*buf++;
-		*cur++;
+		while (is_separator(**cur_ptr && *((*cur_ptr)+1)))
+			(*cur_ptr)++;
+		*buf += 1;
+		**buf = ft_calloc(BUFF_SIZE, sizeof(char));
 	}
-	ft_putendl("Special symbol");
-	return ;
+	else if (**cur_ptr == '$')
+		dollar_handle(vars, **buf, cur_ptr);
+	else if (**cur_ptr == '|')
+		com->pipe = 1;
 }
 
-int		parse_command(char **cur_ptr, char **buf, int *pipein, int *pipeout)
+void		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
 {
+
 	*buf = ft_calloc(BUFF_SIZE, sizeof(char));
+	while (is_separator(**cur_ptr))
+		(*cur_ptr)++;
 	while (**cur_ptr != 0 && **cur_ptr != '\n')
 	{
+		if (com->pipe)
+			return ;
 		if (ft_isalnum(**cur_ptr))
-		{
 			joinchar(*buf, **cur_ptr);
-			++*cur_ptr;
-		}
 		else
-			spec_symb(cur_ptr, &buf, pipein, pipeout);
+			spec_symb(cur_ptr, &buf, com, vars);
+		(*cur_ptr)++;
 	}
-	if (**cur_ptr == '\0' || **cur_ptr == '\n')
-		return (0);
-	return (1);
+	vars->end = 1;
 }

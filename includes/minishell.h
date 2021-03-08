@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/07 16:19:39 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/08 15:11:26 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ typedef struct			s_env_list
 typedef struct			s_command
 {
 	char				**com;
-	int					pipein;
-	int					pipeout;
+	int					pipe;
 }						t_command;
 
 
@@ -46,6 +45,7 @@ typedef struct			s_vars
 {
 	t_env_list			*env_list;
 	char				*raw_input;
+	int					end;
 }						t_vars;
 
 # define BUFF_SIZE 999
@@ -69,8 +69,7 @@ char					**ft_env_to_charpp(t_env_list *list);
 void					ft_env_list_clear(t_env_list **lst);
 void					parse_row_string(t_vars *vars);
 void					replacement(t_vars *vars);
-int						parse_command(char **cur_ptr, char **buf, 
-												int *pipein, int *pipeout);
+void						parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars);
 
 /*
 **	Built_IN
