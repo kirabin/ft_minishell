@@ -34,10 +34,11 @@ void	joinstr(char *buf, char *str)
 
 void	dollar_handle(t_vars *vars, char *buf, char **input)
 {
-	char	buffer[9999];
+	char	buffer[999];
 	char	*var;
 
-	ft_bzero(buffer, 9999);
+	ft_bzero(buffer, 999);
+	(*input)++;
 	while(ft_isalnum(**input))
 		joinchar(buffer, *(*input)++);
 	joinchar(buffer, '\0');
@@ -45,18 +46,32 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 		joinstr(buf, var);
 }
 
-void		spec_symb(char **cur_ptr, char ***buf, t_command *com, t_vars *vars)
+void	path_handle(t_vars *vars, char *buf, char **cur_ptr)
+{
+	(void)vars;
+	(void)buf;
+	if (*((*cur_ptr) + 1) == '.')
+		ft_putendl("hello");
+
+}
+
+void	spec_symb(char **cur_ptr, char ***buf, t_command *com, t_vars *vars)
 {
 	
 	if (is_separator(**cur_ptr))
 	{
-		while (is_separator(**cur_ptr && *((*cur_ptr)+1)))
+		while (is_separator(*(*cur_ptr + 1)))
 			(*cur_ptr)++;
-		*buf += 1;
-		**buf = ft_calloc(BUFF_SIZE, sizeof(char));
+		if (!ft_strchr("|;><\0\n", *(*cur_ptr + 1)))
+		{
+			(*buf)++;
+			**buf = ft_calloc(BUFF_SIZE, sizeof(char));
+		}
 	}
 	else if (**cur_ptr == '$')
 		dollar_handle(vars, **buf, cur_ptr);
+	else if (**cur_ptr == '.')
+		path_handle(vars, **buf, cur_ptr);
 	else if (**cur_ptr == '|')
 		com->pipe = 1;
 }
@@ -71,7 +86,7 @@ void		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
 	{
 		if (com->pipe)
 			return ;
-		if (ft_isalnum(**cur_ptr))
+		if (ft_isalnum(**cur_ptr) || **cur_ptr == '-')
 			joinchar(*buf, **cur_ptr);
 		else
 			spec_symb(cur_ptr, &buf, com, vars);

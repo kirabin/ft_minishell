@@ -39,8 +39,11 @@ void	pipe_hdl(void)
 
 void	clear_tab(char	**buf)
 {
-	while (*buf++)
+	while (*buf)
+	{
 		free(*buf);
+		buf++;
+	}
 }
 
 void	parsing_loop(t_vars *vars, char **cur_ptr, int pipe)
@@ -57,6 +60,7 @@ void	parsing_loop(t_vars *vars, char **cur_ptr, int pipe)
 	parse_command(cur_ptr, buf, &com, vars);
 	print_tab(buf);
 	clear_tab(com.com);
+	free(com.com);
 	parsing_loop(vars, cur_ptr, com.pipe);
 }
 
