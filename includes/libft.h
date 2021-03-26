@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/16 14:22:34 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/26 15:59:57 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void				ft_putul_hex_fd(unsigned long n, int is_upper, int fd);
 void				ft_putcpp_fd(char **arr, int fd);
 void				ft_putcppn_fd(char **arr, int n, int fd);
 void				ft_putendl(char *str);
+void				ft_putstr(char *str);
+int					ft_putint(int c);
 
 /*
 **  ft_int

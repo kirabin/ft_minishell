@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/08 18:52:25 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/19 15:29:22 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ void	spec_symb(char **cur_ptr, char ***buf, t_command *com, t_vars *vars)
 	else if (**cur_ptr == '.')
 		path_handle(vars, **buf, cur_ptr);
 	else if (**cur_ptr == '|')
+	{
+		pipe_hdl();
 		com->pipe = 1;
+	}
 }
 
 void		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
@@ -86,6 +89,11 @@ void		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
 	{
 		if (com->pipe)
 			return ;
+		if (**cur_ptr == ';')
+		{
+			(*cur_ptr)++;
+			return ;
+		}
 		if (ft_isalnum(**cur_ptr) || **cur_ptr == '-')
 			joinchar(*buf, **cur_ptr);
 		else

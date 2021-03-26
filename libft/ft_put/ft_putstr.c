@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msamual <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 10:08:58 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/26 10:41:06 by msamual          ###   ########.fr       */
+/*   Created: 2021/03/26 10:39:53 by msamual           #+#    #+#             */
+/*   Updated: 2021/03/26 10:40:59 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl(char *str)
+void	ft_putstr(char *str)
 {
-	if (str)
-		while (*str)
-			write(1, str++, 1);
-	ft_putc_fd('\n', 1);
+	write(1, str, ft_strlen(str));
 }

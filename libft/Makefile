@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
+#    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/28 11:34:55 by dmilan            #+#    #+#              #
-#    Updated: 2020/12/09 09:58:09 by dmilan           ###   ########.fr        #
+#    Updated: 2021/03/26 16:01:36 by msamual          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,9 @@ SRC_PUT   = ft_putc_fd.c \
 			ft_putui_fd.c \
 			ft_putui_hex_fd.c \
 			ft_putcppn_fd.c \
-			ft_putul_hex_fd.c
+			ft_putul_hex_fd.c \
+			ft_putstr.c \
+			ft_putint.c
 
 SRC_MEM   = ft_bzero.c \
 			ft_calloc.c \

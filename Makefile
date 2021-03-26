@@ -6,14 +6,14 @@
 #    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/03/08 19:23:00 by msamual          ###   ########.fr        #
+#    Updated: 2021/03/25 19:21:55 by msamual          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 LIB			= libft/libft.a
 SHELL_LIB	= libftshell.a
-FLAGS		= -Wall -Wextra -Werror -g    # remove -g flag
+FLAGS		= -Wall -Wextra -Werror -g     # remove -g flag
 SRC			= built_in/ft_pwd.c \
 			  built_in/ft_cd.c \
 			  built_in/ft_echo.c \
@@ -35,7 +35,9 @@ SRC			= built_in/ft_pwd.c \
 			  ft_env_list/ft_env_to_charpp.c \
 			  minishell.c \
 			  parse.c \
-			  parse_command.c
+			  parse_command.c \
+			  read_input.c \
+			  history.c
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= includes/minishell.h
@@ -48,7 +50,7 @@ $(LIB):
 
 
 $(NAME): $(OBJ) $(LIB)
-	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIB)
+	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIB) -ltermcap
 
 $(INC):
 	make re

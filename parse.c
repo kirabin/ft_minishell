@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/08 17:42:30 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:42:49 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,10 @@ void	init_com(t_command *com)
 	com->pipe = 0;
 }
 
-/*void	skip_spaces(char **input, char *buf)
+void	print_tab(char **tabl)
 {
-	joinchar(buf, ' ');
-	while (ft_strchr(" \t\r", **input))
-		*input += 1;
-}*/
-
-void	print_tab(char **tab)
-{
-	while (*tab != 0)
-		ft_putendl(*tab++);
+	while (*tabl != 0)
+		ft_putendl(*tabl++);
 	ft_putendl(NULL);
 }
 

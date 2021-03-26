@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/08 15:11:26 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/26 17:18:43 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,22 @@
 # include <stdlib.h>
 # include <string.h>
 # include <signal.h>
+# include <term.h>
+
+# define PROMPT " minishell>>> "
+
 
 /*
 **  ft_env_list
 */
+
+typedef struct			s_history
+{
+	char				com[1000];
+	struct s_history	*next;
+	struct s_history	*prev;	
+}						t_history;
+
 typedef struct			s_env_item
 {
 	char				*key;
@@ -44,8 +56,13 @@ typedef struct			s_command
 typedef struct			s_vars
 {
 	t_env_list			*env_list;
+	t_history			*history;
 	char				*raw_input;
 	int					end;
+	struct termios		term_orig_attr;
+	struct termios		term;
+	char				*term_name;
+	int					cursor_pos;
 }						t_vars;
 
 # define BUFF_SIZE 999
@@ -69,7 +86,13 @@ char					**ft_env_to_charpp(t_env_list *list);
 void					ft_env_list_clear(t_env_list **lst);
 void					parse_row_string(t_vars *vars);
 void					replacement(t_vars *vars);
-void						parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars);
+void					parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars);
+void					pipe_hdl(void);
+void					read_input(t_vars *vars);
+
+void					init_history(t_vars *vars);
+void					push_to_command_history(t_vars *vars, char *command);
+void					print_history(t_history *cur);
 
 /*
 **	Built_IN

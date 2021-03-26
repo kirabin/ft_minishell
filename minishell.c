@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/08 19:23:16 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/26 11:42:06 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ void	handle_signal(int signal_code)
 	exit(0); // not proper way to exit
 }
 
+void	puterror(int exit_code, char *msg)
+{
+	write(2, msg, ft_strlen(msg));
+	exit(exit_code);
+}
+
 int		main(int argc, char **argv, char **envp)
 {
 	t_vars	vars;
@@ -31,12 +37,18 @@ int		main(int argc, char **argv, char **envp)
 		;
 	vars.env_list = convert_envp_to_list(envp);
 	signal(SIGINT, handle_signal);
+	init_history(&vars);
+	vars.term_name = getenv("TERM");
+	if (tcgetattr(0, &vars.term) || tcgetattr(0, &vars.term_orig_attr))
+		puterror(1, "Error: tcgetattr\n");
+	vars.term.c_lflag &= ~(ECHO);
+	vars.term.c_lflag &= ~(ICANON);
+	if (tcsetattr(0, TCSANOW, &vars.term))
+		puterror(1, "Error: tcsetattr\n");
 	while (1)
 	{
-		ft_putstr_fd("minishell> ", 1);
-		get_next_line(0, &vars.raw_input);
-		parse_row_string(&vars);
-		free(vars.raw_input);
+		ft_putstr(PROMPT);
+		read_input(&vars);
 	}
 	ft_env_list_clear(&vars.env_list);
 	return (0);
