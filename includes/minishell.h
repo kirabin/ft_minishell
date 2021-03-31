@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/28 15:33:44 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/31 18:29:15 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ typedef struct			s_env_list
 typedef struct			s_command
 {
 	char				**com;
-	int					pipe;
+	int					pipein;
+	int					pipeout;
 }						t_command;
 
 
@@ -87,7 +88,7 @@ void					ft_env_list_clear(t_env_list **lst);
 void					parse_row_string(t_vars *vars);
 void					replacement(t_vars *vars);
 void					parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars);
-void					pipe_hdl(void);
+int						pipe_hdl(t_command *com);
 void					read_input(t_vars *vars);
 
 void					init_history(t_vars *vars);

@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/31 09:23:56 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/31 18:29:54 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,32 @@
 void	init_com(t_command *com)
 {
 	com->com = ft_calloc(BUFF_SIZE, sizeof(char *));
-	com->pipe = 0;
+	com->pipein = 0;
+	com->pipeout = 0;
 }
 
-void	print_tab(char **tabl)
+void	print_tab(t_command *com)
 {
+	char **tabl = com->com;
+	
 	while (*tabl != 0)
 		ft_putendl(*tabl++);
 	ft_putendl(NULL);
+	printf("pipein = %d pipeout = %d\n", com->pipein, com->pipeout);
 }
 
-void	pipe_hdl(void)
+int		pipe_hdl(t_command *com)
 {
-	ft_putendl("PIPE");
+	if (com->com[0] && ft_strlen(com->com[0]))
+	{
+		com->pipeout = 1;
+		return (1);
+	}
+	else
+	{
+		com->pipein = 1;
+		return (0);
+	}
 }
 
 void	clear_tab(char	**buf)
@@ -39,22 +52,20 @@ void	clear_tab(char	**buf)
 	}
 }
 
-void	parsing_loop(t_vars *vars, char **cur_ptr, int pipe)
+void	parsing_loop(t_vars *vars, char **cur_ptr)
 {
 	t_command 	com;
 	char		**buf;
 
 	if (vars->end)
 		return ;
-	if (pipe)
-		pipe_hdl();
 	init_com(&com);
 	buf = com.com;
 	parse_command(cur_ptr, buf, &com, vars);
-	print_tab(buf);
+	print_tab(&com);
 	clear_tab(com.com);
 	free(com.com);
-	parsing_loop(vars, cur_ptr, com.pipe);
+	parsing_loop(vars, cur_ptr);
 }
 
 void	parse_row_string(t_vars *vars)
@@ -64,5 +75,5 @@ void	parse_row_string(t_vars *vars)
 
 	vars->end = 0;
 	cur_ptr = vars->history->com;
-	parsing_loop(vars, &cur_ptr, 0);
+	parsing_loop(vars, &cur_ptr);
 }

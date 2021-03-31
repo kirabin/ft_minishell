@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/19 15:29:22 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/31 17:59:51 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,24 @@ void	path_handle(t_vars *vars, char *buf, char **cur_ptr)
 
 }
 
-void	spec_symb(char **cur_ptr, char ***buf, t_command *com, t_vars *vars)
+void	spec_symb(char **cur_ptr, char ***buf, t_vars *vars)
 {
 	
-	if (is_separator(**cur_ptr))
-	{
-		while (is_separator(*(*cur_ptr + 1)))
+	if (**cur_ptr == '$')
+		dollar_handle(vars, **buf, cur_ptr);
+	else if (**cur_ptr == '.')
+		path_handle(vars, **buf, cur_ptr);
+}
+
+void		new_word(char ***buf, char **cur_ptr)
+{
+	while (is_separator(*(*cur_ptr + 1)))
 			(*cur_ptr)++;
 		if (!ft_strchr("|;><\0\n", *(*cur_ptr + 1)))
 		{
 			(*buf)++;
 			**buf = ft_calloc(BUFF_SIZE, sizeof(char));
 		}
-	}
-	else if (**cur_ptr == '$')
-		dollar_handle(vars, **buf, cur_ptr);
-	else if (**cur_ptr == '.')
-		path_handle(vars, **buf, cur_ptr);
-	else if (**cur_ptr == '|')
-	{
-		pipe_hdl();
-		com->pipe = 1;
-	}
 }
 
 void		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
@@ -85,19 +81,21 @@ void		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
 	*buf = ft_calloc(BUFF_SIZE, sizeof(char));
 	while (is_separator(**cur_ptr))
 		(*cur_ptr)++;
-	while (**cur_ptr != 0 && **cur_ptr != '\n')
+	while (!ft_strchr("\0\n#", **cur_ptr))
 	{
-		if (com->pipe)
-			return ;
 		if (**cur_ptr == ';')
 		{
 			(*cur_ptr)++;
 			return ;
 		}
-		if (ft_isalnum(**cur_ptr) || **cur_ptr == '-')
+		if (**cur_ptr == '|' && pipe_hdl(com))
+			return;
+		if (is_separator(**cur_ptr))
+			new_word(&buf, cur_ptr);
+		else if (!ft_strchr("$><.\'\"\\~", **cur_ptr))
 			joinchar(*buf, **cur_ptr);
 		else
-			spec_symb(cur_ptr, &buf, com, vars);
+			spec_symb(cur_ptr, &buf, vars);
 		(*cur_ptr)++;
 	}
 	vars->end = 1;

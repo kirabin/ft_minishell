@@ -23,3 +23,21 @@ helo
 world
 toto
 hwllo |   world
+|hello|world
+|hello|world
+hello
+hello | world
+hello #
+hello world
+hello
+hello world
+hello world mother fucker
+hello | world
+hello world
+hello world
+hello | world
+hello |     world
+hello |     world
+hello |     world
+hello world | echo "pituhi" ; hello | world $PATH
+hello world | echo "pituhi" ; hello | world $PATH
