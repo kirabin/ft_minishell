@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 19:08:08 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/31 12:47:15 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/31 12:50:04 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ void	init_history(t_vars *vars)
 			push_to_command_history(vars, line);
 			free(line);
 		}
-		push_to_command_history(vars, line);
+		if (ft_strlen(line))
+			push_to_command_history(vars, line);
 		free(line);
 		close(fd);
 	}
