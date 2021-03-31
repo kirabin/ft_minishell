@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/27 12:30:44 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/28 15:33:44 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <signal.h>
 # include <term.h>
 
-# define PROMPT " minishell>>> "
+# define PROMPT "write here your fckin text>>> "
 
 
 /*
@@ -95,6 +95,9 @@ void					push_to_command_history(t_vars *vars, char *command);
 void					print_history(t_history *cur);
 void					remove_current_input(t_history *history);
 void					remove_elem_hist(t_history **history);
+void					init_history(t_vars *vars);
+void					write_history(t_vars *vars);
+void					ctrl_d(t_vars *vars);
 
 /*
 **	Built_IN

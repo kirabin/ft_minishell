@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/25 15:42:49 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/31 09:23:56 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void	parse_row_string(t_vars *vars)
 	char		*cur_ptr;
 
 	vars->end = 0;
-	cur_ptr = vars->raw_input;
+	cur_ptr = vars->history->com;
 	parsing_loop(vars, &cur_ptr, 0);
 }

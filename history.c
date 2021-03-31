@@ -6,16 +6,11 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 19:08:08 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/27 15:06:49 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/31 12:47:15 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	init_history(t_vars *vars)
-{
-	vars->history = NULL;
-}
 
 void	push_to_command_history(t_vars *vars, char *command)
 {
@@ -75,22 +70,29 @@ void	remove_elem_hist(t_history **history)
 	{
 		next->prev = prev;
 		*history = next;
+		
 	}
 	free(tmp);
 	*history = to_end_of_list(*history);
 }
 
-void	print_history(t_history *cur)
+void	init_history(t_vars *vars)
 {
-	t_history	*node;
-	node = cur;
-	while (node && node->prev)
-		node = node->prev;
-	write(1, "\n", 1);
-	while (node)
+	int fd;
+	char *line;
+
+	fd = open(".history.txt", O_RDONLY);
+	if (fd < 0)
+		vars->history = NULL;
+	else
 	{
-		ft_putendl(node->com);
-		node = node->next;
+		while (get_next_line(fd, &line) > 0)
+		{
+			push_to_command_history(vars, line);
+			free(line);
+		}
+		push_to_command_history(vars, line);
+		free(line);
+		close(fd);
 	}
-	write(1, "\n", 1);
 }

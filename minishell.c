@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/26 11:42:06 by msamual          ###   ########.fr       */
+/*   Updated: 2021/03/28 16:53:20 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		main(int argc, char **argv, char **envp)
 	if (argc && argv)
 		;
 	vars.env_list = convert_envp_to_list(envp);
-	signal(SIGINT, handle_signal);
+	//signal(SIGINT, handle_signal);
 	init_history(&vars);
 	vars.term_name = getenv("TERM");
 	if (tcgetattr(0, &vars.term) || tcgetattr(0, &vars.term_orig_attr))
@@ -45,11 +45,14 @@ int		main(int argc, char **argv, char **envp)
 	vars.term.c_lflag &= ~(ICANON);
 	if (tcsetattr(0, TCSANOW, &vars.term))
 		puterror(1, "Error: tcsetattr\n");
+	tgetent(0, vars.term_name);
 	while (1)
 	{
 		ft_putstr(PROMPT);
+		tputs(save_cursor, 1, ft_putint);
 		read_input(&vars);
 	}
+	write_history(&vars);
 	ft_env_list_clear(&vars.env_list);
 	return (0);
 }
