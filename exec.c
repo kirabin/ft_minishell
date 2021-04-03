@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/07 14:05:45 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/03 13:29:00 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,22 @@ bool	is_file_exists(char *path)
 	return (true);
 }
 
-char	*search_in_path_env(char *command, t_env_list *list)
+
+
+char	*get_command_path(t_command *command, t_env_list *list)
 {
 	char	**paths;
 	char	*extended_path;
 	int		i;
 
+	if (string_is_absolute_path(command->com[0]))
+		return (command->com[0]);
 	i = -1;
 	extended_path = NULL;
 	paths = ft_split(ft_env_list_get_value(list, "PATH"), ':');
 	while (paths[++i])
 	{
-		extended_path = ft_strjoin(paths[i], command);
+		extended_path = ft_strjoin(paths[i], command->com[0]);
 		if (is_file_exists(extended_path))
 			break;
 	}
@@ -89,6 +93,11 @@ char	*search_in_path_env(char *command, t_env_list *list)
 		free(paths[i]);
 	free(paths);
 	return (extended_path);
+}
+
+char	*get_command_name(t_command *command)
+{
+	if ()
 }
 
 void	execute_command(char *command_path, char **argv, t_env_list *list)
@@ -104,15 +113,15 @@ void	execute_command(char *command_path, char **argv, t_env_list *list)
 		ft_putstr("parend does nothing\n");
 }
 
-void	execute_string(char *str, t_env_list *list)
-{
-	char	**splitted;
-	char	*command;
-	char	*command_path;
 
-	splitted = ft_split(str, ' ');
-	command = splitted[0];
-	command_path = search_in_path_env(command, list);
+void	execute_command_struct(t_vars *vars, t_command *command)
+{
+	char	*command_path;
+	char	*command_name;
+
+
+	command_path = get_command_path(command, vars->env_list);
+	command_name = get_command_name(command);
 	if (is_our_implementation(command))
 		execute_our_implementation(command, splitted + 1, list);
 	else if (command_path)
@@ -127,3 +136,28 @@ void	execute_string(char *str, t_env_list *list)
 	free(command_path);
 	free_cpp(splitted);
 }
+
+
+// void	execute_command_struct(char *str, t_env_list *list)
+// {
+// 	char	**splitted;
+// 	char	*command;
+// 	char	*command_path;
+
+// 	splitted = ft_split(str, ' ');
+// 	command = splitted[0];
+// 	command_path = get_command_path(command, list);
+// 	if (is_our_implementation(command))
+// 		execute_our_implementation(command, splitted + 1, list);
+// 	else if (command_path)
+// 	{
+// 		execute_command(command_path, splitted + 1, )
+// 		//wait;
+// 	}
+// 	else
+// 	{
+// 		ft_putstr("Error: command not found\n");
+// 	}
+// 	free(command_path);
+// 	free_cpp(splitted);
+// }

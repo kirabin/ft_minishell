@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/26 15:59:57 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/03 13:31:16 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
-
 
 /*
 **  ft_mem
@@ -73,6 +72,10 @@ char				*ft_strjoinfreerev(const char *s1, char *s2);
 char				*ft_strjoinfreefree(char *s1, char *s2);
 int					ft_strcount(const char *s, char c);
 const char			*ft_strskip(const char *s, int (*is_that)(int));
+bool				ft_string_is_path(char *string);
+bool				ft_string_is_absolute_path(char *string);
+bool				ft_string_is_relative_path(char *string);
+
 
 /*
 **  ft_chr
