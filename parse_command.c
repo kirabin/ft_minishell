@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/03 12:14:50 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/03 12:33:26 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ int		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
 	*buf = ft_calloc(BUFF_SIZE, sizeof(char));
 	while (is_separator(**cur_ptr))
 		(*cur_ptr)++;
-	/*if (ft_strchr("|;", **cur_ptr))
-		return (unexpected_token(*cur_ptr));*/
 	while (!ft_strchr("\0\n#", **cur_ptr))
 	{
 		if (**cur_ptr == ';')

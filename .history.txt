@@ -1,0 +1,15 @@
+hello
+heloo world | catsdjlsuhdglsjhdlsg
+hello | world
+hello | world
+hello | worldfkwrigeirg
+heloo world | catsdjlsuhdglsjhdlsg
+hello | world
+ls
+ls -la
+$PATH
+ls
+ls -la | cat |
+ls -la | cat |
+hello |
+

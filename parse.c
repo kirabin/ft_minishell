@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/02 13:03:28 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/03 13:15:10 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int		pipe_hdl(t_command *com, char **cur_ptr)
 	else
 	{
 		(*cur_ptr)++;
+		while (is_separator(**cur_ptr))
+			(*cur_ptr)++;
 		com->pipein = 1;
 		return (0);
 	}
