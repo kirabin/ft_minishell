@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/28 16:53:20 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/03 11:04:56 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ void	handle_signal(int signal_code)
 	exit(0); // not proper way to exit
 }
 
-void	puterror(int exit_code, char *msg)
-{
-	write(2, msg, ft_strlen(msg));
-	exit(exit_code);
-}
-
 int		main(int argc, char **argv, char **envp)
 {
 	t_vars	vars;
@@ -40,11 +34,10 @@ int		main(int argc, char **argv, char **envp)
 	init_history(&vars);
 	vars.term_name = getenv("TERM");
 	if (tcgetattr(0, &vars.term) || tcgetattr(0, &vars.term_orig_attr))
-		puterror(1, "Error: tcgetattr\n");
+		puterror("Error: tcgetattr\n", 1);
 	vars.term.c_lflag &= ~(ECHO);
 	vars.term.c_lflag &= ~(ICANON);
-	if (tcsetattr(0, TCSANOW, &vars.term))
-		puterror(1, "Error: tcsetattr\n");
+	tcsetattr(0, TCSANOW, &vars.term);
 	tgetent(0, vars.term_name);
 	while (1)
 	{

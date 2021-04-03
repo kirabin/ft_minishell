@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 11:21:11 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/31 09:24:35 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/03 12:21:37 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	add_to_command(t_vars *vars, char *str, int ret, char *command)
 	vars->cursor_pos += ret;
 }
 
-void	execute_command(t_vars *vars)
+void	parsing(t_vars *vars)
 {
 	vars->cursor_pos = 0;
 	write(1, "\n", 1);
@@ -124,5 +124,5 @@ void	read_input(t_vars *vars)
 		else
 			break ;
 	}
-	execute_command(vars);
+	parsing(vars);
 }

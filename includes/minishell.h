@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 12:07:06 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/03 12:16:47 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,11 @@ char					**ft_env_to_charpp(t_env_list *list);
 void					ft_env_list_clear(t_env_list **lst);
 void					parse_row_string(t_vars *vars);
 void					replacement(t_vars *vars);
-void					parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars);
-int						pipe_hdl(t_command *com);
+int					parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars);
+int						pipe_hdl(t_command *com, char **cur_ptr);
 void					read_input(t_vars *vars);
+int						is_separator(char c);
+void					print_tab(t_command *com);
 
 void					init_history(t_vars *vars);
 void					push_to_command_history(t_vars *vars, char *command);
@@ -100,6 +102,11 @@ void					remove_elem_hist(t_history **history);
 void					init_history(t_vars *vars);
 void					write_history(t_vars *vars);
 void					ctrl_d(t_vars *vars);
+
+int						unexpected_token(char *token);
+int						puterror(char *err_msg, int code);
+
+void					execute(t_vars *vars, t_command *com);
 
 /*
 **	Built_IN
