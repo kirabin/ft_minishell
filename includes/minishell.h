@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/03/31 18:29:15 by msamual          ###   ########.fr       */
+=======
+/*   Updated: 2021/03/02 14:35:16 by dmilan           ###   ########.fr       */
+>>>>>>> merging branches
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +19,7 @@
 # include "libft.h"
 # include <unistd.h>
 # include <sys/errno.h>
+# include <sys/stat.h>
 # include <stdlib.h>
 # include <string.h>
 # include <signal.h>
