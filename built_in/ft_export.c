@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 14:01:19 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/02 14:17:04 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 void	ft_export(char *key, char *value, t_env_list **env_list)
 {
 	t_env_item	*item;
+
+	// if (!key && !value)
 	// no args -> ft_env_list_print_with_declare()
 
 	if (key)

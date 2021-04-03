@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 10:49:33 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/03 12:16:47 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "libft.h"
 # include <unistd.h>
 # include <sys/errno.h>
+# include <sys/stat.h>
 # include <stdlib.h>
 # include <string.h>
 # include <signal.h>
