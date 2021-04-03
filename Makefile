@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/03 13:34:35 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/03 14:16:18 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRC			= built_in/ft_pwd.c \
 			  history.c \
 			  write_hist.c \
 			  execute.c \
-			  errors.c
+			  errors.c \
+			  exec.c
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= includes/minishell.h
@@ -72,6 +73,8 @@ clean:
 fclean: clean
 	$(MAKE) fclean -C libft/
 	rm -f $(NAME)
+	rm -f **/a.out
+	rm -f a.out
 	rm -f $(SHELL_LIB)
 	rm -rf minishell.dSYM
 

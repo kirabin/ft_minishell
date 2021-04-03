@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 12:16:47 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/03 15:50:08 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char					**ft_env_to_charpp(t_env_list *list);
 void					ft_env_list_clear(t_env_list **lst);
 void					parse_row_string(t_vars *vars);
 void					replacement(t_vars *vars);
-int					parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars);
+int						parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars);
 int						pipe_hdl(t_command *com, char **cur_ptr);
 void					read_input(t_vars *vars);
 int						is_separator(char c);
@@ -113,9 +113,10 @@ void					execute(t_vars *vars, t_command *com);
 */
 int						ft_pwd();
 void					ft_unset(t_env_list **list, char *key);
-int						ft_cd(const char *new_path);
+int						ft_cd(const char *new_path, t_env_list *list);
 void					ft_env(t_env_list *env_list);
 void					ft_export(char *key, char *value,
 									t_env_list **env_list);
+void					execute_command_struct(t_vars *vars, t_command *command);
 
 #endif

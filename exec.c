@@ -6,58 +6,58 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 13:29:00 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/03 16:03:09 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_cpp(char **cpp)
+void	free_cpp(char ***cpp)
 {
 	char	*temp;
 
-	temp = *cpp;
+	temp = **cpp;
 	while (temp)
 		free(temp++);
-	free(cpp);
+	free(*cpp);
 }
 
 bool	is_our_implementation(char *command)
 {
-	if (command == "cd")
+	if (ft_strncmp(command, "cd", 2) == 0)
 		return true;
-	else if (command == "echo")
+	else if (ft_strncmp(command, "echo", 4) == 0)
 		return true;
-	else if (command == "env")
+	else if (ft_strncmp(command, "env", 3) == 0)
 		return true;
-	else if (command == "exit")
+	else if (ft_strncmp(command, "exit", 4) == 0)
 		return true;
-	else if (command == "export")
+	else if (ft_strncmp(command, "export", 6) == 0)
 		return true;
-	else if (command == "pwd")
+	else if (ft_strncmp(command, "pwd", 3) == 0)
 		return true;
-	else if (command == "unset")
+	else if (ft_strncmp(command, "unset", 5) == 0)
 		return true;
 	return false;
 }
 
-void	execute_our_implementation(char *command, char **argv, t_env_list *list)
+void	execute_our_implementation(char *command, char **args, t_env_list *list)
 {
 	// Check whether there is more args or not?
-	if (command == "cd")
-		ft_cd(argv[0]);
-	else if (command == "echo")
+	if (ft_strncmp(command, "cd", 2) == 0)
+		ft_cd(args[1], list); // Done. ignores other args as it should
+	else if (ft_strncmp(command, "echo", 4) == 0)
 		;
-	else if (command == "env")
+	else if (ft_strncmp(command, "env", 3) == 0)
 		ft_env(list);
-	else if (command == "exit")
-		ft_exit();
-	else if (command == "export")
+	else if (ft_strncmp(command, "exit", 4) == 0)
+		;// ft_exit();
+	else if (ft_strncmp(command, "export", 6) == 0)
 		;
-	else if (command == "pwd")
-		ft_pwd();
-	else if (command == "unset")
-		ft_unset(&list, argv[0]);
+	else if (ft_strncmp(command, "pwd", 3) == 0)
+		ft_pwd();  // Done. ignores all args as it should
+	else if (ft_strncmp(command, "unset", 5) == 0)
+		ft_unset(&list, args[0]);
 }
 
 bool	is_file_exists(char *path)
@@ -69,95 +69,91 @@ bool	is_file_exists(char *path)
 	return (true);
 }
 
-
-
-char	*get_command_path(t_command *command, t_env_list *list)
+char	*get_command_path(char *command, t_env_list *list)
 {
 	char	**paths;
 	char	*extended_path;
 	int		i;
 
-	if (string_is_absolute_path(command->com[0]))
-		return (command->com[0]);
+	if (ft_string_is_absolute_path(command))
+		return (ft_strdup(command));
+	if (ft_string_is_relative_path(command))
+		return (ft_strjoin("./", command));
 	i = -1;
 	extended_path = NULL;
 	paths = ft_split(ft_env_list_get_value(list, "PATH"), ':');
 	while (paths[++i])
 	{
-		extended_path = ft_strjoin(paths[i], command->com[0]);
+		extended_path = ft_strjoin_three(paths[i], "/", command);
+		ft_putstr("\n");
 		if (is_file_exists(extended_path))
 			break;
+		free(extended_path);
+		extended_path = NULL;
 	}
-	i = -1;
-	while (paths[++i])
-		free(paths[i]);
-	free(paths);
+	// free_cpp(&paths);
 	return (extended_path);
 }
 
-char	*get_command_name(t_command *command)
+char	*get_command_name(char *command)
 {
-	if ()
+	int		len;
+
+	len = ft_strlen(command) - 1;
+	if (ft_string_is_path(command))
+	{
+		while (command[len] != '/')
+			len--;
+		return (ft_strdup(command + len + 1));
+	}
+	else
+	{
+		return (ft_strdup(command));
+	}
 }
 
-void	execute_command(char *command_path, char **argv, t_env_list *list)
+int		execute_command(char *command_path, char **argv, t_vars *vars)
 {
 	int		pid;
+	char	**envp;
 
+	envp = ft_env_to_charpp(vars->env_list);
 	pid = fork();
 	if (pid == -1)
 		ft_putstr("Can't execute command\n");
 	else if (pid == 0)
-		execve(command_path, argv, ft_env_to_charpp(list));
-	else
-		ft_putstr("parend does nothing\n");
+	{
+		execve(command_path, argv, envp);
+		return(pid);
+	}
+	wait(&pid);
+	// free_cpp(&envp);
+	return (pid);
 }
-
 
 void	execute_command_struct(t_vars *vars, t_command *command)
 {
 	char	*command_path;
 	char	*command_name;
+	int		pid;
 
-
-	command_path = get_command_path(command, vars->env_list);
-	command_name = get_command_name(command);
-	if (is_our_implementation(command))
-		execute_our_implementation(command, splitted + 1, list);
+	command_path = get_command_path(command->com[0], vars->env_list);
+	command_name = get_command_name(command->com[0]);
+	if (is_our_implementation(command_name))
+	{
+		ft_putstr("That's for dmilan to handle\n");
+		execute_our_implementation(command_name, command->com, vars->env_list);
+	}
 	else if (command_path)
 	{
-		execute_command(command_path, splitted + 1, )
-		//wait;
+		free(command->com[0]);
+		command->com[0] = ft_strdup(command_name);
+		pid = execute_command(command_path, command->com, vars);
 	}
 	else
 	{
 		ft_putstr("Error: command not found\n");
 	}
 	free(command_path);
-	free_cpp(splitted);
+	free(command_name);
 }
-
-
-// void	execute_command_struct(char *str, t_env_list *list)
-// {
-// 	char	**splitted;
-// 	char	*command;
-// 	char	*command_path;
-
-// 	splitted = ft_split(str, ' ');
-// 	command = splitted[0];
-// 	command_path = get_command_path(command, list);
-// 	if (is_our_implementation(command))
-// 		execute_our_implementation(command, splitted + 1, list);
-// 	else if (command_path)
-// 	{
-// 		execute_command(command_path, splitted + 1, )
-// 		//wait;
-// 	}
-// 	else
-// 	{
-// 		ft_putstr("Error: command not found\n");
-// 	}
-// 	free(command_path);
-// 	free_cpp(splitted);
-// }
