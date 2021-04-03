@@ -41,3 +41,25 @@ hello |     world
 hello |     world
 hello world | echo "pituhi" ; hello | world $PATH
 hello world | echo "pituhi" ; hello | world $PATH
+hello | world
+hello | world
+| hello
+| hello
+hello world    | ls
+hello world    | ls
+hello world  | world heello to tot oto
+hello world  | world heello to tot oto
+ls
+ls
+cat hello
+echo hello
+ls
+ls
+ls
+ls
+ls
+ls
+hello |||||| world
+hello |||||| world
+ls | cat
+kuku

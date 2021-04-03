@@ -6,7 +6,7 @@
 #    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/03/27 16:38:11 by msamual          ###   ########.fr        #
+#    Updated: 2021/04/02 13:48:54 by msamual          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,9 @@ SRC			= built_in/ft_pwd.c \
 			  parse_command.c \
 			  read_input.c \
 			  history.c \
-			  write_hist.c
+			  write_hist.c \
+			  execute.c \
+			  errors.c
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= includes/minishell.h

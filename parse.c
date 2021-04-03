@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/31 18:29:54 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/02 13:03:28 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_tab(t_command *com)
 	printf("pipein = %d pipeout = %d\n", com->pipein, com->pipeout);
 }
 
-int		pipe_hdl(t_command *com)
+int		pipe_hdl(t_command *com, char **cur_ptr)
 {
 	if (com->com[0] && ft_strlen(com->com[0]))
 	{
@@ -38,6 +38,7 @@ int		pipe_hdl(t_command *com)
 	}
 	else
 	{
+		(*cur_ptr)++;
 		com->pipein = 1;
 		return (0);
 	}
@@ -62,7 +63,8 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	init_com(&com);
 	buf = com.com;
 	parse_command(cur_ptr, buf, &com, vars);
-	print_tab(&com);
+	//print_tab(&com);
+	execute(vars, &com);
 	clear_tab(com.com);
 	free(com.com);
 	parsing_loop(vars, cur_ptr);

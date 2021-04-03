@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/31 17:59:51 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/03 12:14:50 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,35 +68,38 @@ void		new_word(char ***buf, char **cur_ptr)
 {
 	while (is_separator(*(*cur_ptr + 1)))
 			(*cur_ptr)++;
-		if (!ft_strchr("|;><\0\n", *(*cur_ptr + 1)))
-		{
-			(*buf)++;
-			**buf = ft_calloc(BUFF_SIZE, sizeof(char));
-		}
+	if (!ft_strchr("|;><\0\n", *(*cur_ptr + 1)))
+	{
+		(*buf)++;
+		**buf = ft_calloc(BUFF_SIZE, sizeof(char));
+	}
 }
 
-void		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
+int		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
 {
 
 	*buf = ft_calloc(BUFF_SIZE, sizeof(char));
 	while (is_separator(**cur_ptr))
 		(*cur_ptr)++;
+	/*if (ft_strchr("|;", **cur_ptr))
+		return (unexpected_token(*cur_ptr));*/
 	while (!ft_strchr("\0\n#", **cur_ptr))
 	{
 		if (**cur_ptr == ';')
 		{
 			(*cur_ptr)++;
-			return ;
+			return (0);
 		}
-		if (**cur_ptr == '|' && pipe_hdl(com))
-			return;
-		if (is_separator(**cur_ptr))
+		else if (**cur_ptr == '|' && pipe_hdl(com, cur_ptr))
+			return (0);
+		else if (is_separator(**cur_ptr))
 			new_word(&buf, cur_ptr);
-		else if (!ft_strchr("$><.\'\"\\~", **cur_ptr))
+		else if (!ft_strchr("$><\'\"\\~", **cur_ptr))
 			joinchar(*buf, **cur_ptr);
 		else
 			spec_symb(cur_ptr, &buf, vars);
 		(*cur_ptr)++;
 	}
 	vars->end = 1;
+	return (0);
 }
