@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 11:21:11 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/03 12:21:37 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/05 11:36:58 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ void	read_input(t_vars *vars)
 			ctrl_d(vars);
 		else if (!ft_strcmp(str, "\177"))
 			backspace(vars, vars->history->com);
+		else if (str[0] != 27)
+			break ;
 		else if (ft_strcmp(str, "\n"))
 			add_to_command(vars, str, ret, vars->history->com);
 		else

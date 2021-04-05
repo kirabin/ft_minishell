@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 12:16:47 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/04 18:06:45 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <term.h>
 
 # define PROMPT "write here your fckin text>>> "
-
 
 /*
 **  ft_env_list
@@ -52,6 +51,7 @@ typedef struct			s_command
 	char				**com;
 	int					pipein;
 	int					pipeout;
+	int					redirect;
 }						t_command;
 
 
@@ -65,6 +65,8 @@ typedef struct			s_vars
 	struct termios		term;
 	char				*term_name;
 	int					cursor_pos;
+	int					brackets;
+	char				*rules;
 }						t_vars;
 
 # define BUFF_SIZE 999
@@ -88,7 +90,7 @@ char					**ft_env_to_charpp(t_env_list *list);
 void					ft_env_list_clear(t_env_list **lst);
 void					parse_row_string(t_vars *vars);
 void					replacement(t_vars *vars);
-int					parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars);
+int						parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars);
 int						pipe_hdl(t_command *com, char **cur_ptr);
 void					read_input(t_vars *vars);
 int						is_separator(char c);
@@ -103,7 +105,8 @@ void					init_history(t_vars *vars);
 void					write_history(t_vars *vars);
 void					ctrl_d(t_vars *vars);
 
-int						unexpected_token(char *token);
+int						check_unexpected_token(char *str);
+int						check_brackets(char *str);
 int						puterror(char *err_msg, int code);
 
 void					execute(t_vars *vars, t_command *com);

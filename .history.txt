@@ -13,3 +13,67 @@ ls -la | cat |
 ls -la | cat |
 hello |
 
+hello | | world
+hello | | world
+hello ||world
+hello world | cat
+hello world | cat
+hello | world
+hello | world
+hello | world
+hello | world
+hello | world
+hello | world
+hello | world
+hello | | w
+hello | ||||||
+hello | ;;;
+hello | ;;;
+;||
+;||
+f;||
+~/home | ls
+~
+~
+~hello
+hello fuckin    world     |   cat      \[3||  pop
+hello fuckin    world     |   cat      \[3||   pop
+hello fuckin    world     |   cat      \[3| |
+hello fuckin    world     |   cat      \[3| |
+$qwe
+ls
+hello \|world \; kok
+hello
+hello |
+hello \|world \; kok
+echo "$PATH" | echo '$PATH'
+\$HOME
+$HOMRE
+$HOMRE[3;2~[3;2~[3;2~[3;2~[3;2~[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2D[1;2D[1;2 
+$HOMRE[3;2~[3;2~[3;2~[3;2~[3;2~[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2D[1;2D[1;2 
+hello
+"$PATH"
+"$PATH"
+$PATH
+$PATH
+'lol'
+lol
+"echo"
+'echo'
+"'echo'"
+hello
+hel
+hello
+"$PATH"
+"$PATH"
+[19;1R[?1;2c
+"$PATH"
+$PATH
+"$HOME"
+"$HOME"fdhhte
+"$HOME"
+help
+hel
+kgiijbi
+help
+ls

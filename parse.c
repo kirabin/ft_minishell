@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/03 13:15:10 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/04 18:01:08 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ void	parse_row_string(t_vars *vars)
 
 	char		*cur_ptr;
 
+	vars->brackets = 0;
+	vars->rules = ft_strdup("$><\'\"\\~");
+	if (check_unexpected_token(vars->history->com))
+		return ;
+	if (check_brackets(vars->history->com))
+		return ;
 	vars->end = 0;
 	cur_ptr = vars->history->com;
 	parsing_loop(vars, &cur_ptr);
