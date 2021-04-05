@@ -6,9 +6,10 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/04 18:06:45 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/05 13:20:50 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -116,9 +117,10 @@ void					execute(t_vars *vars, t_command *com);
 */
 int						ft_pwd();
 void					ft_unset(t_env_list **list, char *key);
-int						ft_cd(const char *new_path);
+int						ft_cd(const char *new_path, t_env_list *list);
 void					ft_env(t_env_list *env_list);
 void					ft_export(char *key, char *value,
 									t_env_list **env_list);
+void					execute_command_struct(t_vars *vars, t_command *command);
 
 #endif

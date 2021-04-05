@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
+#    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/02 13:48:54 by msamual          ###   ########.fr        #
+#    Updated: 2021/04/03 14:16:18 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 LIB			= libft/libft.a
 SHELL_LIB	= libftshell.a
-FLAGS		= -Wall -Wextra -Werror -g     # remove -g flag
+FLAGS		= -Wall -Wextra -Werror -g
 SRC			= built_in/ft_pwd.c \
 			  built_in/ft_cd.c \
 			  built_in/ft_echo.c \
@@ -40,7 +40,8 @@ SRC			= built_in/ft_pwd.c \
 			  history.c \
 			  write_hist.c \
 			  execute.c \
-			  errors.c
+			  errors.c \
+			  exec.c
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= includes/minishell.h
@@ -72,6 +73,9 @@ clean:
 fclean: clean
 	$(MAKE) fclean -C libft/
 	rm -f $(NAME)
+	rm -f **/a.out
+	rm -f a.out
 	rm -f $(SHELL_LIB)
+	rm -rf minishell.dSYM
 
 re: fclean all
