@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 09:35:25 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 12:53:51 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ void					execute(t_vars *vars, t_command *com);
 */
 
 int						ft_pwd();
-void					ft_exit(int code);
+int						ft_echo(char **args);
+void					ft_exit(char *arg);
 int						ft_unset(t_env_list **list, char *key);
 int						ft_cd(const char *new_path, t_env_list *list);
 void					ft_env(t_env_list *env_list);

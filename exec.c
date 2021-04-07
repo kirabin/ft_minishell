@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 11:37:53 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 12:33:30 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void	execute_our_implementation(char *command, char **argv, t_env_list **list)
 	if (ft_strncmp(command, "cd", 2) == 0)
 		code = ft_cd(argv[1], *list);
 	else if (ft_strncmp(command, "echo", 4) == 0)
-		code = 0;  // TODO: ft_echo();
+		code = ft_echo(argv + 1);
 	else if (ft_strncmp(command, "env", 3) == 0)
 		ft_env(*list);
 	else if (ft_strncmp(command, "exit", 4) == 0)
-		ft_exit(1);  // TODO: which code to send?
+		ft_exit(argv[1]);  // TODO: which code to send?
 	else if (ft_strncmp(command, "export", 6) == 0)
 		code = ft_export(argv + 1, list);
 	else if (ft_strncmp(command, "pwd", 3) == 0)

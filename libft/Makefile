@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/28 11:34:55 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/03 13:29:00 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/07 14:05:47 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,8 +79,8 @@ SRC_INT   = ft_leni.c \
 			ft_min.c \
 			ft_abs.c \
 			ft_swapi.c \
-			ft_max.c 
-			
+			ft_max.c
+
 SRC_PUT   = ft_putc_fd.c \
 			ft_putuc_fd.c \
 			ft_puti_fd.c \
@@ -107,7 +107,7 @@ SRC_POINT = ft_point_add.c \
 			ft_point_len.c \
 			ft_point_rotate.c
 
-SRC       = $(wildcard ft_str/ft_*.c)   \
+SRC       = $(wildcard ft_str/*.c)   \
 			$(wildcard ft_lst/ft_*.c)   \
 			$(wildcard ft_mem/ft_*.c)   \
 			$(wildcard ft_chr/ft_*.c)   \
