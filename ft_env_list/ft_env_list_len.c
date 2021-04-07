@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 09:32:02 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/02 12:28:57 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:50:30 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		ft_env_list_len(t_env_list *env_list)
+int	ft_env_list_len(t_env_list *env_list)
 {
 	int		len;
 

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 13:37:42 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 16:07:16 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:43:06 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	free_array(char **array, int len)
 	free(array);
 }
 
-char		**ft_split(const char *s, char c)
+char	**ft_split(const char *s, char c)
 {
 	char	**array;
 	char	*word;
@@ -87,7 +87,7 @@ char		**ft_split(const char *s, char c)
 	if (!s)
 		return (0);
 	array_len = count_words((char *)s, c);
-	array = malloc(sizeof(char*) * (array_len + 1));
+	array = malloc(sizeof(char *) * (array_len + 1));
 	if (!array)
 		return (0);
 	i = 0;

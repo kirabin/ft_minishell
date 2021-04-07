@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:24 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:21:43 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:55:35 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@
  *	- exit 2147483649   - 1
 */
 
-static void		numeric_arg_error(char *str)
+static void	numeric_arg_error(char *str)
 {
 	ft_putstr_fd("exit: ", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("': numeric argument required\n", 2);
 }
-
 
 void	ft_exit(char *arg)
 {

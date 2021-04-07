@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 14:24:03 by dmilan            #+#    #+#             */
-/*   Updated: 2020/12/11 16:35:17 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:36:47 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static	t_list	*find_prev(t_list **head, t_list *node)
 	return (NULL);
 }
 
-void			ft_lst_swap(t_list **head, t_list *a, t_list *b)
+void	ft_lst_swap(t_list **head, t_list *a, t_list *b)
 {
 	t_list		*prev_a;
 	t_list		*prev_b;
 	t_list		*temp;
 
-	if (a->content == b->content || a == NULL || b == NULL || head == NULL ||
-		*head == NULL)
+	if (a->content == b->content || a == NULL || b == NULL || head == NULL
+		|| *head == NULL)
 		return ;
 	prev_a = find_prev(head, a);
 	prev_b = find_prev(head, b);

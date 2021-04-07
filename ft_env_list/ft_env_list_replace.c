@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 12:39:15 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 09:19:47 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:49:48 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_env_list_replace(t_env_list *list, char *key, char *new_value)
 		{
 			free(list->item->value);
 			list->item->value = ft_strdup(new_value);
-			break;
+			break ;
 		}
 		list = list->next;
 	}

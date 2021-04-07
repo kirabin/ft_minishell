@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 19:21:51 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/21 12:47:58 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:37:15 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_min(int a, int b)
+int	ft_min(int a, int b)
 {
 	if (a < b)
 		return (a);

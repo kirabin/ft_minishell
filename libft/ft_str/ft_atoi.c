@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 15:30:31 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:12:22 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:30:15 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int		i;
 	int		sign;
@@ -24,7 +24,7 @@ int		ft_atoi(const char *str)
 	while (ft_isspace(str[i]))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
-		sign = (str[i++] == '-') ? -1 : 1;
+		sign = (str[i++] == '-') * 2 - 1;
 	while (str[i] && '0' <= str[i] && str[i] <= '9')
 	{
 		res = res * 10 + (str[i++] - '0');
@@ -36,8 +36,7 @@ int		ft_atoi(const char *str)
 	return (res * sign);
 }
 
-
-long long		ft_atoi_long_long(const char *str)
+long long	ft_atoi_long_long(const char *str)
 {
 	long long	res;
 	int			sign;
@@ -52,10 +51,3 @@ long long		ft_atoi_long_long(const char *str)
 		res = res * 10 + (*str++ - '0') * sign;
 	return (res);
 }
-
-
-// "         000001"
-// "    -0023"
-// "1234"
-// "9223372036854775807"
-// "-9223372036854775808"

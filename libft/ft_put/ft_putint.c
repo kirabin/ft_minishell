@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:00:47 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/03 15:27:47 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:30:29 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 
-int		ft_putint(int c)
+int	ft_putint(int c)
 {
 	write(1, &c, 1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 12:53:51 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:54:54 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void					execute(t_vars *vars, t_command *com);
 **	Built_IN
 */
 
-int						ft_pwd();
+int						ft_pwd(void);
 int						ft_echo(char **args);
 void					ft_exit(char *arg);
 int						ft_unset(t_env_list **list, char *key);

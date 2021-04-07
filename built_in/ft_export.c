@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 09:40:51 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:55:25 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,15 @@
 //	[ ] export export a+abc=1    Should be error
 //
 //	[+] a=1; export a			Shouldn't handle it by subject, just setting empty value.
-//
 
-
-static void		identifier_error(char *str)
+static void	identifier_error(char *str)
 {
 	ft_putstr_fd("export: `", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("': not a valid identifier\n", 2);
 }
 
-int				ft_export(char **args, t_env_list **env_list)
+int	ft_export(char **args, t_env_list **env_list)
 {
 	t_env_item	*item;
 	t_env_item	*tmp;

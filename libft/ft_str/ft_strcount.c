@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 15:02:18 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/21 12:46:30 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:29:28 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strcount(const char *s, char c)
+int	ft_strcount(const char *s, char c)
 {
 	int	count;
 

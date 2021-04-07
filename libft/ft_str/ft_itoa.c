@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 18:10:17 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/13 12:41:02 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:29:47 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*res;
 	int		i;

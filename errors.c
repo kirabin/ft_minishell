@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:04:54 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/04 12:23:36 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:45:17 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		unexpected_token(char *token)
+int	unexpected_token(char *token)
 {
 	if (*token == '|' && *(token + 1) != '|')
 		return (puterror("syntax error near unexpected token `|'", 258));
@@ -25,7 +25,7 @@ int		unexpected_token(char *token)
 	return (0);
 }
 
-int		puterror(char *msg, int code)
+int	puterror(char *msg, int code)
 {
 	errno = code;
 	write(2, msg, ft_strlen(msg));
