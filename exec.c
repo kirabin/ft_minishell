@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 09:26:01 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 11:37:53 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void	execute_our_implementation(char *command, char **argv, t_env_list **list)
 	else if (ft_strncmp(command, "echo", 4) == 0)
 		code = 0;  // TODO: ft_echo();
 	else if (ft_strncmp(command, "env", 3) == 0)
-		code = ft_env(*list);
+		ft_env(*list);
 	else if (ft_strncmp(command, "exit", 4) == 0)
-		code = 0;  // TODO: ft_exit();
+		ft_exit(1);  // TODO: which code to send?
 	else if (ft_strncmp(command, "export", 6) == 0)
-		code = ft_export(argv + 1, list);  // TODO: ft_export();
+		code = ft_export(argv + 1, list);
 	else if (ft_strncmp(command, "pwd", 3) == 0)
 		code = ft_pwd();
 	else if (ft_strncmp(command, "unset", 5) == 0)
@@ -80,13 +80,11 @@ char	*get_command_path(char *command, t_env_list *list)
 
 	if (ft_string_is_absolute_path(command))
 	{
-		ft_putstr(ft_strjoin("./", command));
 		return (ft_strdup(command));
 	}
 	if (ft_string_is_relative_path(command))
 	{
-		ft_putstr(ft_strjoin("./", command));
-		return (ft_strjoin("./", command));
+		return (ft_strjoin("./", command)); // free
 	}
 	i = -1;
 	extended_path = NULL;
@@ -148,8 +146,8 @@ void	execute_command_struct(t_vars *vars, t_command *command)
 
 	command_path = get_command_path(command->com[0], vars->env_list);
 	command_name = get_command_name(command->com[0]);
-	printf("command path: %s\n", command_path);
-	printf("command name: %s\n", command_name);
+	printf("command path: %s\n", command_path);  // rm line
+	printf("command name: %s\n", command_name);  // rm line
 	if (is_our_implementation(command_name))
 	{
 		ft_putstr("That's for dmilan to handle\n");
