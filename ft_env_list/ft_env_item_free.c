@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env_item_new.c                                  :+:      :+:    :+:   */
+/*   ft_env_item_free.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 10:06:39 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 09:21:48 by dmilan           ###   ########.fr       */
+/*   Created: 2021/04/07 08:50:48 by dmilan            #+#    #+#             */
+/*   Updated: 2021/04/07 09:26:37 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env_item	*ft_env_item_new(char *key, int identifier, char *value)
+void	ft_env_item_free(t_env_item *item)
 {
-	t_env_item	*item;
-
-	if (!(item = malloc(sizeof(t_env_item))))
-		exit(1);  // TODO: should we print the message? which code to pass?
-	item->key = key;
-	item->identifier = identifier;
-	item->value = value;
-	return (item);
+	free(item->key);
+	free(item->value);
+	free(item);
 }

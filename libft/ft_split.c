@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 13:37:42 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/03 15:10:28 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/03 16:07:16 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ char		**ft_split(const char *s, char c)
 		array[i++] = word;
 		s += skip_delimiters(s, c) + ft_strlen(word);
 	}
-	array[array_len] = 0;
+	array[array_len] = NULL;
 	return (array);
 }

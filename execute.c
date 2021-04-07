@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 15:08:07 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/03 14:15:53 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/06 14:47:30 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	execute(t_vars *vars, t_command *com)
 	print_tab(com);
 	// execve("/bin/pwd", com->com, envp);
 	execute_command_struct(vars, com);
-	
+
 
 	// free(envp);
 }

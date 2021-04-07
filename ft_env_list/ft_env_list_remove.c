@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 10:53:10 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 14:01:50 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/06 15:04:43 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env_list_remove(t_env_list **list, char *key)
+bool	ft_env_list_remove(t_env_list **list, char *key)
 {
 	t_env_list *node;
 	t_env_list *temp;
@@ -31,9 +31,10 @@ void	ft_env_list_remove(t_env_list **list, char *key)
 			else
 				*list = node->next;
 			free(temp);
-			break;
+			return (true);
 		}
 		prev = node;
 		node = node->next;
 	}
+	return (false);
 }

@@ -6,15 +6,9 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 09:21:16 by dmilan            #+#    #+#             */
-/*   Updated: 2021/03/02 12:24:35 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/06 14:49:56 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// TODO
-// - get everything to work again
-//		--makefile
-//		--minishell.h
-//		--minishell.c
 
 #include "minishell.h"
 
@@ -23,7 +17,7 @@ static char	*ft_env_item_to_charp(t_env_item *item)
 	char	*line;
 	int		len;
 	int		i;
-	
+
 	i = -1;
 	len = ft_strlen(item->key) + ft_strlen(item->value) + 1;
 	if (!(line = malloc(sizeof(char) * (len + 1))))

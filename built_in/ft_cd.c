@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:46:52 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 16:03:16 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/06 15:12:45 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /*
 **   Change Directory
+**    - Absolute or Relative path
+**    - No options
 */
 
 int		ft_cd(const char *new_path, t_env_list *list)
@@ -24,6 +26,7 @@ int		ft_cd(const char *new_path, t_env_list *list)
 	{
 		ft_putstr_fd(strerror(errno), 2);
 		ft_putstr_fd("\n", 2);
+		return (0);
 	}
 	return (1);
 }
