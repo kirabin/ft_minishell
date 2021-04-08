@@ -107,3 +107,19 @@ ls
 ls
 ls
 ls
+hello world
+hello world
+hello world | pipe
+hello world | pipe |
+hello world | pipe |
+hello
+hello world
+hello
+hello
+hello world
+ls
+hello | world
+"$P"
+ls
+"hello world"
+ls

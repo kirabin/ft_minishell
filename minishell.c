@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 11:04:56 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/08 14:56:05 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		main(int argc, char **argv, char **envp)
 	vars.env_list = convert_envp_to_list(envp);
 	//signal(SIGINT, handle_signal);
 	init_history(&vars);
-	vars.term_name = getenv("TERM");
+	vars.term_name = "xterm-256color";
 	if (tcgetattr(0, &vars.term) || tcgetattr(0, &vars.term_orig_attr))
 		puterror("Error: tcgetattr\n", 1);
 	vars.term.c_lflag &= ~(ECHO);

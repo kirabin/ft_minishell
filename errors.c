@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:04:54 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/08 13:56:33 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/08 14:18:17 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int		check(char *str)
 {
-	while (is_separator(*str))
+	while (*str && !is_separator(*str))
 		str++;
 	if (*str == '|' || *str == ';')
 		return (1);
