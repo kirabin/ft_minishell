@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:41:29 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/08 11:55:59 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_itoa(int n);
 char				*ft_strnew(int n);
-char				*ft_strjoinfree(char *s1, const char *s2);
-char				*ft_strjoinfreerev(const char *s1, char *s2);
-char				*ft_strjoinfreefree(char *s1, char *s2);
+char				*ft_strjoin_free(char *s1, const char *s2);
+char				*ft_strjoin_free_rev(const char *s1, char *s2);
+char				*ft_strjoin_free_free(char *s1, char *s2);
 int					ft_strcount(const char *s, char c);
 const char			*ft_strskip(const char *s, int (*is_that)(int));
 bool				ft_string_is_path(char *string);

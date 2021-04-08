@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 13:46:44 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/08 16:50:40 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <signal.h>
+# include <curses.h>
 # include <term.h>
 
 # define PROMPT "write here your fckin text>>> "
@@ -87,12 +88,12 @@ void					ft_env_list_print(t_env_list *env_list);
 void					ft_env_list_print_with_declare(t_env_list *env_list);
 char					*ft_env_list_get_value(t_env_list *env_list, char *key);
 bool					ft_env_key_exists(t_env_list *list, char *key);
-void					ft_env_list_replace(t_env_list *list, char *key,
-												char *new_value);
+void					ft_env_list_replace(t_env_list *list,
+							t_env_item *new_item);
 void					ft_env_item_del(t_env_item *item);
 bool					ft_env_list_remove(t_env_list **list, char *key);
 int						ft_env_list_len(t_env_list *env_list);
-t_env_list				*convert_envp_to_list(char **envp);
+t_env_list				*ft_envp_to_env_list(char **envp);
 t_env_item				*get_env_item_from_envp_string(const char *envp_string);
 char					**ft_env_to_charpp(t_env_list *list);
 void					ft_env_list_clear(t_env_list **lst);

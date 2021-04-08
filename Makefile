@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/07 09:26:23 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/08 12:57:20 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,37 +14,42 @@ NAME		= minishell
 LIB			= libft/libft.a
 SHELL_LIB	= libftshell.a
 FLAGS		= -Wall -Wextra -Werror -g
-SRC			= built_in/ft_pwd.c \
-			  built_in/ft_cd.c \
-			  built_in/ft_echo.c \
-			  built_in/ft_env.c \
-			  built_in/ft_exit.c \
-			  built_in/ft_export.c \
-			  built_in/ft_unset.c \
-			  ft_env_list/ft_env_list_new.c \
-			  ft_env_list/ft_env_list_add_back.c \
-			  ft_env_list/ft_env_list_clear.c \
-			  ft_env_list/ft_env_list_get_value.c \
-			  ft_env_list/ft_env_item_new.c \
-			  ft_env_list/ft_env_list_remove.c \
-			  ft_env_list/ft_env_list_replace.c \
-			  ft_env_list/ft_env_key_exists.c \
-			  ft_env_list/ft_env_list_print.c \
-			  ft_env_list/ft_env_list_len.c \
-			  ft_env_list/convert_envp_to_list.c \
-			  ft_env_list/ft_env_to_charpp.c \
-			  ft_env_list/ft_get_env_item_with_key.c \
-			  ft_env_list/ft_env_item_free.c \
-			  minishell.c \
-			  parse.c \
-			  parse_command.c \
-			  read_input.c \
-			  history.c \
-			  write_hist.c \
-			  execute.c \
-			  errors.c \
-			  exec.c \
-			  definitions/names.c
+
+SRC_BIN=	ft_pwd \
+			ft_cd \
+			ft_echo \
+			ft_env \
+			ft_exit \
+			ft_export \
+			ft_unset
+
+SRC_ENV=	ft_env_list_new \
+			ft_env_list_add_back \
+			ft_env_list_clear \
+			ft_env_list_get_value \
+			ft_env_item_new \
+			ft_env_list_remove \
+			ft_env_list_replace \
+			ft_env_key_exists \
+			ft_env_list_print \
+			ft_env_list_len \
+			ft_envp_to_env_list \
+			ft_env_to_charpp \
+			ft_get_env_item_with_key \
+			ft_env_item_free
+
+SRC=		$(patsubst %, built_in/%.c, $(SRC_BIN)) \
+			$(patsubst %, ft_env_list/%.c, $(SRC_ENV)) \
+			minishell.c \
+			parse.c \
+			parse_command.c \
+			read_input.c \
+			history.c \
+			write_hist.c \
+			execute.c \
+			errors.c \
+			exec.c \
+			definitions/names.c
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= includes/minishell.h
