@@ -77,3 +77,33 @@ hel
 kgiijbi
 help
 ls
+[1;2D[1;2D[1;2D[1;2D[1;2D[1;2D[1;2D[1;2D[1;2D[1;2D[1;2D[1;2D[1;2D[1;2C[1;2A[1;2A[1;2A[1;2A[1;2A[1;2A[1;2A[1;2A[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2Cfdjgiejipgjetjgo
+e;rgergperjg
+[1;2A[1;2A[1;2A[1;2A;wefogropegeoprmkgetohepotmhbte
+ls
+ls
+ls -la
+hello
+hello world
+ls
+ls -la
+fffsdg
+gegregergerwewwer
+he
+hellolrgm;erg;okerogkrekgo[rekf[ogkreo[kgeo[rkg[erokg[oooerrrkokg[okore[okorkokog[ok3
+hello | world
+|hello
+hello | world
+hello | world
+make
+make
+$
+$~
+$~
+"$PATH"
+"$HOME"
+"$HOME"
+ls
+ls
+ls
+ls

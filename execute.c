@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 15:08:07 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/03 14:15:53 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/06 14:02:47 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ void	execute(t_vars *vars, t_command *com)
 {
 	// char	**envp;
 
+	(void)vars;
 	// envp = list_to_array(vars->env_list);
 	print_tab(com);
 	// execve("/bin/pwd", com->com, envp);
-	execute_command_struct(vars, com);
+	//execute_command_struct(vars, com);
 	
 
 	// free(envp);

@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/05 13:20:50 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/06 18:56:15 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <term.h>
 
 # define PROMPT "write here your fckin text>>> "
+# define RULES "$><\'\"\\~"
+# define DOUBLE_QOUTES "$\\\""
 
 /*
 **  ft_env_list

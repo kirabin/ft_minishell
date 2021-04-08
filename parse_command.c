@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/04 18:14:09 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/08 11:45:15 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ void	joinstr(char *buf, char *str)
 {
 	while(*str)
 		joinchar(buf, *str++);
+	joinchar(buf, 0);
 }
 
 void	dollar_handle(t_vars *vars, char *buf, char **input)
 {
-	char	buffer[999];
+	char	buffer[9999];
 	char	*var;
 
-	ft_bzero(buffer, 999);
+	ft_bzero(buffer, 9999);
 	(*input)++;
 	while(!ft_strchr("$><\'\"\\~#\0\n \t\r", **input))
 		joinchar(buffer, *(*input)++);
