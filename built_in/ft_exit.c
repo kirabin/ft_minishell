@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:24 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 16:21:01 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/08 14:58:43 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_exit(char *arg)
 {
 	long long	code;
 
-	if (!*arg)
+	if (!arg)
 		exit(errno);
 	ft_putstr_fd("error\n", 2);
 	if (is_long_long(arg))

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 08:22:35 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 08:29:44 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/08 14:54:04 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		find_name_len(const char *str)
 	if (!str && *str != '_' && !ft_isalpha(*str))
 		return (0);
 	len++;
-	while (str[len] || str[len] == '_' || ft_isalnum(str[len]))
+	while (str[len] && (str[len] == '_' || ft_isalnum(str[len])))
 		len++;
 	return (len);
 }

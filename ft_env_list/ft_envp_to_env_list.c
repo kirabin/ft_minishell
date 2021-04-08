@@ -34,7 +34,7 @@ t_env_item	*get_env_item_from_envp_string(const char *envp_string)
 	i = find_name_len(envp_string);
 	item->key = ft_strndup(envp_string, i);
 	item->identifier = which_identifier(envp_string + i);
-	item->value = ft_strdup(envp_string + item->identifier);
+	item->value = ft_strdup(envp_string + i + item->identifier);
 	return (item);
 }
 
