@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 09:32:22 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:50:16 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 15:56:53 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_env_list_print(t_env_list *env_list)
 {
 	while (env_list != NULL)
 	{
+		if (env_list->item->identifier == 0)
+			continue ;
 		ft_putstr_fd(env_list->item->key, 1);
 		ft_putstr_fd("=", 1);
 		ft_putstr_fd(env_list->item->value, 1);

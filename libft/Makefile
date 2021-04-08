@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/28 11:34:55 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/07 14:05:47 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/08 12:22:31 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,105 +17,90 @@
 #                                                                              #
 ################################################################################
 
-NAME      = libft.a
-HEADER    = libft.h
-CCFLAGS   = -Wall -Wextra -Werror
+NAME=		libft.a
+HEADER=		libft.h
+CCFLAGS=	-Wall -Wextra -Werror
 
-SRC_PRINT = ft_printf.c \
-			print_c.c \
-			print_s.c \
-			print_p.c \
-			print_di.c \
-			print_u.c \
-			print_x.c \
-			print_percent.c \
-			ft_printf_support.c
+SRC_STR=	ft_atoi \
+			ft_itoa \
+			ft_strchr \
+			ft_strcount \
+			ft_strdup \
+			ft_strfill \
+			ft_string_is_path \
+			ft_strjoin \
+			ft_strjoin_free \
+			ft_strjoin \
+			ft_strlcat \
+			ft_strlcpy \
+			ft_strlen \
+			ft_strmapi \
+			ft_strncmp \
+			ft_strnew \
+			ft_strnstr \
+			ft_strrchr \
+			ft_strskip \
+			ft_strskip_char \
+			ft_strtrim \
+			ft_substr \
+			is_long_long
 
-SRC_STR   = ft_strchr.c \
-			ft_strcount.c \
-			ft_strdup.c \
-			ft_strjoin.c \
-			ft_strjoinfree.c \
-			ft_strlcat.c \
-			ft_strlcpy.c \
-			ft_strlen.c \
-			ft_strmapi.c \
-			ft_strncmp.c \
-			ft_strnew.c \
-			ft_strnstr.c \
-			ft_strrchr.c \
-			ft_strtrim.c \
-			ft_strskip.c \
-			ft_strskip_char.c \
-			ft_strfill.c \
-			ft_atoi.c \
-			ft_itoa.c \
-			ft_substr.c
+SRC_LST=	ft_lst_bubble_sort \
+			ft_lst_put \
+			ft_lst_swap \
+			ft_lstadd_back \
+			ft_lstadd_front \
+			ft_lstclear \
+			ft_lstdelone \
+			ft_lstfind \
+			ft_lstiter \
+			ft_lstlast \
+			ft_lstmap \
+			ft_lstmerge \
+			ft_lstnew \
+			ft_lstrev \
+			ft_lstsize
 
-SRC_LST   = ft_lstadd_back.c \
-			ft_lstadd_front.c \
-			ft_lstclear.c \
-			ft_lstdelone.c \
-			ft_lstfind.c \
-			ft_lstiter.c \
-			ft_lstlast.c \
-			ft_lstmap.c \
-			ft_lstmerge.c \
-			ft_lstnew.c \
-			ft_lstrev.c \
-			ft_lstsize.c
+SRC_CHR=	ft_isalnum \
+			ft_isalpha \
+			ft_isascii \
+			ft_isblank \
+			ft_isdigit \
+			ft_isprint \
+			ft_isspace \
+			ft_tolower \
+			ft_toupper
 
-SRC_CHR   = ft_isalnum.c \
-			ft_isalpha.c \
-			ft_isascii.c \
-			ft_isblank.c \
-			ft_isdigit.c \
-			ft_isprint.c \
-			ft_isspace.c \
-			ft_tolower.c \
-			ft_toupper.c
+SRC_INT=	ft_leni \
+			ft_min \
+			ft_abs \
+			ft_swapi \
+			ft_max
 
-SRC_INT   = ft_leni.c \
-			ft_min.c \
-			ft_abs.c \
-			ft_swapi.c \
-			ft_max.c
+SRC_PUT=	ft_putchar_fd \
+			ft_putcpp_fd \
+			ft_putendl \
+			ft_putint \
+			ft_putnbr_fd \
+			ft_putstr \
+			ft_putstr_fd
 
-SRC_PUT   = ft_putc_fd.c \
-			ft_putuc_fd.c \
-			ft_puti_fd.c \
-			ft_putstr_fd.c \
-			ft_putstrn_fd.c \
-			ft_putui_fd.c \
-			ft_putui_hex_fd.c \
-			ft_putcppn_fd.c \
-			ft_putul_hex_fd.c \
-			ft_putstr.c \
-			ft_putint.c
+SRC_MEM=	ft_bzero \
+			ft_calloc \
+			ft_memccpy \
+			ft_memchr \
+			ft_memcmp \
+			ft_memcpy \
+			ft_memmove \
+			ft_memset
 
-SRC_MEM   = ft_bzero.c \
-			ft_calloc.c \
-			ft_memccpy.c \
-			ft_memchr.c \
-			ft_memcmp.c \
-			ft_memcpy.c \
-			ft_memmove.c \
-			ft_memset.c
 
-SRC_POINT = ft_point_add.c \
-			ft_point_new.c \
-			ft_point_len.c \
-			ft_point_rotate.c
-
-SRC       = $(wildcard ft_str/*.c)   \
-			$(wildcard ft_lst/ft_*.c)   \
-			$(wildcard ft_mem/ft_*.c)   \
-			$(wildcard ft_chr/ft_*.c)   \
-			$(wildcard ft_printf/*.c)   \
-			$(wildcard ft_put/ft_*.c)   \
-			$(wildcard ft_int/ft_*.c)   \
-			$(wildcard ft_point/ft_*.c) \
-			$(wildcard ft_color/ft_*.c) \
+SRC=		$(patsubst %, ft_str/%.c, $(SRC_STR)) \
+			$(patsubst %, ft_lst/%.c, $(SRC_LST)) \
+			$(patsubst %, ft_mem/%.c, $(SRC_MEM)) \
+			$(patsubst %, ft_chr/%.c, $(SRC_CHR)) \
+			$(patsubst %, ft_put/%.c, $(SRC_PUT)) \
+			$(patsubst %, ft_int/%.c, $(SRC_INT)) \
 			ft_uitoa.c \
 			ft_lenui.c \
 			ft_lenui_hex.c \
@@ -123,7 +108,7 @@ SRC       = $(wildcard ft_str/*.c)   \
 			ft_split.c \
 			get_next_line.c
 
-OBJ       = $(SRC:.c=.o)
+OBJ=$(SRC:.c=.o)
 
 ################################################################################
 #                                                                              #

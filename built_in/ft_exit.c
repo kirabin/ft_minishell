@@ -6,18 +6,15 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:24 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:55:35 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 16:21:01 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*
-**   Stop execution of program
-**    - no options
-**		exit: exit [n]
-**		Exit the shell with a status of N.  If N is omitted, the exit status
-**		is that of the last command executed.
+**	Exit the shell with a status of N.  If N is omitted, the exit status
+**	is that of the last command executed.
 */
 
 // MAN — https://man7.org/linux/man-pages/man3/exit.3.html

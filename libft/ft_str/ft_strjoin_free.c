@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoinfree.c                                   :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 19:17:22 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:29:21 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/08 12:24:07 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoinfree(char *s1, const char *s2)
+char	*ft_strjoin_free(char *s1, const char *s2)
 {
 	int		s1_len;
 	int		s2_len;
@@ -39,7 +39,7 @@ char	*ft_strjoinfree(char *s1, const char *s2)
 	return (res);
 }
 
-char	*ft_strjoinfreerev(const char *s1, char *s2)
+char	*ft_strjoin_free_rev(const char *s1, char *s2)
 {
 	int		s1_len;
 	int		s2_len;
@@ -66,7 +66,7 @@ char	*ft_strjoinfreerev(const char *s1, char *s2)
 	return (res);
 }
 
-char	*ft_strjoinfreefree(char *s1, char *s2)
+char	*ft_strjoin_free_free(char *s1, char *s2)
 {
 	int		s1_len;
 	int		s2_len;

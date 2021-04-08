@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:55:25 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/08 11:56:32 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_export(char **args, t_env_list **env_list)
 				else if (item->identifier == 2)
 				{
 					tmp = ft_get_env_item_with_key(*env_list, item->key);
-					tmp->value = ft_strjoinfree(tmp->value,
+					tmp->value = ft_strjoin_free(tmp->value,
 														item->value);
 				}
 				else if (item->identifier == 0)
