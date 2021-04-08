@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 14:36:04 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:41:29 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void				*ft_calloc_c(size_t count, size_t size, int c);
 /*
 **  ft_str
 */
+bool				is_long_long(char *str);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -54,16 +55,18 @@ char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 void				ft_strfill(char fill, int n);
 char				*ft_strnstr(const char *haystack, const char *needle,
-								size_t len);
+						size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
+long long			ft_atoi_long_long(const char *str);
 char				*ft_strdup(const char *s1);
 char				*ft_strndup(const char *s1, int n);
 const char			*ft_strskip_char(const char *s, char c);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
-char				*ft_strjoin_three(char const *s1, char const *s2, char const *s3);
+char				*ft_strjoin_three(char const *s1, char const *s2,
+						char const *s3);
 char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_itoa(int n);
@@ -76,7 +79,6 @@ const char			*ft_strskip(const char *s, int (*is_that)(int));
 bool				ft_string_is_path(char *string);
 bool				ft_string_is_absolute_path(char *string);
 bool				ft_string_is_relative_path(char *string);
-
 
 /*
 **  ft_chr
@@ -121,7 +123,7 @@ void				ft_swapi(int *a, int *b);
 /*
 **  ft_lst
 */
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -140,12 +142,12 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 void				ft_lst_put(t_list *list, void(*put)(void *content));
 void				ft_lst_swap(t_list **head, t_list *a, t_list *b);
 void				ft_lst_bubble_sort(t_list **list,
-										int(*compare)(t_list *, t_list *));
+						int(*compare)(t_list *, t_list *));
 
 /*
 **  ft_printf
 */
-typedef struct		s_format
+typedef struct s_format
 {
 	int				arg_len;
 	char			*arg_s;
@@ -160,7 +162,7 @@ typedef struct		s_format
 	char			length;
 }					t_format;
 
-typedef struct		s_print
+typedef struct s_print
 {
 	int				printed;
 	va_list			valist;
@@ -183,7 +185,7 @@ const char			*get_f_length(t_print *print, const char *format_string);
 /*
 **  ft_point
 */
-typedef struct		s_point
+typedef struct s_point
 {
 	double			x;
 	double			y;
@@ -197,7 +199,7 @@ t_point				ft_point_rotate(t_point point, double angle);
 /*
 **  ft_color
 */
-typedef struct		s_color
+typedef struct s_color
 {
 	unsigned char	a;
 	unsigned char	r;
@@ -207,9 +209,9 @@ typedef struct		s_color
 }					t_color;
 
 int					ft_color_argb(unsigned char a, unsigned char r,
-									unsigned char g, unsigned char b);
+						unsigned char g, unsigned char b);
 t_color				ft_color_new(unsigned char a, unsigned char r,
-									unsigned char g, unsigned char b);
+						unsigned char g, unsigned char b);
 /*
 **  ft_other
 */

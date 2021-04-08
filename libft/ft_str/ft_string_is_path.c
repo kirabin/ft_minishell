@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:57:23 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 13:29:00 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:28:11 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 bool	ft_string_is_path(char *string)
 {
-	if (ft_string_is_absolute_path(string) || 
-		ft_string_is_relative_path(string))
+	if (ft_string_is_absolute_path(string)
+		|| ft_string_is_relative_path(string))
 		return (true);
 	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 16:03:09 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:46:10 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,26 @@ bool	is_our_implementation(char *command)
 	return false;
 }
 
-void	execute_our_implementation(char *command, char **args, t_env_list *list)
+void	execute_our_implementation(char *command, char **argv, t_env_list **list)
 {
-	// Check whether there is more args or not?
+	int		code;
+
+	code = 1;
 	if (ft_strncmp(command, "cd", 2) == 0)
-		ft_cd(args[1], list); // Done. ignores other args as it should
+		code = ft_cd(argv[1], *list);
 	else if (ft_strncmp(command, "echo", 4) == 0)
-		;
+		code = ft_echo(argv + 1);
 	else if (ft_strncmp(command, "env", 3) == 0)
-		ft_env(list);
+		ft_env(*list);
 	else if (ft_strncmp(command, "exit", 4) == 0)
-		;// ft_exit();
+		ft_exit(argv[1]);  // TODO: which code to send?
 	else if (ft_strncmp(command, "export", 6) == 0)
-		;
+		code = ft_export(argv + 1, list);
 	else if (ft_strncmp(command, "pwd", 3) == 0)
-		ft_pwd();  // Done. ignores all args as it should
+		code = ft_pwd();
 	else if (ft_strncmp(command, "unset", 5) == 0)
-		ft_unset(&list, args[0]);
+		code = ft_unset(list, argv[0]);
+	// TODO: do something with code variable?
 }
 
 bool	is_file_exists(char *path)
@@ -76,9 +79,13 @@ char	*get_command_path(char *command, t_env_list *list)
 	int		i;
 
 	if (ft_string_is_absolute_path(command))
+	{
 		return (ft_strdup(command));
+	}
 	if (ft_string_is_relative_path(command))
-		return (ft_strjoin("./", command));
+	{
+		return (ft_strjoin("./", command)); // free
+	}
 	i = -1;
 	extended_path = NULL;
 	paths = ft_split(ft_env_list_get_value(list, "PATH"), ':');
@@ -91,7 +98,7 @@ char	*get_command_path(char *command, t_env_list *list)
 		free(extended_path);
 		extended_path = NULL;
 	}
-	// free_cpp(&paths);
+	// TODO: free_cpp(&paths);
 	return (extended_path);
 }
 
@@ -127,7 +134,7 @@ int		execute_command(char *command_path, char **argv, t_vars *vars)
 		return(pid);
 	}
 	wait(&pid);
-	// free_cpp(&envp);
+	// TODO: free_cpp(&envp);
 	return (pid);
 }
 
@@ -139,10 +146,12 @@ void	execute_command_struct(t_vars *vars, t_command *command)
 
 	command_path = get_command_path(command->com[0], vars->env_list);
 	command_name = get_command_name(command->com[0]);
+	printf("command path: %s\n", command_path);
+	printf("command name: %s\n", command_name);
 	if (is_our_implementation(command_name))
 	{
 		ft_putstr("That's for dmilan to handle\n");
-		execute_our_implementation(command_name, command->com, vars->env_list);
+		execute_our_implementation(command_name, command->com, &vars->env_list);
 	}
 	else if (command_path)
 	{

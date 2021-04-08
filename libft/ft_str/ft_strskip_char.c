@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 14:22:11 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/25 14:26:23 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:24:06 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-const char		*ft_strskip_char(const char *s, char c)
+const char	*ft_strskip_char(const char *s, char c)
 {
 	if (!s)
 		return (s);

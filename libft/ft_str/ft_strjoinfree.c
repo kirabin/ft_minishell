@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoinfree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 19:17:22 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/16 14:22:08 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/07 14:29:21 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*ft_strjoinfree(char *s1, const char *s2)
 		return (s1);
 	s1_len = ft_strlen((char *)s1);
 	s2_len = ft_strlen((char *)s2);
-	if (!(res = malloc(sizeof(char) * (s1_len + s2_len + 1))))
+	res = malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!res)
 		return (s1);
 	while (s2_i < s1_len)
 		res[s1_i++] = s1[s2_i++];
@@ -52,7 +53,8 @@ char	*ft_strjoinfreerev(const char *s1, char *s2)
 		return (s2);
 	s1_len = ft_strlen((char *)s1);
 	s2_len = ft_strlen((char *)s2);
-	if (!(res = malloc(sizeof(char) * (s1_len + s2_len + 1))))
+	res = malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!res)
 		return (s2);
 	while (s2_i < s1_len)
 		res[s1_i++] = s1[s2_i++];
@@ -78,7 +80,8 @@ char	*ft_strjoinfreefree(char *s1, char *s2)
 		return (s1);
 	s1_len = ft_strlen((char *)s1);
 	s2_len = ft_strlen((char *)s2);
-	if (!(res = malloc(sizeof(char) * (s1_len + s2_len + 1))))
+	res = malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!res)
 		return (s1);
 	while (s2_i < s1_len)
 		res[s1_i++] = s1[s2_i++];

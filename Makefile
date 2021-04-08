@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/03 14:16:18 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/07 09:26:23 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRC			= built_in/ft_pwd.c \
 			  ft_env_list/ft_env_list_len.c \
 			  ft_env_list/convert_envp_to_list.c \
 			  ft_env_list/ft_env_to_charpp.c \
+			  ft_env_list/ft_get_env_item_with_key.c \
+			  ft_env_list/ft_env_item_free.c \
 			  minishell.c \
 			  parse.c \
 			  parse_command.c \
@@ -41,7 +43,8 @@ SRC			= built_in/ft_pwd.c \
 			  write_hist.c \
 			  execute.c \
 			  errors.c \
-			  exec.c
+			  exec.c \
+			  definitions/names.c
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= includes/minishell.h

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:21 by dmilan            #+#    #+#             */
-/*   Updated: 2021/02/12 09:35:16 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 09:35:19 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /*
 **   Print environment variables
+**    - No options
+**    - No arguments
 */
 
 void	ft_env(t_env_list *env_list)

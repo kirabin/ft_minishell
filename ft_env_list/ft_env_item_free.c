@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_point_add.c                                     :+:      :+:    :+:   */
+/*   ft_env_item_free.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/28 12:59:07 by dmilan            #+#    #+#             */
-/*   Updated: 2020/12/04 17:33:18 by dmilan           ###   ########.fr       */
+/*   Created: 2021/04/07 08:50:48 by dmilan            #+#    #+#             */
+/*   Updated: 2021/04/07 14:51:34 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_point		ft_point_add(t_point a, t_point b)
+void	ft_env_item_free(t_env_item *item)
 {
-	t_point		res;
-
-	res.x = a.x + b.x;
-	res.y = a.y + b.y;
-	return (res);
+	free(item->key);
+	free(item->value);
+	free(item);
 }

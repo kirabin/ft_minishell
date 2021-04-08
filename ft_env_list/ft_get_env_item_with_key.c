@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_color_argb.c                                    :+:      :+:    :+:   */
+/*   ft_get_env_item_with_key.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 18:42:17 by dmilan            #+#    #+#             */
-/*   Updated: 2020/12/09 09:30:32 by dmilan           ###   ########.fr       */
+/*   Created: 2021/04/07 09:11:20 by dmilan            #+#    #+#             */
+/*   Updated: 2021/04/07 14:47:23 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int			ft_color_argb(unsigned char a, unsigned char r,
-							unsigned char g, unsigned char b)
+t_env_item	*ft_get_env_item_with_key(t_env_list *list, char *key)
 {
-	return (a << 24 | r << 16 | g << 8 | b);
+	while (list)
+	{
+		if (ft_strcmp(list->item->key, key) == 0)
+			return (list->item);
+		list = list->next;
+	}
+	return (NULL);
 }

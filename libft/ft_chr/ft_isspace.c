@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 12:04:20 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/17 10:07:22 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:38:08 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	if (c == ' ')
 		return (1);

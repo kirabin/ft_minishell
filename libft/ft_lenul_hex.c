@@ -6,15 +6,15 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 18:41:55 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/21 12:45:35 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:43:17 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_lenul_hex(unsigned long n)
+int	ft_lenul_hex(unsigned long n)
 {
-	long len;
+	long	len;
 
 	len = !n;
 	while (n)
