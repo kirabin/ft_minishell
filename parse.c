@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/08 14:39:22 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/08 17:27:25 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_com(t_command *com)
 void	print_tab(t_command *com)
 {
 	char **tabl = com->com;
-	
+
 	while (*tabl != 0)
 		ft_putendl(*tabl++);
 	ft_putendl(NULL);
@@ -65,8 +65,8 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	init_com(&com);
 	buf = com.com;
 	parse_command(cur_ptr, buf, &com, vars);
-	print_tab(&com);
-	//execute_command_struct(vars, &com);
+	// print_tab(&com);
+	execute_command_struct(vars, &com);
 	clear_tab(com.com);
 	free(com.com);
 	parsing_loop(vars, cur_ptr);
