@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:46:10 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/08 14:09:19 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,13 @@ void	execute_command_struct(t_vars *vars, t_command *command)
 	char	*command_name;
 	int		pid;
 
+	ft_putstr("execute_command_struct\n");
 	command_path = get_command_path(command->com[0], vars->env_list);
+	ft_putstr("execute_command_struct\n");
 	command_name = get_command_name(command->com[0]);
 	printf("command path: %s\n", command_path);
 	printf("command name: %s\n", command_name);
+	ft_putstr("execute_command_struct3\n");
 	if (is_our_implementation(command_name))
 	{
 		ft_putstr("That's for dmilan to handle\n");

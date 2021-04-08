@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 14:01:21 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/08 14:40:01 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <signal.h>
+# include <curses.h>
 # include <term.h>
 
 # define PROMPT "write here your fckin text>>> "
