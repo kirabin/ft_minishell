@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 14:40:01 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/08 16:50:40 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void					ft_env_list_print(t_env_list *env_list);
 void					ft_env_list_print_with_declare(t_env_list *env_list);
 char					*ft_env_list_get_value(t_env_list *env_list, char *key);
 bool					ft_env_key_exists(t_env_list *list, char *key);
-void					ft_env_list_replace(t_env_list *list, char *key,
-												char *new_value);
+void					ft_env_list_replace(t_env_list *list,
+							t_env_item *new_item);
 void					ft_env_item_del(t_env_item *item);
 bool					ft_env_list_remove(t_env_list **list, char *key);
 int						ft_env_list_len(t_env_list *env_list);

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 15:10:39 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/08 16:51:05 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,10 @@ int	ft_export(char **args, t_env_list **env_list)
 		item = get_env_item_from_envp_string(*args);
 		if (item->identifier == -1)
 			identifier_error(*args);
-
 		if (ft_env_key_exists(*env_list, item->key))
 		{
 			if (item->identifier == 1)
-				ft_env_list_replace(*env_list, item->key, item->value);
+				ft_env_list_replace(*env_list, item);
 			else if (item->identifier == 2)
 			{
 				tmp = ft_get_env_item_with_key(*env_list, item->key);
@@ -72,7 +71,7 @@ int	ft_export(char **args, t_env_list **env_list)
 		}
 		else
 		{
-			tmp = ft_env_item_new(item->key, item->identifier, item->value);
+			tmp = ft_env_item_new(ft_strdup(item->key), item->identifier, ft_strdup(item->value));
 			ft_env_list_add_back(env_list, ft_env_list_new(tmp));
 		}
 		args++;
