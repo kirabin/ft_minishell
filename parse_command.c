@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/08 15:14:46 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/08 17:03:53 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 	while(!ft_strchr("$><\'\"\\~#\0\n \t\r", **input))
 		joinchar(buffer, *(*input)++);
 	joinchar(buffer, '\0');
-	if ((var = ft_env_list_get_value(vars->env_list, buffer)))
+	var = ft_env_list_get_value(vars->env_list, buffer);
 		joinstr(buf, var);
+	if (!var)
+		write(1, "NULL\n", 5);
 }
 
 void	tilda_handle(t_vars *vars, char *buf, char **cur_ptr)
