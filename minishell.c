@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/03 11:04:56 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/08 12:57:20 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		main(int argc, char **argv, char **envp)
 
 	if (argc && argv)
 		;
-	vars.env_list = convert_envp_to_list(envp);
+	vars.env_list = ft_envp_to_env_list(envp);
 	//signal(SIGINT, handle_signal);
 	init_history(&vars);
 	vars.term_name = getenv("TERM");

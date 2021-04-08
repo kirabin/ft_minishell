@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_envp_to_list.c                             :+:      :+:    :+:   */
+/*   ft_envp_to_env_list.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -38,7 +38,7 @@ t_env_item	*get_env_item_from_envp_string(const char *envp_string)
 	return (item);
 }
 
-t_env_list	*convert_envp_to_list(char **envp)
+t_env_list	*ft_envp_to_env_list(char **envp)
 {
 	t_env_list	*env_list;
 	t_env_item	*env_item;
