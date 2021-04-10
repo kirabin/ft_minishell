@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 17:21:02 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/10 13:48:06 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		main(int argc, char **argv, char **envp)
 	if (argc && argv)
 		;
 	vars.env_list = ft_envp_to_env_list(envp);
+	g_ernno = 0;
 	//signal(SIGINT, handle_signal);
 	// ft_env_list_print(vars.env_list);
 	init_history(&vars);

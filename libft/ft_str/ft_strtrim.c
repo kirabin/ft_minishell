@@ -3,55 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 12:03:07 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:23:29 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/10 13:51:48 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	in_set(char c, char const *set)
-{
-	int		i;
-
-	i = 0;
-	if (!set)
-		return (0);
-	while (set[i])
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*res;
-	int		len;
-	int		start;
-	int		end;
-	int		i;
+	unsigned int	start;
+	unsigned int	end;
 
+	if (!s1 || !set)
+		return (NULL);
 	start = 0;
-	if (!s1)
-		return (0);
-	len = ft_strlen((char *)s1);
-	while (s1[start] && in_set(s1[start], set))
+	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
-	end = len - 1;
-	while (end >= start && s1[end] && len > 0 && in_set(s1[end], set))
+	end = start;
+	while (s1[end])
+		end++;
+	while (end && ft_strchr(set, s1[end]))
 		end--;
-	res = malloc(end - start + 2);
-	if (!res)
-		return (0);
-	i = start - 1;
-	while (++i <= end)
-		res[i - start] = s1[i];
-	res[end - start + 1] = '\0';
-	free(res);
-	return (res);
+	if (end <= start)
+		return (ft_strdup(""));
+	return (ft_substr(s1, start, end - start + 1));
 }

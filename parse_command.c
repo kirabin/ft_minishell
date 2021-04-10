@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/08 17:06:43 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/10 15:54:41 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	joinchar(char *buf, char c)
 
 void	joinstr(char *buf, char *str)
 {
-	while(*str)
+	while(str && *str)
 		joinchar(buf, *str++);
 	joinchar(buf, 0);
 }
@@ -40,11 +40,12 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 
 	ft_bzero(buffer, 9999);
 	(*input)++;
-	while(!ft_strchr("$><\'\"\\~#\0\n \t\r", **input))
+	while(!ft_strchr(" $><\'\"\\~#\0\n\t\r", **input))
 		joinchar(buffer, *(*input)++);
-	joinchar(buffer, '\0');
+	(*input)--;
 	var = ft_env_list_get_value(vars->env_list, buffer);
 		joinstr(buf, var);
+	
 }
 
 void	tilda_handle(t_vars *vars, char *buf, char **cur_ptr)
@@ -128,7 +129,7 @@ int		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
 		(*cur_ptr)++;
 	while (1)
 	{
-		if (ft_strchr("\0\n#", **cur_ptr) && !vars->brackets)
+		if (ft_strchr("#\0\n", **cur_ptr) && !vars->brackets)
 			break ;
 		if (**cur_ptr == ';')
 		{

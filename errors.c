@@ -6,22 +6,12 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:04:54 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/08 14:18:17 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/09 15:12:42 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "minishell.h"
-
-int		check(char *str)
-{
-	while (*str && !is_separator(*str))
-		str++;
-	if (*str == '|' || *str == ';')
-		return (1);
-	return (0);
-
-}
 
 int		unexpected_token(char *str)
 {
@@ -37,15 +27,25 @@ int		unexpected_token(char *str)
 		return (puterror("syntax error near unexpected token `;'\n", 258));
 	return (0);
 }
+
+int		check(char *str)
+{
+	while (*str && is_separator(*str))
+		str++;
+	if (*str == '|' || *str == ';')
+		return (unexpected_token(str));
+	return (0);
+}
+
 int		check_unexpected_token(char *str)
 {
-	if (check(str))
-		return (-1);
 	while (!ft_strchr("\0\n#", *str))
 	{
 		if (*str == '|' || *str == ';')
 		{
 			str++;
+			if (*(str - 1) == '|' && ft_strchr("\0\n#", *str))
+				return (puterror("Error: uknowed used pipes!", 258));
 			if (check(str))
 				return (-1);
 		}
@@ -85,7 +85,7 @@ int		check_brackets(char *str)
 
 int	puterror(char *msg, int code)
 {
-	errno = code;
 	write(2, msg, ft_strlen(msg));
+	g_ernno = code;
 	return (code);
 }
