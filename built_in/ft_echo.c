@@ -6,11 +6,27 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:10 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:21:32 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 13:21:47 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+**	SUBJECT
+**		- Option -n at the start
+**		- Like in bash
+**
+**	ARGS
+**		- Ignores arguments
+**
+**	OPTIONS / FLAGS
+**		-[n] Do not output the trailing newline
+**
+**	EXIT STATUS
+**		-[0] Successful completion.
+**		-[>0] An error occurred.
+*/
 
 static bool		is_suppressed_option(char *str)
 {
@@ -19,10 +35,15 @@ static bool		is_suppressed_option(char *str)
 	return (false);
 }
 
-int		ft_echo(char **args)
+void	ft_echo(char **args)
 {
 	bool	is_suppressed;
 
+	if (!args)
+	{
+		ft_putc_fd('\n', 1);
+		return ;
+	}
 	is_suppressed = is_suppressed_option(*args);
 	while (*args)
 	{
@@ -33,5 +54,5 @@ int		ft_echo(char **args)
 	}
 	if (!is_suppressed)
 		ft_putc_fd('\n', 1);
-	return (1);  // TODO: do I need return?
+	g_errno = 0;
 }

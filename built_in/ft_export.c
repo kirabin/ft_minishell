@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/09 11:54:45 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 13:48:33 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,23 @@
 
 /*
 **	SUBJECT
-**		-No options
+**		- No options
+**		- Like in bash
 **
 **	ARGS
-**		-Export arguments one by one
+**		- Export arguments one by one
 **
 **	EXIT STATUS
 **		-[0] All name operands were successfully exported.
 **		-[>0] At least one name could not be exported
 */
 
-//	TODO: export cases
-//	[+] export
-//	[+] export a            Adds without identifier if it didn't exist, else ignores it
-//	[+] export a= a=1 a==1
-//	[+] export a= a=1 a=+1  Creates key with empty or set string
-//	[+] export a=2          Rewrites created key
-//	[+] export a+=2         Concatenates string
-//	[+] export c+=2         Creates new and con
-//	[+] export mulpiple_arguments
-//	[ ] export a+abc=1    Should be error
-//
-//	[+] a=1; export a			Shouldn't handle it by subject, just setting empty value.
-
 static void	identifier_error(char *str)
 {
 	ft_putstr_fd("export: `", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("': not a valid identifier\n", 2);
-	errno = 1;
+	g_errno = 1;
 }
 
 void	ft_export(char **args, t_env_list **env_list)
@@ -50,13 +38,13 @@ void	ft_export(char **args, t_env_list **env_list)
 	t_env_item	*item;
 	t_env_item	*tmp;
 
-	errno = 0;
+	g_errno = 0;
 	if (!*args)
 		ft_env_list_print_with_declare(*env_list);
 	while (*args)
 	{
 		item = get_env_item_from_envp_string(*args);
-		if (item->identifier == -1)
+		if (item->identifier == -1) //|| (item->value && item->identifier == 0)
 			identifier_error(*args);
 		else if (ft_env_key_exists(*env_list, item->key))
 		{

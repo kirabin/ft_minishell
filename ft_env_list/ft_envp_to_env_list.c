@@ -14,15 +14,13 @@
 
 int	which_identifier(const char *str)
 {
-	if (!str)
+	if (*str == '\0')
 		return (0);
 	if (*str == '=')
 		return (1);
 	if (*str == '+' && *(str + 1) == '=')
 		return (2);
-	if (*str == '+')
-		return (-1);
-	return (0);
+	return (-1);
 }
 
 t_env_item	*get_env_item_from_envp_string(const char *envp_string)
@@ -34,7 +32,8 @@ t_env_item	*get_env_item_from_envp_string(const char *envp_string)
 	i = find_name_len(envp_string);
 	item->key = ft_strndup(envp_string, i);
 	item->identifier = which_identifier(envp_string + i);
-	item->value = ft_strdup(envp_string + i + item->identifier);
+	if (item->identifier != -1)
+		item->value = ft_strdup(envp_string + i + item->identifier);
 	return (item);
 }
 

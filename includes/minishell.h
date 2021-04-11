@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 11:42:15 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 12:33:26 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@
 # define DOUBLE_QOUTES "$\\\""
 # define METACHARS "|&;()<>"
 
+int	g_errno;
 
-int	g_ernno;
 /*
 **  ft_env_list
 */
-
 typedef struct			s_history
 {
 	char				com[1000];
@@ -126,13 +125,13 @@ void					execute(t_vars *vars, t_command *com);
 /*
 **	Built_IN
 */
-void						ft_pwd(void);
-int						ft_echo(char **args);
-void					ft_exit(char *arg);
+void					ft_pwd(void);
+void					ft_echo(char **args);
+void					ft_exit(char **args);
 void					ft_unset(t_env_list **list, char **keys);
-int						ft_cd(const char *new_path, t_env_list *list);
+void					ft_cd(const char *new_path, t_env_list *list);
 void					ft_env(t_env_list *env_list);
-void						ft_export(char **args, t_env_list **env_list);
+void					ft_export(char **args, t_env_list **env_list);
 void					execute_command_struct(t_vars *vars,
 													t_command *command);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:04:54 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/09 15:12:42 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/11 12:14:05 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ int		check_brackets(char *str)
 int	puterror(char *msg, int code)
 {
 	write(2, msg, ft_strlen(msg));
-	g_ernno = code;
+	g_errno = code;
 	return (code);
 }

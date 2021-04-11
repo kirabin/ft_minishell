@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/10 16:13:29 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/11 12:16:51 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	buf = com.com;
 	parse_command(cur_ptr, buf, &com, vars);
 	print_tab(&com);
-	//execute_command_struct(vars, &com);
+	execute_command_struct(vars, &com);
 	clear_tab(com.com);
 	free(com.com);
 	parsing_loop(vars, cur_ptr);

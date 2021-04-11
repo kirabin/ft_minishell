@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:35:09 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/09 12:05:01 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 13:25:39 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 /*
 **	SUBJECT
-**		-No options
-**		-Like in bash
+**		- No options
+**		- Like in bash
 **
 **	ARGS
-**		-Ignores arguments
+**		- Ignores arguments
 **
 **	EXIT STATUS
 **		-[0] Successful completion.
@@ -30,8 +30,9 @@ void	ft_pwd(void)
 	char	*buf;
 
 	buf = getcwd(NULL, 0);
+	g_errno = errno;
 	if (!buf)
-		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd(strerror(g_errno), 2);
 	ft_putstr_fd(buf, 1);
 	ft_putc_fd('\n', 1);
 	free(buf);

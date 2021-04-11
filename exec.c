@@ -6,20 +6,20 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/09 11:48:42 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 13:46:28 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_cpp(char ***cpp)
+void	free_cpp(char **cpp)
 {
-	char	*temp;
+	char	**temp;
 
-	temp = **cpp;
-	while (temp)
-		free(temp++);
-	free(*cpp);
+	temp = cpp;
+	while (*temp)
+		free(*temp++);
+	free(cpp);
 }
 
 bool	is_our_implementation(char *command)
@@ -43,6 +43,7 @@ bool	is_our_implementation(char *command)
 
 void	execute_our_implementation(char *command, char **argv, t_env_list **list)
 {
+	// TODO: manage g_errno
 	if (ft_strncmp(command, "cd", 2) == 0)
 		ft_cd(argv[1], *list);
 	else if (ft_strncmp(command, "echo", 4) == 0)
@@ -50,14 +51,13 @@ void	execute_our_implementation(char *command, char **argv, t_env_list **list)
 	else if (ft_strncmp(command, "env", 3) == 0)
 		ft_env(*list);
 	else if (ft_strncmp(command, "exit", 4) == 0)
-		ft_exit(argv[1]);  // TODO: which code to send?
+		ft_exit(argv + 1);
 	else if (ft_strncmp(command, "export", 6) == 0)
 		ft_export(argv + 1, list);
 	else if (ft_strncmp(command, "pwd", 3) == 0)
 		ft_pwd();
 	else if (ft_strncmp(command, "unset", 5) == 0)
 		ft_unset(list, argv + 1);
-	// TODO: do something with code variable?
 }
 
 bool	is_file_exists(char *path)
@@ -81,7 +81,7 @@ char	*get_command_path(char *command, t_env_list *list)
 	}
 	if (ft_string_is_relative_path(command))
 	{
-		return (ft_strjoin("./", command)); // free
+		return (ft_strjoin("./", command));
 	}
 	i = -1;
 	extended_path = NULL;
@@ -95,7 +95,7 @@ char	*get_command_path(char *command, t_env_list *list)
 		free(extended_path);
 		extended_path = NULL;
 	}
-	// TODO: free_cpp(&paths);
+	free_cpp(paths);
 	return (extended_path);
 }
 
@@ -131,7 +131,7 @@ int		execute_command(char *command_path, char **argv, t_vars *vars)
 		return(pid);
 	}
 	wait(&pid);
-	// TODO: free_cpp(&envp);
+	free_cpp(envp);
 	return (pid);
 }
 
@@ -141,6 +141,8 @@ void	execute_command_struct(t_vars *vars, t_command *command)
 	char	*command_name;
 	int		pid;
 
+
+	printf("test\n");
 	command_path = get_command_path(command->com[0], vars->env_list);
 	command_name = get_command_name(command->com[0]);
 	printf("command path: %s\n", command_path);
@@ -158,6 +160,7 @@ void	execute_command_struct(t_vars *vars, t_command *command)
 	else
 	{
 		ft_putstr("Error: command not found\n");
+		g_errno = 127;
 	}
 	free(command_path);
 	free(command_name);

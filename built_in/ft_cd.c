@@ -6,11 +6,28 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:46:52 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/06 15:12:45 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 12:30:15 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+**	SUBJECT
+**		- Works only with relative and absolute path
+**		- No options
+**		- Like in bash
+**
+**	ARGS
+**		- Tries to change directory by passed path
+**
+**	OPTIONS / FLAGS
+**		-[n] Do not output the trailing newline
+**
+**	EXIT STATUS
+**		-[0] Successful completion.
+**		-[>0] An error occurred.
+*/
 
 /*
 **   Change Directory
@@ -18,15 +35,17 @@
 **    - No options
 */
 
-int		ft_cd(const char *new_path, t_env_list *list)
+void	ft_cd(const char *new_path, t_env_list *list)
 {
 	if (new_path == NULL)
 		new_path = ft_env_list_get_value(list, "HOME");
 	if (chdir(new_path) == -1)
 	{
-		ft_putstr_fd(strerror(errno), 2);
+		g_errno = errno;
+		printf("%d\n", g_errno);
+		ft_putstr_fd(strerror(g_errno), 2);
 		ft_putstr_fd("\n", 2);
-		return (0);
+		return ;
 	}
-	return (1);
+	g_errno = 0;
 }
