@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:24 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 13:33:52 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 17:32:26 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	numeric_arg_error(char *str)
 
 static void	too_many_args_error(void)
 {
-	// TODO: test too many arguments error
 	ft_putstr_fd("exit: too many arguments\n", 2);
 	g_errno = 1;
 }

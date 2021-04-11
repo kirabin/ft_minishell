@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 13:46:28 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 17:48:29 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_cpp(char **cpp)
 	char	**temp;
 
 	temp = cpp;
-	while (*temp)
+	while (temp && *temp)
 		free(*temp++);
 	free(cpp);
 }
@@ -86,7 +86,7 @@ char	*get_command_path(char *command, t_env_list *list)
 	i = -1;
 	extended_path = NULL;
 	paths = ft_split(ft_env_list_get_value(list, "PATH"), ':');
-	while (paths[++i])
+	while (paths && paths[++i])
 	{
 		extended_path = ft_strjoin_three(paths[i], "/", command);
 		ft_putstr("\n");

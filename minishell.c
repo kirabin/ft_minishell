@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 12:13:28 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 17:44:12 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		main(int argc, char **argv, char **envp)
 	if (argc && argv)
 		;
 	vars.env_list = ft_envp_to_env_list(envp);
-	//signal(SIGINT, handle_signal);
+	// signal(SIGINT, handle_signal);
 	// ft_env_list_print(vars.env_list);
 	init_history(&vars);
 	vars.term_name = "xterm-256color";

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 13:37:42 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:43:06 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 17:48:17 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ char	**ft_split(const char *s, char c)
 	int		i;
 
 	if (!s)
-		return (0);
+		return (NULL);
 	array_len = count_words((char *)s, c);
 	array = malloc(sizeof(char *) * (array_len + 1));
 	if (!array)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (i < array_len)
 	{
@@ -97,7 +97,7 @@ char	**ft_split(const char *s, char c)
 		if (!word)
 		{
 			free_array(array, i);
-			return (0);
+			return (NULL);
 		}
 		array[i++] = word;
 		s += skip_delimiters(s, c) + ft_strlen(word);
