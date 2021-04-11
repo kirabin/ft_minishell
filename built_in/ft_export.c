@@ -6,32 +6,34 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 16:51:05 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:54:45 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*
-**   Set environment variable
-**    - No options
-**    - Args: NAME=VALUE NAME2=VALUE2
+**	SUBJECT
+**		-No options
 **
-**   Returns:
-**    - 0   - All name operands were successfully exported.
-**    - >0  - At least one name could not be exported
+**	ARGS
+**		-Export arguments one by one
+**
+**	EXIT STATUS
+**		-[0] All name operands were successfully exported.
+**		-[>0] At least one name could not be exported
 */
 
 //	TODO: export cases
 //	[+] export
-//	[ ] export a            Adds without identifier if it didn't exist, else ignores it
-//	[ ] export a= a=1 a==1
-//	[ ] export a= a=1 a=+1  Creates key with empty or set string
-//	[ ] export a=2          Rewrites created key
-//	[ ] export a+=2         Concatenates string
-//	[ ] export c+=2         Creates new and con
-//	[ ] export mulpiple_arguments
-//	[ ] export export a+abc=1    Should be error
+//	[+] export a            Adds without identifier if it didn't exist, else ignores it
+//	[+] export a= a=1 a==1
+//	[+] export a= a=1 a=+1  Creates key with empty or set string
+//	[+] export a=2          Rewrites created key
+//	[+] export a+=2         Concatenates string
+//	[+] export c+=2         Creates new and con
+//	[+] export mulpiple_arguments
+//	[ ] export a+abc=1    Should be error
 //
 //	[+] a=1; export a			Shouldn't handle it by subject, just setting empty value.
 
@@ -40,13 +42,15 @@ static void	identifier_error(char *str)
 	ft_putstr_fd("export: `", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("': not a valid identifier\n", 2);
+	errno = 1;
 }
 
-int	ft_export(char **args, t_env_list **env_list)
+void	ft_export(char **args, t_env_list **env_list)
 {
 	t_env_item	*item;
 	t_env_item	*tmp;
 
+	errno = 0;
 	if (!*args)
 		ft_env_list_print_with_declare(*env_list);
 	while (*args)
@@ -54,7 +58,7 @@ int	ft_export(char **args, t_env_list **env_list)
 		item = get_env_item_from_envp_string(*args);
 		if (item->identifier == -1)
 			identifier_error(*args);
-		if (ft_env_key_exists(*env_list, item->key))
+		else if (ft_env_key_exists(*env_list, item->key))
 		{
 			if (item->identifier == 1)
 				ft_env_list_replace(*env_list, item);
@@ -77,5 +81,4 @@ int	ft_export(char **args, t_env_list **env_list)
 		args++;
 		ft_env_item_free(item);
 	}
-	return (1); // TODO: returns
 }

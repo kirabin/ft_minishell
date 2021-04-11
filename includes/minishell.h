@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 16:50:40 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/09 12:05:51 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define MINISHELL_H
 # include "libft.h"
 # include <unistd.h>
-# include <sys/errno.h>
+# include <errno.h>
 # include <sys/stat.h>
 # include <stdlib.h>
 # include <string.h>
@@ -27,6 +27,8 @@
 # define RULES "$><\'\"\\~"
 # define DOUBLE_QOUTES "$\\\""
 # define METACHARS "|&;()<>"
+
+extern int errno; // TODO: errno is not global for some reason
 
 /*
 **  ft_env_list
@@ -124,21 +126,19 @@ void					execute(t_vars *vars, t_command *com);
 /*
 **	Built_IN
 */
-
-int						ft_pwd(void);
+void						ft_pwd(void);
 int						ft_echo(char **args);
 void					ft_exit(char *arg);
-int						ft_unset(t_env_list **list, char *key);
+void					ft_unset(t_env_list **list, char **keys);
 int						ft_cd(const char *new_path, t_env_list *list);
 void					ft_env(t_env_list *env_list);
-int						ft_export(char **args, t_env_list **env_list);
+void						ft_export(char **args, t_env_list **env_list);
 void					execute_command_struct(t_vars *vars,
 													t_command *command);
 
 /*
 ** Definitions
 */
-
 bool					is_name(const char *str);
 int						find_name_len(const char *str);
 

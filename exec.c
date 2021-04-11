@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 15:00:07 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:48:42 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,20 @@ bool	is_our_implementation(char *command)
 
 void	execute_our_implementation(char *command, char **argv, t_env_list **list)
 {
-	int		code;
-
-	code = 1;
 	if (ft_strncmp(command, "cd", 2) == 0)
-		code = ft_cd(argv[1], *list);
+		ft_cd(argv[1], *list);
 	else if (ft_strncmp(command, "echo", 4) == 0)
-		code = ft_echo(argv + 1);
+		ft_echo(argv + 1);
 	else if (ft_strncmp(command, "env", 3) == 0)
 		ft_env(*list);
 	else if (ft_strncmp(command, "exit", 4) == 0)
 		ft_exit(argv[1]);  // TODO: which code to send?
 	else if (ft_strncmp(command, "export", 6) == 0)
-		code = ft_export(argv + 1, list);
+		ft_export(argv + 1, list);
 	else if (ft_strncmp(command, "pwd", 3) == 0)
-		code = ft_pwd();
+		ft_pwd();
 	else if (ft_strncmp(command, "unset", 5) == 0)
-		code = ft_unset(list, argv[0]);
+		ft_unset(list, argv + 1);
 	// TODO: do something with code variable?
 }
 
@@ -150,7 +147,6 @@ void	execute_command_struct(t_vars *vars, t_command *command)
 	printf("command name: %s\n", command_name);
 	if (is_our_implementation(command_name))
 	{
-		ft_putstr("That's for dmilan to handle\n");
 		execute_our_implementation(command_name, command->com, &vars->env_list);
 	}
 	else if (command_path)

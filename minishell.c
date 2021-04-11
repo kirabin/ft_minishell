@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 17:21:02 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/09 11:57:28 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern int errno;
+// TODO: should we keep it?
 
 void	handle_signal(int signal_code)
 {
@@ -20,7 +20,7 @@ void	handle_signal(int signal_code)
 	ft_putstr_fd("sigal caught: ", 1);
 	ft_puti_fd(signal_code, 1);
 	ft_putendl(NULL);
-	exit(0); // not proper way to exit
+	exit(0); // TODO: handle signals
 }
 
 int		main(int argc, char **argv, char **envp)
