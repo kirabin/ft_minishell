@@ -124,3 +124,72 @@ ls
 "hello world"
 ls
 git pull
+git add .
+git add .
+git commit -m koko
+git status
+git push
+ls
+"$PATH"
+$HOME $HOME
+$HOME  $HOME
+$HOME
+$HOME
+$HOME
+$HOME $HOME
+$HOME $HOME
+$HOME $HOME
+$HOME $HOME
+$HOME $HOME
+echo $HOME | ls $HOME ; cat "$PWD" |
+ls
+echo $HOME | ls $HOME ; cat "$PWD" |
+| pwd
+cd
+| pwd
+ls
+|hello
+make
+|hello
+ | ld
+ | ld
+ | | wqdqwd
+ | | wqdqwd
+ls
+ls ||| ls
+ls ||| ls
+hello world |
+hello world |
+      
+       
+      
+hello | world   
+hello
+hello world
+hello
+hello world
+hello
+hello world
+loop
+hello
+loop
+hello | world
+hello
+  world   
+ls
+echo "#$HOME" | echo '#$HOME' |   #   hello world
+echo "#$HOME" | echo '#$HOME' |   #   hello world
+#
+hello #
+hello #
+hello #
+hello  world
+hello #
+hello |
+hello >
+hello  >   
+hello  >   
+hello #
+hello #
+hello #
+hello #

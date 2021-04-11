@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/09 12:05:51 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/11 11:42:15 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define DOUBLE_QOUTES "$\\\""
 # define METACHARS "|&;()<>"
 
-extern int errno; // TODO: errno is not global for some reason
 
+int	g_ernno;
 /*
 **  ft_env_list
 */

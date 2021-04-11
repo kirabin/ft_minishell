@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 11:21:11 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/08 17:21:02 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/10 13:50:20 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,8 @@ void	read_input(t_vars *vars)
 			history_prev(vars);
 		else if (!ft_strcmp(str, "\e[B"))
 			history_next(vars);
-		else if (!ft_strcmp(str, "\e[D") || !ft_strcmp(str, "\e[C") || !ft_strcmp(str, "\t"))
+		else if (!ft_strcmp(str, "\e[D") || !ft_strcmp(str, "\e[C")
+				|| !ft_strcmp(str, "\t") || !ft_strcmp(str, "\b"))
 			;
 		else if (!ft_strcmp("\4", str))
 			ctrl_d(vars);
