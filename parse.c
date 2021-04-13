@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/11 17:43:45 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 11:49:18 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	init_com(t_command *com)
 	com->com = ft_calloc(BUFF_SIZE, sizeof(char *));
 	com->pipein = 0;
 	com->pipeout = 0;
-	com->redirect = 0;
+	com->redirect_in = 0;
+	com->redirect_out = 0;
 }
 
 void	print_tab(t_command *com)
@@ -96,7 +97,7 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	buf = com.com;
 	parse_command(cur_ptr, buf, &com, vars);
 	print_tab(&com);
-	execute_command_struct(vars, &com);
+	//execute_command_struct(vars, &com);
 	clear_tab(com.com);
 	free(com.com);
 	parsing_loop(vars, cur_ptr);
@@ -107,10 +108,12 @@ void	parse_row_string(t_vars *vars)
 
 	char		*cur_ptr;
 	char		*string;
+	char		*save;
 
-	string = ft_strtrim(vars->history->com, " \t\r");
-	cur_ptr = string;
-	comment_trim(cur_ptr);
+	string = ft_strdup(vars->history->com);
+	comment_trim(string);
+	save = ft_strtrim(string, " \t'r");
+	cur_ptr = save;
 	if (check_unexpected_token(cur_ptr))
 		return ;
 	if (check_brackets(cur_ptr))
@@ -121,5 +124,6 @@ void	parse_row_string(t_vars *vars)
 	parsing_loop(vars, &cur_ptr);
 	//ft_putstr(string);
 	free(string);
+	free(save);
 	free(vars->rules);
 }

@@ -193,3 +193,21 @@ hello #
 hello #
 hello #
 hello #
+$HOME#
+make
+hello #
+hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$HOME""     ;    cat -e       
+hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e 
+hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e 
+hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e 
+hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e    #  kukarekue
+hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e    #  kukarekue
+hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e    #  kukarekue
+hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e    #  kukarekue
+hello world ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+echo $HOME|helo world
+echo $HOME|helo world
+ls
+cat < hello
+$?
+echo "$?"

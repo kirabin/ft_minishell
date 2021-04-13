@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:04:54 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/11 12:14:05 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 09:45:38 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		check_unexpected_token(char *str)
 		{
 			str++;
 			if (*(str - 1) == '|' && ft_strchr("\0\n#", *str))
-				return (puterror("Error: uknowed used pipes!", 258));
+				return (puterror("Error: uknowed used pipes!\n", 258));
 			if (check(str))
 				return (-1);
 		}

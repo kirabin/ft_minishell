@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/10 15:54:41 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/13 15:44:41 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,18 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 {
 	char	buffer[9999];
 	char	*var;
+	char	*tmp;
 
+	tmp = NULL;
 	ft_bzero(buffer, 9999);
 	(*input)++;
-	while(!ft_strchr(" $><\'\"\\~#\0\n\t\r", **input))
+	if (**input == '?')
+	{
+		joinstr(buf, ft_itoa(g_errno));
+		free(tmp);
+		return ;
+	}
+	while(!ft_strchr(" |$><\'\"\\~#\0\n\t\r", **input))
 		joinchar(buffer, *(*input)++);
 	(*input)--;
 	var = ft_env_list_get_value(vars->env_list, buffer);
@@ -95,6 +103,7 @@ void	soft_brackets(t_vars *vars)
 	}
 }
 
+
 void	spec_symb(char **cur_ptr, char ***buf, t_vars *vars)
 {
 	
@@ -110,11 +119,12 @@ void	spec_symb(char **cur_ptr, char ***buf, t_vars *vars)
 		soft_brackets(vars);
 }
 
+
 void	new_word(char ***buf, char **cur_ptr)
 {
 	while (is_separator(*(*cur_ptr + 1)))
 			(*cur_ptr)++;
-	if (!ft_strchr("|;><\0\n", *(*cur_ptr + 1)))
+	if (!ft_strchr("#|;><\0\n", *(*cur_ptr + 1)))
 	{
 		(*buf)++;
 		**buf = ft_calloc(BUFF_SIZE, sizeof(char));
@@ -129,7 +139,7 @@ int		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
 		(*cur_ptr)++;
 	while (1)
 	{
-		if (ft_strchr("#\0\n", **cur_ptr) && !vars->brackets)
+		if ((ft_strchr("\0\n", **cur_ptr) || **cur_ptr == '#') && !vars->brackets)
 			break ;
 		if (**cur_ptr == ';')
 		{
