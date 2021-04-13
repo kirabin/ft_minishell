@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/13 15:45:06 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 15:54:28 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,24 +142,24 @@ void	execute_command_struct(t_vars *vars, t_command *command)
 {
 	char	*command_path;
 	char	*command_name;
-	int		pid;
+	// int		pid;
 
-	vars->pipein = command->pipein;
-	vars->pipeout = command->pipeout;
-	printf("pipes: %d, %d\n", vars->pipein, vars->pipeout);
-	if (vars->pipein == 1)
-	{
-		dup2(vars->fd[1], 0);
-		// read from fd[1], which already been writen to
-	}
-	if (vars->pipeout == 1)
-	{
-		// write to fd[1],
-		if (pipe(vars->fd) == -1)
-			; // error
-		dup2(vars->fd[0], 1);
+	// vars->pipein = command->pipein;
+	// vars->pipeout = command->pipeout;
+	// printf("pipes: %d, %d\n", vars->pipein, vars->pipeout);
+	// if (vars->pipein == 1)
+	// {
+	// 	dup2(vars->fd[1], 0);
+	// 	// read from fd[1], which already been writen to
+	// }
+	// if (vars->pipeout == 1)
+	// {
+	// 	// write to fd[1],
+	// 	if (pipe(vars->fd) == -1)
+	// 		; // error
+	// 	dup2(vars->fd[0], 1);
 
-	}
+	// }
 	// exit(0);
 	// TODO: is_executable()?
 	printf("test\n");
@@ -175,7 +175,7 @@ void	execute_command_struct(t_vars *vars, t_command *command)
 	{
 		free(command->com[0]);
 		command->com[0] = ft_strdup(command_name);
-		pid = execute_command(command_path, command->com, vars);
+		execute_command(command_path, command->com, vars);
 	}
 	else
 	{
