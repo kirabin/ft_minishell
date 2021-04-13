@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 12:51:50 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:36:05 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:43:27 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ t_list	*ft_lstfind(t_list *begin_list, void *data_ref, int (*cmp)())
 			return (begin_list);
 		begin_list = begin_list->next;
 	}
-	return (0);
+	return (NULL);
 }

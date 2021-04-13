@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 09:42:30 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/02 12:54:04 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:43:49 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 			return (dst + i + 1);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

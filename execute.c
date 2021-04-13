@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 15:08:07 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/11 12:16:48 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:36:12 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ char	**list_to_array(t_env_list *lst)
 	int		i;
 
 	i = 0;
-	res = ft_calloc(ft_list_size(lst) + 1, sizeof(char *));
+	res = ft_calloc(ft_list_size(lst) + 1, sizeof(char *));  // protect calloc
 	while (lst)
 	{
-		res[i] = ft_calloc((ft_strlen(lst->item->key) + ft_strlen(lst->item->value) + 2), sizeof(char));
+		res[i] = ft_calloc((ft_strlen(lst->item->key) + ft_strlen(lst->item->value) + 2), sizeof(char));  // protect calloc
 		ft_strlcat(res[i], lst->item->key, ft_strlen(lst->item->key));
 		ft_strlcat(res[i], "=", 1);
 		ft_strlcat(res[i], lst->item->value, ft_strlen(lst->item->value));

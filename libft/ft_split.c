@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 13:37:42 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 17:48:17 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:28:21 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*get_next_word(const char *s, char delimiter)
 		len++;
 	word = malloc(sizeof(char) * (len + 1));
 	if (!word)
-		return (0);
+		return (NULL);
 	j = 0;
 	while (j < len)
 	{

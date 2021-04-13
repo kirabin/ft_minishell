@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 19:08:08 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/31 12:50:04 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/13 08:36:24 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	push_to_command_history(t_vars *vars, char *command)
 
 	while(vars->history && vars->history->next)
 		vars->history = vars->history->next;
-	node = ft_calloc(1, sizeof(t_history));
+	node = ft_calloc(1, sizeof(t_history));  // protect calloc
 	current = vars->history;
 	if (current)
 		current->next = node;
@@ -38,7 +38,7 @@ void	remove_current_input(t_history *history)
 		tmp = tmp->next;
 	free(tmp->next);
 	tmp->next = NULL;
-	
+
 }
 
 t_history	*to_end_of_list(t_history *hist)
@@ -70,7 +70,7 @@ void	remove_elem_hist(t_history **history)
 	{
 		next->prev = prev;
 		*history = next;
-		
+
 	}
 	free(tmp);
 	*history = to_end_of_list(*history);

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 17:24:50 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:35:47 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:43:34 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	new_lst = NULL;
 	if (!lst || !f)
-		return (0);
+		return (NULL);
 	while (lst)
 	{
 		node = ft_lstnew(f(lst->content));

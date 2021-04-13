@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 10:41:26 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/25 11:41:19 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:44:37 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		}
 		j++;
 	}
-	return (0);
+	return (NULL);
 }

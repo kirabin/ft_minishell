@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 09:21:16 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:53:55 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:24:16 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**ft_env_to_charpp(t_env_list *list)
 	len = ft_env_list_len(list);
 	envp = malloc(sizeof(char *) * (len + 1));
 	if (!envp)
-		return (NULL); // TODO: malloc exit
+		return (NULL);
 	while (list)
 	{
 		envp[i] = ft_env_item_to_charp(list->item);

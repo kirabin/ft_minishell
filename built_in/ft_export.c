@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 17:32:13 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:45:17 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,29 @@ static void	identifier_error(char *str)
 
 // TODO: move errors to one function which takes str and set's g_errno. msamual seems to have that function already.
 
+static bool	create_new_env_arg(char *key, char identifier, char *value, t_env_list **env_list)
+{
+	t_env_item	*new_item;
+	t_env_list	*new_list;
+
+	new_item = ft_env_item_new(key, identifier,value);
+	if (!new_item)
+		return (false);
+	new_list = ft_env_list_new(new_item);
+	if (!new_list)
+	{
+		ft_env_item_free(new_item);
+		return (false);
+	}
+	ft_env_list_add_back(env_list, new_list);
+	return (true);
+}
+
 void	ft_export(char **args, t_env_list **env_list)
 {
 	t_env_item	*item;
-	t_env_item	*tmp;
+	t_env_item	*tmp_item;
+
 
 	g_errno = 0;
 	if (!*args)
@@ -46,6 +65,8 @@ void	ft_export(char **args, t_env_list **env_list)
 	while (*args)
 	{
 		item = get_env_item_from_envp_string(*args);
+		if (!item)
+			break ;
 		if (item->identifier == -1) //|| (item->value && item->identifier == 0)
 			identifier_error(*args);
 		else if (ft_env_key_exists(*env_list, item->key))
@@ -54,8 +75,8 @@ void	ft_export(char **args, t_env_list **env_list)
 				ft_env_list_replace(*env_list, item);
 			else if (item->identifier == 2)
 			{
-				tmp = ft_get_env_item_with_key(*env_list, item->key);
-				tmp->value = ft_strjoin_free(tmp->value,
+				tmp_item = ft_get_env_item_with_key(*env_list, item->key);
+				tmp_item->value = ft_strjoin_free(tmp_item->value,
 													item->value);
 			}
 			else if (item->identifier == 0)
@@ -65,8 +86,8 @@ void	ft_export(char **args, t_env_list **env_list)
 		}
 		else
 		{
-			tmp = ft_env_item_new(ft_strdup(item->key), item->identifier, ft_strdup(item->value));
-			ft_env_list_add_back(env_list, ft_env_list_new(tmp));
+			if (!create_new_env_arg(item->key, item->identifier, item->value, env_list))
+				break ;
 		}
 		args++;
 		ft_env_item_free(item);

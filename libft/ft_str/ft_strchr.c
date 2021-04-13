@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 15:42:23 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:29:32 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:44:15 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ char	*ft_strchr(const char *s, int c)
 		if (s[i] == c)
 			return ((char *)s + i);
 		if (s[i] == '\0')
-			return (0);
+			return (NULL);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

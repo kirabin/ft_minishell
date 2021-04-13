@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 17:48:29 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:27:58 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ int		execute_command(char *command_path, char **argv, t_vars *vars)
 	char	**envp;
 
 	envp = ft_env_to_charpp(vars->env_list);
+	if (!envp)
+		;  // TODO: ft_ignore(); or return ;
 	pid = fork();
 	if (pid == -1)
 		ft_putstr("Can't execute command\n");

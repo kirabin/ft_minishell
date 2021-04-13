@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 18:10:17 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:29:47 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:37:18 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_itoa(int n)
 	len = ft_leni(n);
 	res = malloc(len + 1);
 	if (!res)
-		return (0);
+		return (NULL);
 	i = len - 1;
 	sign = 1;
 	if (n < 0)

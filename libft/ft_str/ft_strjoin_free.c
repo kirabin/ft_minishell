@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 19:17:22 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 12:24:07 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:40:14 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*ft_strjoin_free_free(char *s1, char *s2)
 	s2_len = ft_strlen((char *)s2);
 	res = malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (!res)
-		return (s1);
+		return (NULL);
 	while (s2_i < s1_len)
 		res[s1_i++] = s1[s2_i++];
 	s2_i = 0;

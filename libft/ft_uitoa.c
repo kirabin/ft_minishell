@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 19:22:54 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/07 14:42:09 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:29:19 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_uitoa(unsigned int n)
 	len = ft_lenui(n);
 	res = malloc(len + 1);
 	if (!res)
-		return (0);
+		return (NULL);
 	i = len - 1;
 	while (i >= 0)
 	{

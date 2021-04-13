@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 10:06:39 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 17:42:05 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 08:23:51 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ t_env_item	*ft_env_item_new(char *key, int identifier, char *value)
 
 	item = malloc(sizeof(t_env_item));
 	if (!item)
-		exit(1); // TODO: should we print the message? which code to pass?
-	item->key = key;
+		return (NULL);
+	item->key = ft_strdup(key);
 	item->identifier = identifier;
-	item->value = value;
+	item->value = ft_strdup(value);
 	return (item);
 }
