@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/13 15:49:37 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 18:06:26 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ typedef struct			s_command
 	char				**com;
 	int					pipein;
 	int					pipeout;
-	char				*redirect_in;
-	char				*redirect_out;
+	int					redirect;
+	int					redirect_in;
+	int					redirect_out;
 }						t_command;
 
 

@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:04:54 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/13 09:45:38 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/13 18:51:56 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,17 @@ int		check(char *str)
 
 int		check_unexpected_token(char *str)
 {
+	while (is_separator(*str))
+		str++;
+	if (*str == '|' || *str == ';')
+		return (unexpected_token(str));
 	while (!ft_strchr("\0\n#", *str))
 	{
 		if (*str == '|' || *str == ';')
 		{
 			str++;
 			if (*(str - 1) == '|' && ft_strchr("\0\n#", *str))
-				return (puterror("Error: uknowed used pipes!\n", 258));
+				return (puterror("Error: unknown use of pipes!\n", 258));
 			if (check(str))
 				return (-1);
 		}
