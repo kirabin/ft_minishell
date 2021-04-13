@@ -49,8 +49,8 @@ hello \|world \; kok
 echo "$PATH" | echo '$PATH'
 \$HOME
 $HOMRE
-$HOMRE[3;2~[3;2~[3;2~[3;2~[3;2~[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2D[1;2D[1;2
-$HOMRE[3;2~[3;2~[3;2~[3;2~[3;2~[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2D[1;2D[1;2
+$HOMRE[3;2~[3;2~[3;2~[3;2~[3;2~[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2D[1;2D[1;2 
+$HOMRE[3;2~[3;2~[3;2~[3;2~[3;2~[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2C[1;2D[1;2D[1;2 
 hello
 "$PATH"
 "$PATH"
@@ -160,10 +160,10 @@ ls ||| ls
 ls ||| ls
 hello world |
 hello world |
-
-
-
-hello | world
+      
+       
+      
+hello | world   
 hello
 hello world
 hello
@@ -175,7 +175,7 @@ hello
 loop
 hello | world
 hello
-  world
+  world   
 ls
 echo "#$HOME" | echo '#$HOME' |   #   hello world
 echo "#$HOME" | echo '#$HOME' |   #   hello world
@@ -187,27 +187,10 @@ hello  world
 hello #
 hello |
 hello >
-hello  >
-hello  >
+hello  >   
+hello  >   
 hello #
 hello #
 hello #
 hello #
-$HOME#
-make
-hello #
-hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$HOME""     ;    cat -e
-hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e
-hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e
-hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e
-hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e    #  kukarekue
-hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e    #  kukarekue
-hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e    #  kukarekue
-hello world |     kukareky popopopo     |       ololol       pppgntngtuinu$qwe     ;     cat -e    #  kukarekue
-hello world ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-echo $HOME|helo world
-echo $HOME|helo world
 ls
-cat < hello
-$?
-echo "$?"

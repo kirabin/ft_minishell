@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/13 11:46:18 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/13 15:49:37 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ typedef struct			s_vars
 	int					cursor_pos;
 	int					brackets;
 	char				*rules;
+	bool				pipein;
+	bool				pipeout;
+	int					fd[2];
 }						t_vars;
 
 # define BUFF_SIZE 999
@@ -141,5 +144,12 @@ void					execute_command_struct(t_vars *vars,
 */
 bool					is_name(const char *str);
 int						find_name_len(const char *str);
+
+/*
+** Signals
+*/
+void					handle_sigint(int signal_code);
+void					handle_sigquit(int signal_code);
+void					child_handle_signal(int signal_code);
 
 #endif

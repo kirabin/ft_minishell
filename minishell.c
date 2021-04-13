@@ -6,22 +6,11 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 17:44:12 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 10:02:31 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// TODO: should we keep it?
-
-void	handle_signal(int signal_code)
-{
-	ft_putendl(NULL);
-	ft_putstr_fd("sigal caught: ", 1);
-	ft_puti_fd(signal_code, 1);
-	ft_putendl(NULL);
-	exit(0); // TODO: handle signals
-}
 
 int		main(int argc, char **argv, char **envp)
 {
@@ -30,7 +19,8 @@ int		main(int argc, char **argv, char **envp)
 	if (argc && argv)
 		;
 	vars.env_list = ft_envp_to_env_list(envp);
-	// signal(SIGINT, handle_signal);
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, handle_sigquit);
 	// ft_env_list_print(vars.env_list);
 	init_history(&vars);
 	vars.term_name = "xterm-256color";

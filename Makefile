@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/08 12:57:20 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/13 09:23:18 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,11 @@ SRC_ENV=	ft_env_list_new \
 			ft_get_env_item_with_key \
 			ft_env_item_free
 
+SRC_SRC=	exec signal
+
 SRC=		$(patsubst %, built_in/%.c, $(SRC_BIN)) \
 			$(patsubst %, ft_env_list/%.c, $(SRC_ENV)) \
+			$(patsubst %, source/%.c, $(SRC_SRC)) \
 			minishell.c \
 			parse.c \
 			parse_command.c \
@@ -48,7 +51,6 @@ SRC=		$(patsubst %, built_in/%.c, $(SRC_BIN)) \
 			write_hist.c \
 			execute.c \
 			errors.c \
-			exec.c \
 			definitions/names.c
 
 OBJ			= $(SRC:.c=.o)

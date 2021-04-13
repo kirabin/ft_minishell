@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:46:52 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 12:30:15 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/13 09:15:29 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_cd(const char *new_path, t_env_list *list)
 	if (chdir(new_path) == -1)
 	{
 		g_errno = errno;
-		printf("%d\n", g_errno);
 		ft_putstr_fd(strerror(g_errno), 2);
 		ft_putstr_fd("\n", 2);
 		return ;
