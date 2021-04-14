@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/13 18:56:19 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/14 14:35:58 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void					remove_elem_hist(t_history **history);
 void					init_history(t_vars *vars);
 void					write_history(t_vars *vars);
 void					ctrl_d(t_vars *vars);
+int						redirect(t_command *com, char *file_name);
 
 int						check_unexpected_token(char *str);
 int						check_brackets(char *str);

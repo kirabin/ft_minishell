@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/13 18:53:08 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/14 16:00:45 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,19 +103,45 @@ void	soft_brackets(t_vars *vars)
 	}
 }
 
-void	redirect_parse(char **cur_ptr, t_command *com)
+int		new_word(char ***buf, char **cur_ptr)
 {
+
+	while (is_separator(*(*cur_ptr + 1)))
+			(*cur_ptr)++;
+	if (!ft_strchr("#|;><\0\n", *(*cur_ptr + 1)))
+	{
+		(*buf)++;
+		**buf = ft_calloc(BUFF_SIZE, sizeof(char));
+	}
+	return (0);
+}
+
+void	redirect_parse(char **cur_ptr, t_command *com, char ***buf)
+{
+	char	buffer[9999];
+	int		check;
+
+	ft_bzero(buffer, 9999);
 	if (**cur_ptr == '>' && *(*cur_ptr + 1) == '>')
 		com->redirect = 3;
 	else if (**cur_ptr == '>')
 		com->redirect = 2;
 	else
 		com->redirect = 1;
+	(*cur_ptr)++;
+	while (is_separator(**cur_ptr))
+		(*cur_ptr)++;
+	while ((check = !ft_strchr(" |$><\'\"\\~#\0\n\t\r", **cur_ptr)))
+		joinchar(buffer, *(*cur_ptr)++);
+	redirect(com, buffer);
+	if (**cur_ptr == 0 || **cur_ptr == '\n' || **cur_ptr =='#')
+		(*cur_ptr)--;
+	else
+		new_word(buf, cur_ptr);
 }
 
-void	spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_command *com)
+int		spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_command *com)
 {
-	
 	if (**cur_ptr == '$')
 		dollar_handle(vars, **buf, cur_ptr);
 	else if (**cur_ptr == '~')
@@ -127,26 +153,12 @@ void	spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_command *com)
 	else if (**cur_ptr == '\"')
 		soft_brackets(vars);
 	else if (**cur_ptr == '>' || **cur_ptr == '<')
-		redirect_parse(cur_ptr, com);
-}
-
-void	new_word(char ***buf, char **cur_ptr, t_command *com)
-{
-	(void)com;
-	while (is_separator(*(*cur_ptr + 1)))
-			(*cur_ptr)++;
-	//if (com->redirect)
-	//	redirect(cur_ptr, com, buf);
-	if (!ft_strchr("#|;><\0\n", *(*cur_ptr + 1)))
-	{
-		(*buf)++;
-		**buf = ft_calloc(BUFF_SIZE, sizeof(char));
-	}
+		redirect_parse(cur_ptr, com, buf);
+	return (0);
 }
 
 int		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
 {
-
 	*buf = ft_calloc(BUFF_SIZE, sizeof(char));
 	while (is_separator(**cur_ptr))
 		(*cur_ptr)++;
@@ -162,11 +174,15 @@ int		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
 		else if (**cur_ptr == '|' && pipe_hdl(com, cur_ptr))
 			return (0);
 		else if (is_separator(**cur_ptr) && !vars->brackets)
-			new_word(&buf, cur_ptr, com);
+		{
+			if (new_word(&buf, cur_ptr) == -1)
+				return (1);
+		}
 		else if (!ft_strchr(vars->rules, **cur_ptr))
 			joinchar(*buf, **cur_ptr);
 		else
-			spec_symb(cur_ptr, &buf, vars, com);
+			if (spec_symb(cur_ptr, &buf, vars, com))
+				return (1);
 		(*cur_ptr)++;
 	}
 	vars->end = 1;
