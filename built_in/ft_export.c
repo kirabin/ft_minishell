@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/13 08:45:17 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/14 15:24:16 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static void	identifier_error(char *str)
 	ft_putstr_fd("': not a valid identifier\n", 2);
 	g_errno = 1;
 }
-
-// TODO: move errors to one function which takes str and set's g_errno. msamual seems to have that function already.
 
 static bool	create_new_env_arg(char *key, char identifier, char *value, t_env_list **env_list)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/13 18:56:19 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/14 17:01:27 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct			s_vars
 	bool				pipein;
 	bool				pipeout;
 	int					fd[2];
+	int					stdin_copy;
+	int					stdout_copy;
 }						t_vars;
 
 # define BUFF_SIZE 999

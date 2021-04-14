@@ -6,20 +6,18 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 09:21:40 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/13 17:13:55 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/14 15:23:47 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// TODO: handle signals
 
 void	handle_sigint(int signal_code)
 {
 	int	pid;
 	int	status;
 
-	pid = waitpid(-1, &status, WNOHANG);
+	pid = waitpid(-1, &status, WNOHANG); // TODO: what is going on here?
 	printf("%d", pid);
 	signal_code+=0;
 	if (pid == 0)
