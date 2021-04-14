@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/14 16:00:45 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/14 17:11:01 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	redirect_parse(char **cur_ptr, t_command *com, char ***buf)
 	while ((check = !ft_strchr(" |$><\'\"\\~#\0\n\t\r", **cur_ptr)))
 		joinchar(buffer, *(*cur_ptr)++);
 	redirect(com, buffer);
-	if (**cur_ptr == 0 || **cur_ptr == '\n' || **cur_ptr =='#')
+	if (**cur_ptr == 0 || **cur_ptr == '\n' || **cur_ptr == '#' || **cur_ptr == '<'|| **cur_ptr == '>')
 		(*cur_ptr)--;
 	else
 		new_word(buf, cur_ptr);
