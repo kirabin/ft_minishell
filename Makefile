@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/15 14:35:06 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/15 15:28:18 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRC_ENV=	ft_env_list_new \
 			ft_get_env_item_with_key \
 			ft_env_item_free
 
-SRC_SRC=	exec exec_support exec_support2 \
+SRC_SRC=	exec exec_support exec_support2 command \
 			signal parse history errors write_hist parse_command read_input redirect
 
 SRC=		$(patsubst %, built_in/%.c, $(SRC_BIN)) \

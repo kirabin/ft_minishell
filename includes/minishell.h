@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 14:54:14 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 15:28:59 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,5 +175,13 @@ bool	is_directory(char *path);
 bool	has_execute_permission(char *path);
 bool	is_command_executable(char *path);
 bool	is_our_implementation(char *command);
+
+/*
+** Command
+*/
+void		free_t_command(t_command *command);
+t_command	*get_command_from_raw(t_vars *vars, t_raw_command *raw_command);
+char		*get_command_name(char *path);
+char		*get_command_path(char *command, t_env_list *list);
 
 #endif
