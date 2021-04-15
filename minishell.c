@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/14 17:04:47 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 11:03:40 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		main(int argc, char **argv, char **envp)
 	tgetent(0, vars.term_name);
 	while (1)
 	{
-
 		ft_putstr(PROMPT);
 		tputs(save_cursor, 1, ft_putint);
 		read_input(&vars);

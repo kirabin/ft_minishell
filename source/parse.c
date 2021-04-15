@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/14 15:26:18 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 11:03:17 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_tab(t_command *com)
 	while (*tabl != 0)
 		ft_putendl(*tabl++);
 	ft_putendl(NULL);
-	printf("pipein = %d pipeout = %d\n", com->pipein, com->pipeout);
+	printf("pipein = %d pipeout = %d\n redirect = %d redirect_in = %d redirect_out = %d\n", com->pipein, com->pipeout, com->redirect, com->redirect_in, com->redirect_out);
 }
 
 int		pipe_hdl(t_command *com, char **cur_ptr)
@@ -96,7 +96,8 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 		return ;
 	init_com(&com);
 	buf = com.com;
-	parse_command(cur_ptr, buf, &com, vars);
+	if (parse_command(cur_ptr, buf, &com, vars))
+		return ;
 	print_tab(&com);
 	execute_command_struct(vars, &com);
 	clear_tab(com.com);

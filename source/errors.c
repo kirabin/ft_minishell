@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:04:54 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/13 18:51:56 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/14 12:33:50 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int		unexpected_token(char *str)
 	while (is_separator(*str))
 		str++;
 	if (*str == '|' && *(str + 1) == '|')
-		return (puterror("syntax error near unexpected token `||'\n", 258));
+		return (puterror("syntax error near unexpected token `||'", 258));
 	else if (*str == ';' && *(str + 1) == ';')
-		return (puterror("syntax error near unexpected token `;;'\n", 258));
+		return (puterror("syntax error near unexpected token `;;'", 258));
 	else if (*str == '|')
-		return (puterror("syntax error near unexpected token `|'\n", 258));
+		return (puterror("syntax error near unexpected token `|'", 258));
 	else if (*str == ';')
-		return (puterror("syntax error near unexpected token `;'\n", 258));
+		return (puterror("syntax error near unexpected token `;'", 258));
 	return (0);
 }
 
@@ -49,7 +49,7 @@ int		check_unexpected_token(char *str)
 		{
 			str++;
 			if (*(str - 1) == '|' && ft_strchr("\0\n#", *str))
-				return (puterror("Error: unknown use of pipes!\n", 258));
+				return (puterror("Error: unknown use of pipes!", 258));
 			if (check(str))
 				return (-1);
 		}
@@ -68,7 +68,7 @@ int		check_brackets(char *str)
 			while (*str != '\'')
 			{
 				if (*str == '\0' || *str == '\n')
-					return (puterror("syntax error: unclosed quotes\n", 1));
+					return (puterror("syntax error: unclosed quotes", 1));
 				str++;
 			}
 		}
@@ -78,7 +78,7 @@ int		check_brackets(char *str)
 			while (*str != '\"')
 			{
 				if (*str == '\0' || *str == '\n')
-					return (puterror("syntax error: unclosed quotes\n", 1));
+					return (puterror("syntax error: unclosed quotes", 1));
 				str++;
 			}
 		}
@@ -89,7 +89,10 @@ int		check_brackets(char *str)
 
 int	puterror(char *msg, int code)
 {
+	if (!msg)
+		msg = strerror(code);
 	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
 	g_errno = code;
 	return (code);
 }
