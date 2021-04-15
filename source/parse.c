@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/15 15:28:33 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/15 15:39:33 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	if (parse_command(cur_ptr, buf, &com, vars))
 		return ;
 	//print_tab(&com);
-	execute_command_struct(vars, &com);
+	execute_raw_command(vars, &com);
 	clear_tab(com.com);
 	free(com.com);
 	parsing_loop(vars, cur_ptr);
@@ -112,8 +112,8 @@ void	parse_row_string(t_vars *vars)
 	char		*string;
 	char		*save;
 
-	vars->term.c_lflag &= ~(ECHO);
-	vars->term.c_lflag &= ~(ICANON);
+	vars->term.c_lflag |= (ECHO);
+	vars->term.c_lflag |= (ICANON);
 	string = ft_strdup(vars->history->com);
 	comment_trim(string);
 	save = ft_strtrim(string, " \t'r");
