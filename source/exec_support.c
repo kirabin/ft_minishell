@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 14:01:25 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 14:28:14 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 14:34:23 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ bool	is_command_executable(char *path)
 	}
 	return (true);
 }
-
 
 bool	is_our_implementation(char *command)
 {

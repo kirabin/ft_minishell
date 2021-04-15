@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:43:12 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/14 14:36:56 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/15 14:42:38 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		redirect(t_command *com, char *file_name)
+int		redirect(t_raw_command *com, char *file_name)
 {
 	if (com->redirect == 3)
 	{

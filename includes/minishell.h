@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 14:28:04 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 14:54:14 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct			s_env_list
 	struct s_env_list	*next;
 }						t_env_list;
 
-typedef struct			s_command
+typedef struct			s_raw_command
 {
 	char				**com;
 	int					pipein;
@@ -62,6 +62,16 @@ typedef struct			s_command
 	int					redirect;
 	int					redirect_in;
 	int					redirect_out;
+}						t_raw_command;
+
+typedef struct			s_command
+{
+	char				*path;
+	char				*name;
+	char				**argv;
+	bool				pipe_left;
+	bool				pipe_right;
+
 }						t_command;
 
 
@@ -109,11 +119,11 @@ void					ft_env_list_clear(t_env_list **lst);
 void					parse_row_string(t_vars *vars);
 void					replacement(t_vars *vars);
 int						parse_command(char **cur_ptr, char **buf,
-											t_command *com, t_vars *vars);
-int						pipe_hdl(t_command *com, char **cur_ptr);
+											t_raw_command *com, t_vars *vars);
+int						pipe_hdl(t_raw_command *com, char **cur_ptr);
 void					read_input(t_vars *vars);
 int						is_separator(char c);
-void					print_tab(t_command *com);
+void					print_tab(t_raw_command *com);
 
 void					init_history(t_vars *vars);
 void					push_to_command_history(t_vars *vars, char *command);
@@ -123,13 +133,13 @@ void					remove_elem_hist(t_history **history);
 void					init_history(t_vars *vars);
 void					write_history(t_vars *vars);
 void					ctrl_d(t_vars *vars);
-int						redirect(t_command *com, char *file_name);
+int						redirect(t_raw_command *com, char *file_name);
 
 int						check_unexpected_token(char *str);
 int						check_brackets(char *str);
 int						puterror(char *err_msg, int code);
 
-void					execute(t_vars *vars, t_command *com);
+void					execute(t_vars *vars, t_raw_command *com);
 
 /*
 **	Built_IN
@@ -141,8 +151,8 @@ void					ft_unset(t_env_list **list, char **keys);
 void					ft_cd(const char *new_path, t_env_list *list);
 void					ft_env(t_env_list *env_list);
 void					ft_export(char **args, t_env_list **env_list);
-void					execute_command_struct(t_vars *vars,
-													t_command *command);
+void					execute_raw_command(t_vars *vars,
+													t_raw_command *command);
 
 /*
 ** Definitions

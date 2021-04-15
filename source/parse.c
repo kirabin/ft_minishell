@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/15 11:03:17 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 14:44:40 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	comment_trim(char *str)
 	}
 }
 
-void	init_com(t_command *com)
+void	init_com(t_raw_command *com)
 {
 	com->com = ft_calloc(BUFF_SIZE, sizeof(char *));
 	com->pipein = 0;
@@ -51,7 +51,7 @@ void	init_com(t_command *com)
 	com->redirect_out = 0;
 }
 
-void	print_tab(t_command *com)
+void	print_tab(t_raw_command *com)
 {
 	char **tabl = com->com;
 
@@ -61,7 +61,7 @@ void	print_tab(t_command *com)
 	printf("pipein = %d pipeout = %d\n redirect = %d redirect_in = %d redirect_out = %d\n", com->pipein, com->pipeout, com->redirect, com->redirect_in, com->redirect_out);
 }
 
-int		pipe_hdl(t_command *com, char **cur_ptr)
+int		pipe_hdl(t_raw_command *com, char **cur_ptr)
 {
 	if (com->com[0] && ft_strlen(com->com[0]))
 	{
@@ -89,7 +89,7 @@ void	clear_tab(char	**buf)
 
 void	parsing_loop(t_vars *vars, char **cur_ptr)
 {
-	t_command 	com;
+	t_raw_command 	com;
 	char		**buf;
 
 	if (vars->end)
@@ -99,7 +99,7 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	if (parse_command(cur_ptr, buf, &com, vars))
 		return ;
 	print_tab(&com);
-	execute_command_struct(vars, &com);
+	execute_raw_command(vars, &com);
 	clear_tab(com.com);
 	free(com.com);
 	parsing_loop(vars, cur_ptr);
