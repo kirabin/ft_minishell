@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 11:21:11 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/13 10:17:45 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/15 11:01:59 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	parsing(t_vars *vars)
 	write(1, "\n", 1);
 	if (ft_strlen(vars->history->com) > 0)
 	{
+		vars->term.c_lflag &= ~(ICANON);
 		parse_row_string(vars);
 		if (vars->history && vars->history->next)
 		{
