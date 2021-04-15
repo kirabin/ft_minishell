@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/08 11:55:59 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 14:30:59 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,5 +221,10 @@ int					ft_lenui_hex(unsigned int n);
 int					ft_lenul_hex(unsigned long n);
 char				**ft_split(char const *s, char c);
 char				*ft_uitoa(unsigned int n);
+
+/*
+**  ft_other
+*/
+void				free_cpp(char **cpp);
 
 #endif

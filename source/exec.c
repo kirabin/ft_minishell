@@ -6,40 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 13:51:44 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 14:29:17 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_cpp(char **cpp)
-{
-	char	**temp;
 
-	temp = cpp;
-	while (temp && *temp)
-		free(*temp++);
-	free(cpp);
-}
-
-bool	is_our_implementation(char *command)
-{
-	if (ft_strncmp(command, "cd", 2) == 0)
-		return true;
-	else if (ft_strncmp(command, "echo", 4) == 0)
-		return true;
-	else if (ft_strncmp(command, "env", 3) == 0)
-		return true;
-	else if (ft_strncmp(command, "exit", 4) == 0)
-		return true;
-	else if (ft_strncmp(command, "export", 6) == 0)
-		return true;
-	else if (ft_strncmp(command, "pwd", 3) == 0)
-		return true;
-	else if (ft_strncmp(command, "unset", 5) == 0)
-		return true;
-	return false;
-}
 
 void	execute_our_implementation(char *command, char **argv, t_env_list **list)
 {
@@ -58,15 +31,6 @@ void	execute_our_implementation(char *command, char **argv, t_env_list **list)
 		ft_pwd();
 	else if (ft_strncmp(command, "unset", 5) == 0)
 		ft_unset(list, argv + 1);
-}
-
-bool	is_file_exists(char *path)
-{
-	struct stat		buffer;
-
-	if (stat(path, &buffer) == -1)
-		return (false);
-	return (true);
 }
 
 char	*get_command_path(char *command, t_env_list *list)
@@ -174,7 +138,6 @@ void	execute_command_struct(t_vars *vars, t_command *command)
 {
 	char	*command_path;
 	char	*command_name;
-	// int		pid;
 
 	command_path = get_command_path(command->com[0], vars->env_list);
 	command_name = get_command_name(command->com[0]);
@@ -183,7 +146,10 @@ void	execute_command_struct(t_vars *vars, t_command *command)
 	vars->pipein = command->pipein;
 	vars->pipeout = command->pipeout;
 	printf("pipes: %d, %d\n", vars->pipein, vars->pipeout);
-	if (is_our_implementation(command_name))
+
+	if (!is_command_executable(command_path))
+		;
+	else if (is_our_implementation(command_name))
 	{
 		execute_our_implementation(command_name, command->com, &vars->env_list);
 	}

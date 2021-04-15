@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 11:11:30 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 14:28:04 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,14 @@ int						find_name_len(const char *str);
 void					handle_sigint(int signal_code);
 void					handle_sigquit(int signal_code);
 void					child_handle_signal(int signal_code);
+
+/*
+** Exec
+*/
+bool	is_file_exists(char *path);
+bool	is_directory(char *path);
+bool	has_execute_permission(char *path);
+bool	is_command_executable(char *path);
+bool	is_our_implementation(char *command);
 
 #endif

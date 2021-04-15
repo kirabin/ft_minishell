@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/28 11:34:55 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/08 12:22:31 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/15 14:30:29 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,7 @@ SRC_MEM=	ft_bzero \
 			ft_memmove \
 			ft_memset
 
+SRC_FREE=	free_cpp
 
 SRC=		$(patsubst %, ft_str/%.c, $(SRC_STR)) \
 			$(patsubst %, ft_lst/%.c, $(SRC_LST)) \
@@ -101,6 +102,7 @@ SRC=		$(patsubst %, ft_str/%.c, $(SRC_STR)) \
 			$(patsubst %, ft_chr/%.c, $(SRC_CHR)) \
 			$(patsubst %, ft_put/%.c, $(SRC_PUT)) \
 			$(patsubst %, ft_int/%.c, $(SRC_INT)) \
+			$(patsubst %, free/%.c, $(SRC_FREE)) \
 			ft_uitoa.c \
 			ft_lenui.c \
 			ft_lenui_hex.c \
