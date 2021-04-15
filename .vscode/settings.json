@@ -4,6 +4,7 @@
 		"libft.h": "c",
 		"__node_handle": "c",
 		"sstream": "c",
-		"system_error": "c"
+		"system_error": "c",
+		"typeinfo": "c"
 	}
 }

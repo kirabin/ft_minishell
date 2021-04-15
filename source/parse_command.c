@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/14 17:11:01 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/15 14:42:38 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 	(*input)--;
 	var = ft_env_list_get_value(vars->env_list, buffer);
 		joinstr(buf, var);
-	
+
 }
 
 void	tilda_handle(t_vars *vars, char *buf, char **cur_ptr)
@@ -116,7 +116,7 @@ int		new_word(char ***buf, char **cur_ptr)
 	return (0);
 }
 
-void	redirect_parse(char **cur_ptr, t_command *com, char ***buf)
+void	redirect_parse(char **cur_ptr, t_raw_command *com, char ***buf)
 {
 	char	buffer[9999];
 	int		check;
@@ -140,7 +140,7 @@ void	redirect_parse(char **cur_ptr, t_command *com, char ***buf)
 		new_word(buf, cur_ptr);
 }
 
-int		spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_command *com)
+int		spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_raw_command *com)
 {
 	if (**cur_ptr == '$')
 		dollar_handle(vars, **buf, cur_ptr);
@@ -157,7 +157,7 @@ int		spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_command *com)
 	return (0);
 }
 
-int		parse_command(char **cur_ptr, char **buf, t_command *com, t_vars *vars)
+int		parse_command(char **cur_ptr, char **buf, t_raw_command *com, t_vars *vars)
 {
 	*buf = ft_calloc(BUFF_SIZE, sizeof(char));
 	while (is_separator(**cur_ptr))
