@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 11:03:13 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 11:11:30 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <errno.h>
 # include <sys/stat.h>
+# include <sys/wait.h>
 # include <stdlib.h>
 # include <string.h>
 # include <signal.h>

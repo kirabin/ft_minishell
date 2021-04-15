@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/14 17:11:49 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 13:51:44 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,8 @@ char	*get_command_name(char *command)
 
 int		execute_command(char *command_path, char **argv, t_vars *vars)
 {
-	int		pid;
+	pid_t	pid;
+	// int		ret;
 	char	**envp;
 
 	envp = ft_env_to_charpp(vars->env_list);
@@ -133,18 +134,21 @@ int		execute_command(char *command_path, char **argv, t_vars *vars)
 		ft_putstr("Can't execute command\n");
 	else if (pid == 0)
 	{
-		// signal(SIGINT, handle_sign);
 		if (vars->pipeout == 1)
 		{
 			dup2(vars->fd[1], STD_OUT);
 		}
-		else
+		else if (vars->pipein == 1)
 		{
 			// dup2(0, STD_IN);
 			dup2(vars->stdout_copy, STD_OUT);
 		}
 
+		// int pid2 = fork();
+		// if (pid2 == 0)
 		execve(command_path, argv, envp);
+		// wait(&pid2);
+		exit(0);
 		// return(pid);
 	}
 	else
@@ -156,7 +160,7 @@ int		execute_command(char *command_path, char **argv, t_vars *vars)
 			close(vars->fd[0]);
 			close(vars->fd[1]);
 		}
-		if (vars->pipein == 1)
+		else if (vars->pipein == 1)
 		{
 			dup2(vars->stdin_copy, STD_IN);
 		}
