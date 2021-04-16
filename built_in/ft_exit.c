@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:24 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/13 08:46:54 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 19:20:19 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_exit(char **args)
 		return ;
 	}
 	if (!*args)
-		exit(g_errno); // TODO: g_errno is not finished fully
+		exit(g_errno);
 	if (is_long_long(*args))
 	{
 		code = ft_atoi_long_long(*args);

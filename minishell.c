@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 17:04:27 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 11:54:58 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	increment_shell_level(t_env_list *lst)
 int		main(int argc, char **argv, char **envp)
 {
 	t_vars	vars;
+	int		fd[2];
 
 	if (argc && argv)
 		;
@@ -37,17 +38,18 @@ int		main(int argc, char **argv, char **envp)
 	signal(SIGQUIT, handle_sigquit);
 	// ft_env_list_print(vars.env_list);
 	init_history(&vars);
-	vars.stdin_copy = dup(STD_IN);
-	vars.stdout_copy = dup(STD_OUT);
+	pipe(fd);
+	vars.stdin_copy = dup2(STD_IN, fd[0]);
+	vars.stdout_copy = dup2(STD_OUT, fd[1]);
 	vars.term_name = "xterm-256color";
 	if (tcgetattr(0, &vars.term) || tcgetattr(0, &vars.term_orig_attr))
 		puterror("Error: tcgetattr\n", 1);
-	vars.term.c_lflag &= ~(ECHO);
-	vars.term.c_lflag &= ~(ICANON);
-	tcsetattr(0, TCSANOW, &vars.term);
 	tgetent(0, vars.term_name);
 	while (1)
 	{
+		vars.term.c_lflag &= ~(ECHO);
+		vars.term.c_lflag &= ~(ICANON);
+		tcsetattr(0, TCSANOW, &vars.term);
 		ft_putstr(PROMPT);
 		tputs(save_cursor, 1, ft_putint);
 		read_input(&vars);
