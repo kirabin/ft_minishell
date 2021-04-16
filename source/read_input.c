@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 11:21:11 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/16 11:46:54 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 18:23:13 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	backspace(t_vars *vars, char *command)
 
 void	add_to_command(t_vars *vars, char *str, int ret, char *command)
 {
-	int		i;
+	int	i;
 
 	i = -1;
 	while (*command)
@@ -114,7 +114,7 @@ void	read_input(t_vars *vars)
 		else if (!ft_strcmp(str, "\e[B"))
 			history_next(vars);
 		else if (!ft_strcmp(str, "\e[D") || !ft_strcmp(str, "\e[C")
-				|| !ft_strcmp(str, "\t"))
+			|| !ft_strcmp(str, "\t"))
 			;
 		else if (!ft_strcmp("\4", str))
 			ctrl_d(vars);

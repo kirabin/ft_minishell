@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/16 16:17:33 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 18:46:01 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,7 @@ void	init_com(t_raw_command *com)
 	com->redirect_out = -1;
 }
 
-void	print_tab(t_raw_command *com)
-{
-	char **tabl = com->com;
-
-	while (*tabl != 0)
-		ft_putendl(*tabl++);
-	ft_putendl(NULL);
-	printf("pipein = %d pipeout = %d\n redirect = %d redirect_in = %d redirect_out = %d\n", com->pipein, com->pipeout, com->redirect, com->redirect_in, com->redirect_out);
-}
-
-int		pipe_hdl(t_raw_command *com, char **cur_ptr)
+int	pipe_hdl(t_raw_command *com, char **cur_ptr)
 {
 	if (com->com[0] && ft_strlen(com->com[0]))
 	{
@@ -89,8 +79,8 @@ void	clear_tab(char	**buf)
 
 void	parsing_loop(t_vars *vars, char **cur_ptr)
 {
-	t_raw_command 	com;
-	char		**buf;
+	t_raw_command	com;
+	char			**buf;
 
 	if (vars->end)
 		return ;
@@ -98,7 +88,6 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	buf = com.com;
 	if (parse_command(cur_ptr, buf, &com, vars))
 		return ;
-	//print_tab(&com);
 	execute_raw_command(vars, &com);
 	if (com.redirect_in != -1)
 		close(com.redirect_in);
@@ -111,10 +100,9 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 
 void	parse_row_string(t_vars *vars)
 {
-
-	char		*cur_ptr;
-	char		*string;
-	char		*save;
+	char	*cur_ptr;
+	char	*string;
+	char	*save;
 
 	vars->term.c_lflag |= (ECHO);
 	vars->term.c_lflag |= (ICANON);

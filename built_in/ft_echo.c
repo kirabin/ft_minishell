@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:10 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 17:31:19 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 18:36:57 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@
 **		-[>0] An error occurred.
 */
 
-static bool		is_suppressed_option(char *str)
+static bool	is_suppressed_option(char *str)
 {
 	if (ft_strcmp(str, "-n") == 0)
 		return (true);
 	return (false);
 }
-
 
 void	ft_echo(char **args)
 {

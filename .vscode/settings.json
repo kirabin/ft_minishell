@@ -5,6 +5,7 @@
 		"__node_handle": "c",
 		"sstream": "c",
 		"system_error": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"term.h": "c"
 	}
 }

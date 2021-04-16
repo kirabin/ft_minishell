@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   pid_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 12:03:07 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 18:34:04 by dmilan           ###   ########.fr       */
+/*   Created: 2021/04/16 16:15:32 by dmilan            #+#    #+#             */
+/*   Updated: 2021/04/16 16:32:47 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+bool	is_child(pid_t pid)
 {
-	unsigned int	start;
-	unsigned int	end;
+	if (pid == 0)
+		return (true);
+	return (false);
+}
 
-	if (!s1 || !set)
-		return (NULL);
-	start = 0;
-	while (s1[start] && ft_strchr(set, s1[start]))
-		start++;
-	end = start;
-	while (s1[end])
-		end++;
-	while (end && ft_strchr(set, s1[end]))
-		end--;
-	if (end < start)
-		return (ft_strdup(""));
-	return (ft_substr(s1, start, end - start + 1));
+bool	is_parent(pid_t pid)
+{
+	if (pid > 0)
+		return (true);
+	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 19:08:08 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/13 08:36:24 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 18:31:32 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	push_to_command_history(t_vars *vars, char *command)
 	t_history	*node;
 	t_history	*current;
 
-	while(vars->history && vars->history->next)
+	while (vars->history && vars->history->next)
 		vars->history = vars->history->next;
-	node = ft_calloc(1, sizeof(t_history));  // protect calloc
+	node = ft_calloc(1, sizeof(t_history));
 	current = vars->history;
 	if (current)
 		current->next = node;
@@ -31,14 +31,13 @@ void	push_to_command_history(t_vars *vars, char *command)
 
 void	remove_current_input(t_history *history)
 {
-	t_history *tmp;
+	t_history	*tmp;
 
 	tmp = history;
 	while (tmp->next->next)
 		tmp = tmp->next;
 	free(tmp->next);
 	tmp->next = NULL;
-
 }
 
 t_history	*to_end_of_list(t_history *hist)
@@ -70,7 +69,6 @@ void	remove_elem_hist(t_history **history)
 	{
 		next->prev = prev;
 		*history = next;
-
 	}
 	free(tmp);
 	*history = to_end_of_list(*history);
@@ -78,8 +76,8 @@ void	remove_elem_hist(t_history **history)
 
 void	init_history(t_vars *vars)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
 
 	fd = open(".history.txt", O_RDONLY);
 	if (fd < 0)
