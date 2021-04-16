@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/15 15:39:33 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 11:37:55 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	parse_row_string(t_vars *vars)
 	char		*save;
 
 	vars->term.c_lflag |= (ECHO);
-	vars->term.c_lflag |= (ICANON);
+	//vars->term.c_lflag |= (ICANON);
 	string = ft_strdup(vars->history->com);
 	comment_trim(string);
 	save = ft_strtrim(string, " \t'r");
