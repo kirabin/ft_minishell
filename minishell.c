@@ -6,11 +6,24 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 16:34:45 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 11:46:44 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	increment_shell_level(t_env_list *lst)
+{
+	while (lst)
+	{
+		if (!ft_strcmp(lst->item->key, "SHLVL"))
+		{
+			lst->item->value = ft_itoa(ft_atoi(lst->item->value) + 1);
+			return;
+		}
+		lst = lst->next;
+	}
+}
 
 int		main(int argc, char **argv, char **envp)
 {
@@ -20,6 +33,7 @@ int		main(int argc, char **argv, char **envp)
 	if (argc && argv)
 		;
 	vars.env_list = ft_envp_to_env_list(envp);
+	increment_shell_level(vars.env_list);
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, handle_sigquit);
 	// ft_env_list_print(vars.env_list);

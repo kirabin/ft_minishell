@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/15 14:44:40 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 15:39:33 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	init_com(t_raw_command *com)
 	com->pipein = 0;
 	com->pipeout = 0;
 	com->redirect = 0;
-	com->redirect_in = 0;
-	com->redirect_out = 0;
+	com->redirect_in = -1;
+	com->redirect_out = -1;
 }
 
 void	print_tab(t_raw_command *com)
@@ -98,7 +98,7 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	buf = com.com;
 	if (parse_command(cur_ptr, buf, &com, vars))
 		return ;
-	print_tab(&com);
+	//print_tab(&com);
 	execute_raw_command(vars, &com);
 	clear_tab(com.com);
 	free(com.com);
@@ -112,6 +112,8 @@ void	parse_row_string(t_vars *vars)
 	char		*string;
 	char		*save;
 
+	vars->term.c_lflag |= (ECHO);
+	vars->term.c_lflag |= (ICANON);
 	string = ft_strdup(vars->history->com);
 	comment_trim(string);
 	save = ft_strtrim(string, " \t'r");
