@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/15 14:42:38 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 18:44:32 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	soft_brackets(t_vars *vars)
 	{
 		vars->brackets = 1;
 		free(vars->rules);
-		vars->rules = ft_strdup("$\\\"");
+		vars->rules = ft_strdup("$\\\");
 	}
 	else
 	{

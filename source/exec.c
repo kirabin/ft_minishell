@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 16:05:29 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 16:19:38 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		execute_bin_command(t_command *command, t_vars *vars)
 			close(STD_OUT);
 			dup2(command->fd_out, STD_OUT);
 		}
-		ft_putstr_fd("Executing command\n", 1);
+		//ft_putstr_fd("Executing command\n", 1);
 		execve(command->path, command->argv, command->envp);
 		g_errno = 1; // TODO: error management
 		exit(0);
