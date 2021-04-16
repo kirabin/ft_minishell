@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 15:27:09 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 15:29:39 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 11:37:51 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	free_t_command(t_command *command)
 	{
 		free(command->path);
 		free(command->name);
+		free_cpp(command->envp);
 	}
 	free(command);
 }
@@ -77,5 +78,13 @@ t_command	*get_command_from_raw(t_vars *vars, t_raw_command *raw_command)
 	command->argv = raw_command->com;
 	command->pipe_left = raw_command->pipein;
 	command->pipe_right = raw_command->pipeout;
+	command->envp = ft_env_to_charpp(vars->env_list);
+	if (!command->envp)
+	{
+		free(command->path);
+		free(command->name);
+		free(command);
+		return (NULL);
+	}
 	return (command);
 }

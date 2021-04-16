@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 11:03:40 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/15 16:34:45 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		main(int argc, char **argv, char **envp)
 {
 	t_vars	vars;
+	int		fd[2];
 
 	if (argc && argv)
 		;
@@ -23,8 +24,9 @@ int		main(int argc, char **argv, char **envp)
 	signal(SIGQUIT, handle_sigquit);
 	// ft_env_list_print(vars.env_list);
 	init_history(&vars);
-	vars.stdin_copy = dup(STD_IN);
-	vars.stdout_copy = dup(STD_OUT);
+	pipe(fd);
+	vars.stdin_copy = dup2(STD_IN, fd[0]);
+	vars.stdout_copy = dup2(STD_OUT, fd[1]);
 	vars.term_name = "xterm-256color";
 	if (tcgetattr(0, &vars.term) || tcgetattr(0, &vars.term_orig_attr))
 		puterror("Error: tcgetattr\n", 1);
