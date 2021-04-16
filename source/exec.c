@@ -6,15 +6,11 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 17:03:17 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 18:37:09 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	free_t_pipes();
-
-
 
 static void	manage_out_pipe(t_command *command, t_vars *vars)
 {
@@ -66,7 +62,7 @@ void	execute_our_implementation(t_command *command, t_vars *vars)
 	if (ft_strncmp(command->name, "cd", 2) == 0)
 		ft_cd(command->argv[1], vars->env_list);
 	else if (ft_strncmp(command->name, "echo", 4) == 0)
-		ft_echo(command->argv + 1, command);
+		ft_echo(command->argv + 1);
 	else if (ft_strncmp(command->name, "env", 3) == 0)
 		ft_env(vars->env_list);
 	else if (ft_strncmp(command->name, "exit", 4) == 0)

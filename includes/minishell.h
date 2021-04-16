@@ -6,10 +6,9 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 17:04:01 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 18:41:03 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -34,27 +33,27 @@ int	g_errno;
 /*
 **  ft_env_list
 */
-typedef struct			s_history
+typedef struct s_history
 {
 	char				com[1000];
 	struct s_history	*next;
 	struct s_history	*prev;
 }						t_history;
 
-typedef struct			s_env_item
+typedef struct s_env_item
 {
 	char				*key;
 	char				*value;
-	int					identifier;  // 0 - nothing; 1 - '='; 2 - '+='
+	int					identifier;
 }						t_env_item;
 
-typedef struct			s_env_list
+typedef struct s_env_list
 {
 	t_env_item			*item;
 	struct s_env_list	*next;
 }						t_env_list;
 
-typedef struct			s_raw_command
+typedef struct s_raw_command
 {
 	char				**com;
 	int					pipein;
@@ -64,7 +63,7 @@ typedef struct			s_raw_command
 	int					redirect_out;
 }						t_raw_command;
 
-typedef struct			s_command
+typedef struct s_command
 {
 	char				*path;
 	char				*name;
@@ -76,13 +75,7 @@ typedef struct			s_command
 	int					fd_out;
 }						t_command;
 
-typedef struct			s_pipes
-{
-
-}						t_pipes;
-
-
-typedef struct			s_vars
+typedef struct s_vars
 {
 	t_env_list			*env_list;
 	t_history			*history;
@@ -105,11 +98,11 @@ typedef struct			s_vars
 
 t_env_item				*ft_get_env_item_with_key(t_env_list *list, char *key);
 t_env_item				*ft_env_item_new(char *key, int identifier,
-																char *value);
+							char *value);
 void					ft_env_item_free(t_env_item *item);
 t_env_list				*ft_env_list_new(t_env_item *env_item);
 void					ft_env_list_add_back(t_env_list **env_list,
-												t_env_list *new);
+							t_env_list *new);
 void					ft_env_list_print(t_env_list *env_list);
 void					ft_env_list_print_with_declare(t_env_list *env_list);
 char					*ft_env_list_get_value(t_env_list *env_list, char *key);
@@ -126,7 +119,7 @@ void					ft_env_list_clear(t_env_list **lst);
 void					parse_row_string(t_vars *vars);
 void					replacement(t_vars *vars);
 int						parse_command(char **cur_ptr, char **buf,
-											t_raw_command *com, t_vars *vars);
+							t_raw_command *com, t_vars *vars);
 int						pipe_hdl(t_raw_command *com, char **cur_ptr);
 void					read_input(t_vars *vars);
 int						is_separator(char c);
@@ -152,14 +145,14 @@ void					execute(t_vars *vars, t_raw_command *com);
 **	Built_IN
 */
 void					ft_pwd(void);
-void					ft_echo(char **args, t_command *command);
+void					ft_echo(char **args);
 void					ft_exit(char **args);
 void					ft_unset(t_env_list **list, char **keys);
 void					ft_cd(const char *new_path, t_env_list *list);
 void					ft_env(t_env_list *env_list);
 void					ft_export(char **args, t_env_list **env_list);
 void					execute_raw_command(t_vars *vars,
-													t_raw_command *command);
+							t_raw_command *command);
 
 /*
 ** Definitions
@@ -179,18 +172,19 @@ void					child_handle_signal(int signal_code);
 /*
 ** Exec
 */
-bool	is_file_exists(char *path);
-bool	is_directory(char *path);
-bool	has_execute_permission(char *path);
-bool	is_command_executable(char *path);
-bool	is_our_implementation(char *command);
+bool					is_file_exists(char *path);
+bool					is_directory(char *path);
+bool					has_execute_permission(char *path);
+bool					is_command_executable(char *path);
+bool					is_our_implementation(char *command);
 
 /*
 ** Command
 */
-void		free_t_command(t_command *command);
-t_command	*get_command_from_raw(t_vars *vars, t_raw_command *raw_command);
-char		*get_command_name(char *path);
-char		*get_command_path(char *command, t_env_list *list);
+void					free_t_command(t_command *command);
+t_command				*get_command_from_raw(t_vars *vars,
+							t_raw_command *raw_command);
+char					*get_command_name(char *path);
+char					*get_command_path(char *command, t_env_list *list);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 15:27:09 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 16:31:45 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 18:33:56 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*get_command_path(char *command, t_env_list *list)
 		extended_path = ft_strjoin_three(paths[i], "/", command);
 		ft_putstr("\n");
 		if (is_file_exists(extended_path))
-			break;
+			break ;
 		free(extended_path);
 		extended_path = NULL;
 	}

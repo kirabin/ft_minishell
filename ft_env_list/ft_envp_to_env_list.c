@@ -59,7 +59,6 @@ t_env_list	*ft_envp_to_env_list(char **envp)
 			ft_env_item_free(env_item);
 			break ;
 		}
-
 		ft_env_list_add_back(&env_list, tmp_list);
 		envp++;
 	}

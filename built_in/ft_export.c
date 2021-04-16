@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/14 15:24:16 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 18:43:06 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ static void	identifier_error(char *str)
 	g_errno = 1;
 }
 
-static bool	create_new_env_arg(char *key, char identifier, char *value, t_env_list **env_list)
+static bool	create_new_env_arg(char *key, char identifier,
+	char *value, t_env_list **env_list)
 {
 	t_env_item	*new_item;
 	t_env_list	*new_list;
 
-	new_item = ft_env_item_new(key, identifier,value);
+	new_item = ft_env_item_new(key, identifier, value);
 	if (!new_item)
 		return (false);
 	new_list = ft_env_list_new(new_item);
@@ -55,7 +56,6 @@ void	ft_export(char **args, t_env_list **env_list)
 {
 	t_env_item	*item;
 	t_env_item	*tmp_item;
-
 
 	g_errno = 0;
 	if (!*args)
@@ -75,7 +75,7 @@ void	ft_export(char **args, t_env_list **env_list)
 			{
 				tmp_item = ft_get_env_item_with_key(*env_list, item->key);
 				tmp_item->value = ft_strjoin_free(tmp_item->value,
-													item->value);
+						item->value);
 			}
 			else if (item->identifier == 0)
 				;
@@ -84,7 +84,8 @@ void	ft_export(char **args, t_env_list **env_list)
 		}
 		else
 		{
-			if (!create_new_env_arg(item->key, item->identifier, item->value, env_list))
+			if (!create_new_env_arg(item->key, item->identifier,
+					item->value, env_list))
 				break ;
 		}
 		args++;

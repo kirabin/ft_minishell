@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 15:36:34 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 18:41:36 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	increment_shell_level(t_env_list *lst)
 {
 	char	*tmp;
-	
+
 	while (lst)
 	{
 		if (!ft_strcmp(lst->item->key, "SHLVL"))
@@ -23,13 +23,13 @@ void	increment_shell_level(t_env_list *lst)
 			tmp = ft_itoa(ft_atoi(lst->item->value) + 1);
 			free(lst->item->value);
 			lst->item->value = tmp;
-			return;
+			return ;
 		}
 		lst = lst->next;
 	}
 }
 
-int		main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_vars	vars;
 	int		fd[2];
@@ -40,7 +40,6 @@ int		main(int argc, char **argv, char **envp)
 	increment_shell_level(vars.env_list);
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, handle_sigquit);
-	// ft_env_list_print(vars.env_list);
 	init_history(&vars);
 	pipe(fd);
 	vars.stdin_copy = dup2(STD_IN, fd[0]);

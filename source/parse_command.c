@@ -6,13 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/15 14:42:38 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 18:26:26 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		is_separator(char c)
+int	is_separator(char c)
 {
 	if (ft_strchr(" \t\r", c))
 		return (1);
@@ -28,7 +28,7 @@ void	joinchar(char *buf, char c)
 
 void	joinstr(char *buf, char *str)
 {
-	while(str && *str)
+	while (str && *str)
 		joinchar(buf, *str++);
 	joinchar(buf, 0);
 }
@@ -48,12 +48,11 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 		free(tmp);
 		return ;
 	}
-	while(!ft_strchr(" |$><\'\"\\~#\0\n\t\r", **input))
+	while (!ft_strchr(" |$><\'\"\\~#\0\n\t\r", **input))
 		joinchar(buffer, *(*input)++);
 	(*input)--;
 	var = ft_env_list_get_value(vars->env_list, buffer);
-		joinstr(buf, var);
-
+	joinstr(buf, var);
 }
 
 void	tilda_handle(t_vars *vars, char *buf, char **cur_ptr)
@@ -62,7 +61,6 @@ void	tilda_handle(t_vars *vars, char *buf, char **cur_ptr)
 		joinstr(buf, ft_env_list_get_value(vars->env_list, "HOME"));
 	else
 		joinchar(buf, **cur_ptr);
-
 }
 
 void	shielding(char *buf, char **cur_ptr)
@@ -103,11 +101,10 @@ void	soft_brackets(t_vars *vars)
 	}
 }
 
-int		new_word(char ***buf, char **cur_ptr)
+int	new_word(char ***buf, char **cur_ptr)
 {
-
 	while (is_separator(*(*cur_ptr + 1)))
-			(*cur_ptr)++;
+		(*cur_ptr)++;
 	if (!ft_strchr("#|;><\0\n", *(*cur_ptr + 1)))
 	{
 		(*buf)++;
@@ -119,7 +116,6 @@ int		new_word(char ***buf, char **cur_ptr)
 void	redirect_parse(char **cur_ptr, t_raw_command *com, char ***buf)
 {
 	char	buffer[9999];
-	int		check;
 
 	ft_bzero(buffer, 9999);
 	if (**cur_ptr == '>' && *(*cur_ptr + 1) == '>')
@@ -131,16 +127,16 @@ void	redirect_parse(char **cur_ptr, t_raw_command *com, char ***buf)
 	(*cur_ptr)++;
 	while (is_separator(**cur_ptr))
 		(*cur_ptr)++;
-	while ((check = !ft_strchr(" |$><\'\"\\~#\0\n\t\r", **cur_ptr)))
+	while (!ft_strchr(" |$><\'\"\\~#\0\n\t\r", **cur_ptr))
 		joinchar(buffer, *(*cur_ptr)++);
 	redirect(com, buffer);
-	if (**cur_ptr == 0 || **cur_ptr == '\n' || **cur_ptr == '#' || **cur_ptr == '<'|| **cur_ptr == '>')
+	if (**cur_ptr == 0 || **cur_ptr == '\n' || **cur_ptr == '#' || **cur_ptr == '<' || **cur_ptr == '>')
 		(*cur_ptr)--;
 	else
 		new_word(buf, cur_ptr);
 }
 
-int		spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_raw_command *com)
+int	spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_raw_command *com)
 {
 	if (**cur_ptr == '$')
 		dollar_handle(vars, **buf, cur_ptr);
@@ -157,7 +153,7 @@ int		spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_raw_command *com)
 	return (0);
 }
 
-int		parse_command(char **cur_ptr, char **buf, t_raw_command *com, t_vars *vars)
+int	parse_command(char **cur_ptr, char **buf, t_raw_command *com, t_vars *vars)
 {
 	*buf = ft_calloc(BUFF_SIZE, sizeof(char));
 	while (is_separator(**cur_ptr))

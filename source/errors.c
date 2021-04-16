@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:04:54 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/14 12:33:50 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 18:33:43 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minishell.h"
 
-int		unexpected_token(char *str)
+int	unexpected_token(char *str)
 {
 	while (is_separator(*str))
 		str++;
@@ -28,7 +27,7 @@ int		unexpected_token(char *str)
 	return (0);
 }
 
-int		check(char *str)
+int	check(char *str)
 {
 	while (*str && is_separator(*str))
 		str++;
@@ -37,7 +36,7 @@ int		check(char *str)
 	return (0);
 }
 
-int		check_unexpected_token(char *str)
+int	check_unexpected_token(char *str)
 {
 	while (is_separator(*str))
 		str++;
@@ -58,7 +57,7 @@ int		check_unexpected_token(char *str)
 	return (0);
 }
 
-int		check_brackets(char *str)
+int	check_brackets(char *str)
 {
 	while (*str)
 	{

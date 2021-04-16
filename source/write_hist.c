@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write_hist.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 16:24:22 by msamual           #+#    #+#             */
-/*   Updated: 2021/03/28 17:32:13 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 18:20:47 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	write_history(t_vars *vars)
 {
 	t_history	*tmp;
 	int			fd;
-	
-	fd = open(".history.txt", O_WRONLY | O_CREAT | O_TRUNC , S_IRWXU);
+
+	fd = open(".history.txt", O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 	tmp = vars->history;
 	while (tmp && tmp->prev)
 		tmp = tmp->prev;
