@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 15:27:09 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 13:43:18 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 14:35:54 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ t_command	*get_command_from_raw(t_vars *vars, t_raw_command *raw_command)
 		return (NULL);
 	command->path = get_command_path(raw_command->com[0], vars->env_list);
 	command->name = get_command_name(raw_command->com[0]);
-	raw_command->com[0] = ft_strjoin_free(command->name, "");
+	free(raw_command->com[0]);
+	raw_command->com[0] = ft_strdup(command->name);
 	command->argv = raw_command->com;
 	command->pipe_left = raw_command->pipein;
 	command->pipe_right = raw_command->pipeout;

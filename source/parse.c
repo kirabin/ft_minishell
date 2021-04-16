@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/16 12:28:56 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:59:13 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	parse_row_string(t_vars *vars)
 	tcsetattr(0, TCSANOW, &vars->term);
 	string = ft_strdup(vars->history->com);
 	comment_trim(string);
-	save = ft_strtrim(string, " \t'r");
+	save = ft_strtrim(string, " \t\r");
 	cur_ptr = save;
 	if (check_unexpected_token(cur_ptr))
 		return ;

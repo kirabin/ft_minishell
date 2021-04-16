@@ -6,11 +6,13 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 14:26:25 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 16:05:29 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_t_pipes();
 
 void	execute_our_implementation(t_command *command, t_env_list **list)
 {
@@ -35,9 +37,9 @@ void	execute_our_implementation(t_command *command, t_env_list **list)
 int		execute_bin_command(t_command *command, t_vars *vars)
 {
 	pid_t	pid;
-	// int		ret;
 
 	// TODO: manage g_errno
+	// TODO: close fds
 	if (command->pipe_right)
 		pipe(vars->fd);  // protect from -1
 	pid = fork();
@@ -48,26 +50,31 @@ int		execute_bin_command(t_command *command, t_vars *vars)
 		if (command->pipe_right)
 		{
 			dup2(vars->fd[1], STD_OUT);
+			close(vars->fd[1]);
 		}
 		else if (command->pipe_left)
+		{
 			dup2(vars->stdout_copy, STD_OUT);
+		}
 		if (command->fd_in != -1)
 		{
+			close(STD_IN);
 			dup2(command->fd_in, STD_IN);
 		}
 		if (command->fd_out != -1)
 		{
+			close(STD_OUT);
 			dup2(command->fd_out, STD_OUT);
 		}
-		ft_putstr_fd("Executing command\n", 2);
+		ft_putstr_fd("Executing command\n", 1);
 		execve(command->path, command->argv, command->envp);
-		g_errno = 1;
+		g_errno = 1; // TODO: error management
 		exit(0);
 	}
 	else
 	{
 		// if (ft_strcmp(command->name, "cat") != 0)
-			wait(&pid);
+		wait(&pid);
 		if (command->pipe_right)
 		{
 			dup2(vars->fd[0], STD_IN);
@@ -79,8 +86,6 @@ int		execute_bin_command(t_command *command, t_vars *vars)
 	}
 	return (pid);
 }
-
-
 
 void	execute_command(t_vars *vars, t_command *command)
 {
