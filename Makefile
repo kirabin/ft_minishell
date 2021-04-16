@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/15 15:28:18 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/16 16:32:31 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,11 +41,13 @@ SRC_ENV=	ft_env_list_new \
 SRC_SRC=	exec exec_support exec_support2 command \
 			signal parse history errors write_hist parse_command read_input redirect
 
+SRC_DEF=	names pid_functions
+
 SRC=		$(patsubst %, built_in/%.c, $(SRC_BIN)) \
 			$(patsubst %, ft_env_list/%.c, $(SRC_ENV)) \
 			$(patsubst %, source/%.c, $(SRC_SRC)) \
-			minishell.c \
-			definitions/names.c
+			$(patsubst %, definitions/%.c, $(SRC_DEF)) \
+			minishell.c
 
 OBJ			= $(SRC:.c=.o)
 HEADER		= includes/minishell.h

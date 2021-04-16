@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:10 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/11 17:31:19 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 17:29:04 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool		is_suppressed_option(char *str)
 }
 
 
-void	ft_echo(char **args)
+void	ft_echo(char **args, t_command *command)
 {
 	bool	is_suppressed;
 

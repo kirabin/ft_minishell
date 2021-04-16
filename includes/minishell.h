@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 14:45:35 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 17:04:01 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct			s_command
 
 typedef struct			s_pipes
 {
-	
+
 }						t_pipes;
 
 
@@ -152,7 +152,7 @@ void					execute(t_vars *vars, t_raw_command *com);
 **	Built_IN
 */
 void					ft_pwd(void);
-void					ft_echo(char **args);
+void					ft_echo(char **args, t_command *command);
 void					ft_exit(char **args);
 void					ft_unset(t_env_list **list, char **keys);
 void					ft_cd(const char *new_path, t_env_list *list);
@@ -165,6 +165,8 @@ void					execute_raw_command(t_vars *vars,
 ** Definitions
 */
 bool					is_name(const char *str);
+bool					is_child(pid_t pid);
+bool					is_parent(pid_t pid);
 int						find_name_len(const char *str);
 
 /*

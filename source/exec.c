@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 16:05:29 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 17:03:17 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,73 @@
 
 void	free_t_pipes();
 
-void	execute_our_implementation(t_command *command, t_env_list **list)
+
+
+static void	manage_out_pipe(t_command *command, t_vars *vars)
+{
+	if (command->pipe_right)
+	{
+		dup2(vars->fd[1], STD_OUT);
+		close(vars->fd[1]);
+	}
+	else if (command->pipe_left)
+	{
+		dup2(vars->stdout_copy, STD_OUT);
+	}
+}
+
+static void	manage_in_pipe(t_command *command, t_vars *vars)
+{
+	if (command->pipe_right)
+	{
+		dup2(vars->fd[0], STD_IN);
+		close(vars->fd[0]);
+		close(vars->fd[1]);
+	}
+	else if (command->pipe_left)
+		dup2(vars->stdin_copy, STD_IN);
+}
+
+static void	manage_redirections(t_command *command)
+{
+	if (command->fd_in != -1)
+	{
+		close(STD_IN);
+		dup2(command->fd_in, STD_IN);
+	}
+	if (command->fd_out != -1)
+	{
+		close(STD_OUT);
+		dup2(command->fd_out, STD_OUT);
+	}
+}
+
+void	execute_our_implementation(t_command *command, t_vars *vars)
 {
 	// TODO: pipes
+	if (command->pipe_right)
+		pipe(vars->fd);  // protect from -1
+	manage_out_pipe(command, vars);
+	manage_redirections(command);
+	ft_putstr_fd("Executing our implementation\n", 1);
 	if (ft_strncmp(command->name, "cd", 2) == 0)
-		ft_cd(command->argv[1], *list);
+		ft_cd(command->argv[1], vars->env_list);
 	else if (ft_strncmp(command->name, "echo", 4) == 0)
-		ft_echo(command->argv + 1);
+		ft_echo(command->argv + 1, command);
 	else if (ft_strncmp(command->name, "env", 3) == 0)
-		ft_env(*list);
+		ft_env(vars->env_list);
 	else if (ft_strncmp(command->name, "exit", 4) == 0)
 		ft_exit(command->argv + 1);
 	else if (ft_strncmp(command->name, "export", 6) == 0)
-		ft_export(command->argv + 1, list);
+		ft_export(command->argv + 1, &vars->env_list);
 	else if (ft_strncmp(command->name, "pwd", 3) == 0)
 		ft_pwd();
 	else if (ft_strncmp(command->name, "unset", 5) == 0)
-		ft_unset(list, command->argv + 1);
+		ft_unset(&vars->env_list, command->argv + 1);
+	manage_in_pipe(command, vars);
+	dup2(vars->stdout_copy, STD_OUT);
+	dup2(vars->stdin_copy, STD_IN);
 }
-
 
 int		execute_bin_command(t_command *command, t_vars *vars)
 {
@@ -43,54 +91,30 @@ int		execute_bin_command(t_command *command, t_vars *vars)
 	if (command->pipe_right)
 		pipe(vars->fd);  // protect from -1
 	pid = fork();
-	if (pid == -1)
-		ft_putstr("Can't execute command\n");
-	else if (pid == 0)
+	if (is_child(pid))
 	{
-		if (command->pipe_right)
-		{
-			dup2(vars->fd[1], STD_OUT);
-			close(vars->fd[1]);
-		}
-		else if (command->pipe_left)
-		{
-			dup2(vars->stdout_copy, STD_OUT);
-		}
-		if (command->fd_in != -1)
-		{
-			close(STD_IN);
-			dup2(command->fd_in, STD_IN);
-		}
-		if (command->fd_out != -1)
-		{
-			close(STD_OUT);
-			dup2(command->fd_out, STD_OUT);
-		}
+		manage_out_pipe(command, vars);
+		manage_redirections(command);
 		ft_putstr_fd("Executing command\n", 1);
-		execve(command->path, command->argv, command->envp);
+		execve(command->path, command->argv, command->envp); // TODO: execute executables without #! at the start
 		g_errno = 1; // TODO: error management
 		exit(0);
 	}
-	else
+	else if (is_parent(pid))
 	{
 		// if (ft_strcmp(command->name, "cat") != 0)
 		wait(&pid);
-		if (command->pipe_right)
-		{
-			dup2(vars->fd[0], STD_IN);
-			close(vars->fd[0]);
-			close(vars->fd[1]);
-		}
-		else if (command->pipe_left)
-			dup2(vars->stdin_copy, STD_IN);
+		manage_in_pipe(command, vars);
 	}
+	else
+		ft_putstr_fd("Can't execute command, fork failed\n", 2);
 	return (pid);
 }
 
 void	execute_command(t_vars *vars, t_command *command)
 {
 	if (is_our_implementation(command->name))
-		execute_our_implementation(command, &vars->env_list);
+		execute_our_implementation(command, vars);
 	else
 	{
 		if (command->path && is_command_executable(command->path))
