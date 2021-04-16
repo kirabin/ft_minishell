@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/16 12:24:50 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 12:28:56 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	buf = com.com;
 	if (parse_command(cur_ptr, buf, &com, vars))
 		return ;
-	//print_tab(&com);
+	print_tab(&com);
 	execute_raw_command(vars, &com);
 	clear_tab(com.com);
 	free(com.com);
