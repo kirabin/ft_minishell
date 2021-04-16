@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/16 12:28:56 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:06:43 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,11 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	if (parse_command(cur_ptr, buf, &com, vars))
 		return ;
 	print_tab(&com);
-	execute_raw_command(vars, &com);
+	//execute_raw_command(vars, &com);
+	if (com.redirect_in != -1)
+		close(com.redirect_in);
+	if (com.redirect_out != -1)
+		close(com.redirect_out);
 	clear_tab(com.com);
 	free(com.com);
 	parsing_loop(vars, cur_ptr);
@@ -117,7 +121,7 @@ void	parse_row_string(t_vars *vars)
 	tcsetattr(0, TCSANOW, &vars->term);
 	string = ft_strdup(vars->history->com);
 	comment_trim(string);
-	save = ft_strtrim(string, " \t'r");
+	save = ft_strtrim(string, " \t\r");
 	cur_ptr = save;
 	if (check_unexpected_token(cur_ptr))
 		return ;

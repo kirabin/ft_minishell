@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 11:54:58 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 15:36:34 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 void	increment_shell_level(t_env_list *lst)
 {
+	char	*tmp;
+	
 	while (lst)
 	{
 		if (!ft_strcmp(lst->item->key, "SHLVL"))
 		{
-			lst->item->value = ft_itoa(ft_atoi(lst->item->value) + 1);
+			tmp = ft_itoa(ft_atoi(lst->item->value) + 1);
+			free(lst->item->value);
+			lst->item->value = tmp;
 			return;
 		}
 		lst = lst->next;

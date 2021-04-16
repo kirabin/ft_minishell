@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 12:03:07 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/10 13:51:48 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:42:06 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		end++;
 	while (end && ft_strchr(set, s1[end]))
 		end--;
-	if (end <= start)
+	if (end < start)
 		return (ft_strdup(""));
 	return (ft_substr(s1, start, end - start + 1));
 }
