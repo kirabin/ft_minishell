@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 12:24:50 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 14:26:25 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,23 @@ int		execute_bin_command(t_command *command, t_vars *vars)
 		}
 		else if (command->pipe_left)
 			dup2(vars->stdout_copy, STD_OUT);
-
+		if (command->fd_in != -1)
+		{
+			dup2(command->fd_in, STD_IN);
+		}
+		if (command->fd_out != -1)
+		{
+			dup2(command->fd_out, STD_OUT);
+		}
+		ft_putstr_fd("Executing command\n", 2);
 		execve(command->path, command->argv, command->envp);
 		g_errno = 1;
 		exit(0);
 	}
 	else
 	{
-		wait(&pid);
+		// if (ft_strcmp(command->name, "cat") != 0)
+			wait(&pid);
 		if (command->pipe_right)
 		{
 			dup2(vars->fd[0], STD_IN);

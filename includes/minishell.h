@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 15:56:30 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:43:04 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ typedef struct			s_command
 	char				**envp;
 	bool				pipe_left;
 	bool				pipe_right;
-
+	int					fd_in;
+	int					fd_out;
 }						t_command;
 
 
