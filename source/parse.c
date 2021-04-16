@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/15 15:39:33 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/16 11:54:25 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	parse_row_string(t_vars *vars)
 
 	vars->term.c_lflag |= (ECHO);
 	vars->term.c_lflag |= (ICANON);
+	tcsetattr(0, TCSANOW, &vars->term);
 	string = ft_strdup(vars->history->com);
 	comment_trim(string);
 	save = ft_strtrim(string, " \t'r");
