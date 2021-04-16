@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 11:42:09 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/16 11:56:55 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int		execute_bin_command(t_command *command, t_vars *vars)
 		if (command->pipe_right)
 		{
 			dup2(vars->fd[0], STD_IN);
-			// close(vars->fd[0]);
-			// close(vars->fd[1]);
+			close(vars->fd[0]);
+			close(vars->fd[1]);
 		}
 		else if (command->pipe_left)
 			dup2(vars->stdin_copy, STD_IN);
