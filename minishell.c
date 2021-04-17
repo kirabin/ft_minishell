@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 13:55:58 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/17 14:48:23 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	init_vars(char **envp, t_vars *vars)
 	if (tcgetattr(0, &vars->term) || tcgetattr(0, &vars->term_orig_attr))
 		puterror("Error: tcgetattr\n", 1);
 	tgetent(0, vars->term_name);
+	vars->cursor_pos = 0;
 }
 
 int	main(int argc, char **argv, char **envp)

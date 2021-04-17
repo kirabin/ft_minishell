@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 12:20:11 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/17 13:55:01 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/17 14:10:34 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	backspace(t_vars *vars, char *command)
 {
 	if (vars)
 	{
-		if (vars->cursor_pos > 1)
+		if (vars->cursor_pos > 0)
 		{
 			tputs(cursor_left, 1, ft_putint);
 			tputs(delete_character, 1, ft_putint);
