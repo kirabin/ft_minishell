@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 14:01:25 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 13:58:06 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/17 14:45:10 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,21 @@ bool	has_execute_permission(char *path)
 
 bool	is_command_executable(char *path)
 {
-	// TODO: proper messages
-	// TODO: is_absolute_path cases
-	if (ft_string_is_relative_path(path))
+	if (ft_string_is_relative_path(path) || ft_string_is_absolute_path(path))
 	{
 		if (is_directory(path))
 		{
-			puterror_three
-			ft_putstr_fd("Is a directory\n", 2);
+			puterror_three(NULL, path, ": is a directory", 126);
 			return (false);
 		}
 		else if (!is_file_exists(path))
 		{
-			ft_putstr_fd("File doesn't exist\n", 2);
+			puterror_three(NULL, path, ": No such file or directory", 127);
 			return (false);
 		}
 		else if (!has_execute_permission(path))
 		{
-			ft_putstr_fd("Don't have permission\n", 2);
+			puterror_three(NULL, path, ": Permission denied", 126);
 			return (false);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 14:00:34 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/17 14:41:43 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,11 @@ void	execute_command(t_vars *vars, t_command *command)
 		execute_our_implementation(command, vars);
 	else
 	{
-		if (command->path && is_command_executable(command->path))
-			execute_bin_command(command, vars);
+		if (command->path)
+		{
+			if (is_command_executable(command->raw_path))
+				execute_bin_command(command, vars);
+		}
 		else
 			puterror_three("Error: ", command->name,": command not found\n", 127);
 	}

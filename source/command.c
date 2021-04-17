@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 15:27:09 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 12:28:29 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/17 14:41:30 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	free_t_command(t_command *command)
 	if (command)
 	{
 		free(command->path);
+		free(command->raw_path);
 		free(command->name);
 		free_cpp(command->envp);
 	}
@@ -71,6 +72,7 @@ t_command	*get_command_from_raw(t_vars *vars, t_raw_command *raw_command)
 	if (!command)
 		return (NULL);
 	command->path = get_command_path(raw_command->com[0], vars->env_list);
+	command->raw_path = ft_strdup(raw_command->com[0]);
 	command->name = get_command_name(raw_command->com[0]);
 	free(raw_command->com[0]);
 	raw_command->com[0] = ft_strdup(command->name);

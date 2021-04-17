@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
+#    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2021/04/17 12:21:47 by msamual          ###   ########.fr        #
-=======
-#    Updated: 2021/04/17 13:51:28 by dmilan           ###   ########.fr        #
->>>>>>> A few improvements
+#    Updated: 2021/04/17 14:38:07 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +58,6 @@ all:  $(lib) $(NAME)
 
 $(LIB):
 	make all -C libft/
-
 
 $(NAME): $(OBJ) $(LIB)
 	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIB) -ltermcap

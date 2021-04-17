@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 14:00:10 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/17 14:40:20 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_raw_command
 
 typedef struct s_command
 {
+	char				*raw_path;
 	char				*path;
 	char				*name;
 	char				**argv;
