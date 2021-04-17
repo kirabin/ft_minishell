@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:10 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 18:36:57 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/17 12:27:30 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_echo(char **args)
 {
 	bool	is_suppressed;
 
-	if (!args)
+	if (!args)  // TODO: refactor
 	{
 		ft_putc_fd('\n', 1);
 		return ;

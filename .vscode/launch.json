@@ -31,5 +31,8 @@
             "args": [],
             "cwd": "${workspaceFolder}"
         }
-    ]
+    ],
+	"setupCommands": [
+		{"text": "-gdb-set follow-fork-mode child"}
+	]
 }

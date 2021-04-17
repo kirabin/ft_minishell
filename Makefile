@@ -6,7 +6,11 @@
 #    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2021/04/17 12:21:47 by msamual          ###   ########.fr        #
+=======
+#    Updated: 2021/04/17 13:51:28 by dmilan           ###   ########.fr        #
+>>>>>>> A few improvements
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +42,7 @@ SRC_ENV=	ft_env_list_new \
 			ft_get_env_item_with_key \
 			ft_env_item_free
 
-SRC_SRC=	exec exec_support exec_support2 command \
+SRC_SRC=	exec exec_support exec_support2 command exec_pipes errors_put \
 			signal parse history errors write_hist parse_command read_input redirect \
 			utils utils1 utils2
 
@@ -67,7 +71,6 @@ $(INC):
 	make re
 
 run:
-	@echo "\n"
 	@./$(NAME)
 
 %.o: %.c $(HEADER)

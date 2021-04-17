@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 18:46:40 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/17 14:00:34 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// TODO: cat < unexisting_file
 
 static void	manage_out_pipe(t_command *command, t_vars *vars)
 {
@@ -54,11 +56,9 @@ static void	manage_redirections(t_command *command)
 void	execute_our_implementation(t_command *command, t_vars *vars)
 {
 	// TODO: pipes
-	if (command->pipe_right)
-		pipe(vars->fd);  // protect from -1
 	manage_out_pipe(command, vars);
 	manage_redirections(command);
-	ft_putstr_fd("Executing our implementation\n", 1);
+	ft_putstr_fd("Executing our implementation\n", 1);  // rm line
 	if (ft_strncmp(command->name, "cd", 2) == 0)
 		ft_cd(command->argv[1], vars->env_list);
 	else if (ft_strncmp(command->name, "echo", 4) == 0)
@@ -74,26 +74,21 @@ void	execute_our_implementation(t_command *command, t_vars *vars)
 	else if (ft_strncmp(command->name, "unset", 5) == 0)
 		ft_unset(&vars->env_list, command->argv + 1);
 	manage_in_pipe(command, vars);
-	dup2(vars->stdout_copy, STD_OUT);
-	dup2(vars->stdin_copy, STD_IN);
 }
 
-int		execute_bin_command(t_command *command, t_vars *vars)
+int	execute_bin_command(t_command *command, t_vars *vars)
 {
 	pid_t	pid;
 
 	// TODO: manage g_errno
 	// TODO: close fds
-	if (command->pipe_right)
-		pipe(vars->fd);  // protect from -1
 	pid = fork();
 	if (is_child(pid))
 	{
+		ft_putstr_fd("Executing command\n", 1);  // rm line
 		manage_out_pipe(command, vars);
-		manage_redirections(command);
-		ft_putstr_fd("Executing command\n", 1);
 		execve(command->path, command->argv, command->envp); // TODO: execute executables without #! at the start
-		g_errno = 1; // TODO: error management
+		g_errno = errno; // TODO: error management
 		exit(0);
 	}
 	else if (is_parent(pid))
@@ -109,6 +104,16 @@ int		execute_bin_command(t_command *command, t_vars *vars)
 
 void	execute_command(t_vars *vars, t_command *command)
 {
+	// opens pipe
+	if (command->pipe_right)
+	{
+		if (pipe(vars->fd) == -1)
+			ft_putstr_fd("Pipe, failed, initializing undefined behavior", 2);  // TODO: exit strategy
+	}
+	// opens redirections if there are ones
+	manage_redirections(command);
+
+	// executes my command or bin command depending on name
 	if (is_our_implementation(command->name))
 		execute_our_implementation(command, vars);
 	else
@@ -116,7 +121,14 @@ void	execute_command(t_vars *vars, t_command *command)
 		if (command->path && is_command_executable(command->path))
 			execute_bin_command(command, vars);
 		else
-			puterror("Error: command not found\n", 127);
+			puterror_three("Error: ", command->name,": command not found\n", 127);
+	}
+
+	// closes redirections if there was ones
+	if (command->fd_in || command->fd_out)
+	{
+		dup2(vars->stdout_copy, STD_OUT);
+		dup2(vars->stdin_copy, STD_IN);
 	}
 }
 

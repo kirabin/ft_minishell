@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 09:47:27 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 18:43:06 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/17 11:56:59 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_export(char **args, t_env_list **env_list)
 		item = get_env_item_from_envp_string(*args);
 		if (!item)
 			break ;
-		if (item->identifier == -1) //|| (item->value && item->identifier == 0)
+		if (item->identifier == -1)
 			identifier_error(*args);
 		else if (ft_env_key_exists(*env_list, item->key))
 		{
