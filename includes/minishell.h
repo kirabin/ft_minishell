@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 18:41:03 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/17 12:21:39 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,22 @@ void					remove_current_input(t_history *history);
 void					remove_elem_hist(t_history **history);
 void					init_history(t_vars *vars);
 void					write_history(t_vars *vars);
+void					history_prev(t_vars *vars);
+void					history_next(t_vars *vars);
+void					backspace(t_vars *vars, char *command);
+
+int						is_separator(char c);
+void					joinchar(char *buf, char c);
+void					joinstr(char *buf, char *str);
+void					dollar_handle(t_vars *vars, char *buf, char **input);
+void					tilda_handle(t_vars *vars, char *buf, char **cur_ptr);
 void					ctrl_d(t_vars *vars);
 int						redirect(t_raw_command *com, char *file_name);
+void					shielding(char *buf, char **cur_ptr);
+void					strong_brackets(t_vars *vars);
+void					soft_brackets(t_vars *vars);
+int						new_word(char ***buf, char **cur_ptr);
+void					comment_trim(char *str);
 
 int						check_unexpected_token(char *str);
 int						check_brackets(char *str);

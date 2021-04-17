@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
+#    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/16 16:32:31 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/17 12:21:47 by msamual          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRC_ENV=	ft_env_list_new \
 			ft_env_item_free
 
 SRC_SRC=	exec exec_support exec_support2 command \
-			signal parse history errors write_hist parse_command read_input redirect
+			signal parse history errors write_hist parse_command read_input redirect \
+			utils utils1 utils2
 
 SRC_DEF=	names pid_functions
 

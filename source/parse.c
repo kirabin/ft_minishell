@@ -6,40 +6,11 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:57:38 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/16 18:46:01 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/17 12:17:12 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	comment_trim(char *str)
-{
-	int	single_quotes;
-	int	double_quotes;
-
-	single_quotes = 0;
-	double_quotes = 0;
-	while (*str)
-	{
-		if (*str == '\"')
-		{
-			if (double_quotes)
-				double_quotes = 0;
-			else
-				double_quotes = 1;
-		}
-		if (*str == '\'')
-		{
-			if (single_quotes)
-				single_quotes = 0;
-			else
-				single_quotes = 1;
-		}
-		if (*str == '#' && !single_quotes && !double_quotes)
-			*str = '\0';
-		str++;
-	}
-}
 
 void	init_com(t_raw_command *com)
 {
