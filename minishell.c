@@ -1,27 +1,14 @@
-<<<<<<< HEAD
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 18:10:12 by msamual          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-=======
->>>>>>> refs/remotes/origin/master
 #include "minishell.h"
 
-void	ft_putprompt(t_vars *vars)
+void	ft_putprompt()
 {
 	int		x;
 	char	*str;
 
-	str = getenv("PWD");
-	x = ft_atoi(ft_env_list_get_value(vars->env_list, "SHLVL"));
+	// str = ft_env_list_get_value(vars->env_list, "PWD");
+	str = "minishell";
+	// x = ft_atoi(ft_env_list_get_value(vars->env_list, "SHLVL"));
+	x = 2;
 	if (x == 2)
 		ft_putstr("\033[35m");
 	else if (x == 3)
@@ -52,7 +39,6 @@ void	increment_shell_level(t_env_list *lst)
 		lst = lst->next;
 	}
 }
-// autoclosingbrackets
 
 void	init_vars(char **envp, t_vars *vars)
 {
@@ -85,7 +71,7 @@ int	main(int argc, char **argv, char **envp)
 		vars.term.c_lflag &= ~(ECHO);
 		vars.term.c_lflag &= ~(ICANON);
 		tcsetattr(0, TCSANOW, &vars.term);
-		ft_putprompt(&vars);
+		ft_putprompt();
 		tputs(save_cursor, 1, ft_putint);
 		read_input(&vars);
 	}

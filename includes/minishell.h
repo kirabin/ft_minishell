@@ -156,6 +156,7 @@ int						check_brackets(char *str);
 int						puterror(char *err_msg, int code);
 
 void					execute(t_vars *vars, t_raw_command *com);
+void					ft_putprompt();
 
 /*
 **	Built_IN

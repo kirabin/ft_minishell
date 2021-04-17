@@ -25,7 +25,7 @@ void	handle_sigint(int signal_code)
 	else
 	{
 		ft_putendl(NULL);
-		ft_putstr(PROMPT);
+		ft_putprompt();
 	}
 }
 

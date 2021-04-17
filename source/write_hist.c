@@ -36,6 +36,6 @@ void	ctrl_d(t_vars *vars)
 		return ;
 	remove_elem_hist(&(vars->history));
 	write_history(vars);
-	write(1, "exit\n", 5);
-	exit(0);
+	write(2, "exit\n", 5);
+	exit(g_errno);
 }
