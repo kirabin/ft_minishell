@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -10,6 +11,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+=======
+>>>>>>> refs/remotes/origin/master
 #include "minishell.h"
 
 void	ft_putprompt(t_vars *vars)
@@ -49,6 +52,7 @@ void	increment_shell_level(t_env_list *lst)
 		lst = lst->next;
 	}
 }
+// autoclosingbrackets
 
 void	init_vars(char **envp, t_vars *vars)
 {
