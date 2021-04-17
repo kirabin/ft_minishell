@@ -6,11 +6,32 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 14:48:23 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/17 18:10:12 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_putprompt(t_vars *vars)
+{
+	int		x;
+	char	*str;
+
+	str = getenv("PWD");
+	x = ft_atoi(ft_env_list_get_value(vars->env_list, "SHLVL"));
+	if (x == 2)
+		ft_putstr("\033[35m");
+	else if (x == 3)
+		ft_putstr("\033[34m");
+	else if (x == 4)
+		ft_putstr("\033[32m");
+	else if (x == 5)
+		ft_putstr("\033[33m");
+	else if (x > 5)
+		ft_putstr("\033[31m");
+	ft_putstr(str);
+	ft_putstr(" \033[31m>>>\033[0m ");
+}
 
 void	increment_shell_level(t_env_list *lst)
 {
@@ -60,7 +81,7 @@ int	main(int argc, char **argv, char **envp)
 		vars.term.c_lflag &= ~(ECHO);
 		vars.term.c_lflag &= ~(ICANON);
 		tcsetattr(0, TCSANOW, &vars.term);
-		ft_putstr(PROMPT);
+		ft_putprompt(&vars);
 		tputs(save_cursor, 1, ft_putint);
 		read_input(&vars);
 	}

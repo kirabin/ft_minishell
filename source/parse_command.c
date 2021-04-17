@@ -6,13 +6,13 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/17 12:15:06 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/17 18:24:59 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	redirect_parse(char **cur_ptr, t_raw_command *com, char ***buf)
+int	redirect_parse(char **cur_ptr, t_raw_command *com, char ***buf)
 {
 	char	buffer[9999];
 
@@ -28,11 +28,13 @@ void	redirect_parse(char **cur_ptr, t_raw_command *com, char ***buf)
 		(*cur_ptr)++;
 	while (!ft_strchr(" |$><\'\"\\~#\0\n\t\r", **cur_ptr))
 		joinchar(buffer, *(*cur_ptr)++);
-	redirect(com, buffer);
+	if (redirect(com, buffer))
+		return (-1);
 	if (ft_strchr("\0\n#><", **cur_ptr))
 		(*cur_ptr)--;
 	else
 		new_word(buf, cur_ptr);
+	return (0);
 }
 
 int	spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_raw_command *com)
@@ -47,8 +49,8 @@ int	spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_raw_command *com)
 		strong_brackets(vars);
 	else if (**cur_ptr == '\"')
 		soft_brackets(vars);
-	else if (**cur_ptr == '>' || **cur_ptr == '<')
-		redirect_parse(cur_ptr, com, buf);
+	else if ((**cur_ptr == '>' || **cur_ptr == '<') && redirect_parse(cur_ptr, com, buf))
+		return (1);
 	return (0);
 }
 
