@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:04:54 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/16 18:33:43 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/17 13:51:33 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,4 @@ int	check_brackets(char *str)
 		str++;
 	}
 	return (0);
-}
-
-int	puterror(char *msg, int code)
-{
-	if (!msg)
-		msg = strerror(code);
-	write(2, msg, ft_strlen(msg));
-	write(2, "\n", 1);
-	g_errno = code;
-	return (code);
 }

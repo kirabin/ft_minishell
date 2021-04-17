@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 14:01:25 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/15 14:34:23 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/17 13:58:06 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ bool	has_execute_permission(char *path)
 
 bool	is_command_executable(char *path)
 {
+	// TODO: proper messages
+	// TODO: is_absolute_path cases
 	if (ft_string_is_relative_path(path))
 	{
 		if (is_directory(path))
 		{
+			puterror_three
 			ft_putstr_fd("Is a directory\n", 2);
 			return (false);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 12:21:39 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/17 14:00:10 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,5 +200,11 @@ t_command				*get_command_from_raw(t_vars *vars,
 							t_raw_command *raw_command);
 char					*get_command_name(char *path);
 char					*get_command_path(char *command, t_env_list *list);
+
+/*
+** Errors Put
+*/
+int						puterror_three(char *s1, char *s2, char *s3, int code);
+int						puterror(char *msg, int code);
 
 #endif
