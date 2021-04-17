@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/24 12:24:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 14:48:23 by msamual          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 void	increment_shell_level(t_env_list *lst)
@@ -28,6 +16,7 @@ void	increment_shell_level(t_env_list *lst)
 		lst = lst->next;
 	}
 }
+// autoclosingbrackets
 
 void	init_vars(char **envp, t_vars *vars)
 {
