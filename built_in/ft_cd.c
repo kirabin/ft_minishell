@@ -37,7 +37,7 @@
 
 void	ft_cd(const char *new_path, t_env_list *list)
 {
-	t_env_item *node;
+	t_env_item	*node;
 
 	if (new_path == NULL)
 		new_path = ft_env_list_get_value(list, "HOME");

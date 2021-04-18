@@ -37,5 +37,3 @@ void	handle_signals(int signal_code)
 		ft_putprompt();
 	}
 }
-
-// TODO: find where g_errno is getting replaces to 0

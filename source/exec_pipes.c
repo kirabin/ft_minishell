@@ -29,3 +29,15 @@ void	manage_in_pipe(t_command *command, t_vars *vars)
 		dup2(vars->stdin_copy, STD_IN);
 	}
 }
+
+void	open_pipes(t_vars *vars, t_command *command)
+{
+	if (command->pipe_right)
+	{
+		if (pipe(vars->fd) == -1)
+		{
+			g_errno = errno;
+			ft_putstr_fd("Pipe, failed, initializing undefined behavior", 2);
+		}
+	}
+}

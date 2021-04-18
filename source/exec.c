@@ -12,16 +12,10 @@
 
 #include "minishell.h"
 
-// TODO: cat < unexisting_file
-
-
-
 void	execute_our_implementation(t_command *command, t_vars *vars)
 {
-	// TODO: pipes
 	manage_out_pipe(command, vars);
-	manage_redirections(command);
-	ft_putstr_fd("Executing our implementation\n", 1);  // rm line
+	open_redirections(command);
 	if (ft_strncmp(command->name, "cd", 2) == 0)
 		ft_cd(command->argv[1], vars->env_list);
 	else if (ft_strncmp(command->name, "echo", 4) == 0)
@@ -43,19 +37,16 @@ int	execute_bin_command(t_command *command, t_vars *vars)
 {
 	pid_t	pid;
 
-	// TODO: close fds
 	pid = fork();
 	if (is_child(pid))
 	{
-		ft_putstr_fd("Executing command\n", 1);  // rm line
 		manage_out_pipe(command, vars);
 		close(vars->fd[1]);
-		execve(command->path, command->argv, command->envp); // TODO: execute executables without #! at the start
+		execve(command->path, command->argv, command->envp);
 		ft_exit(NULL);
 	}
 	else if (is_parent(pid))
 	{
-		// if (ft_strcmp(command->name, "cat") != 0)
 		wait(&g_errno);
 		g_errno /= 256;
 		manage_in_pipe(command, vars);
@@ -67,20 +58,8 @@ int	execute_bin_command(t_command *command, t_vars *vars)
 
 void	execute_command(t_vars *vars, t_command *command)
 {
-	// opens pipe
-	if (command->pipe_right)
-	{
-		if (pipe(vars->fd) == -1)
-		{
-			g_errno = errno;
-			ft_putstr_fd("Pipe, failed, initializing undefined behavior", 2);
-		}
-	}
-
-	// opens redirections if there are ones
-	manage_redirections(command);
-
-	// executes my command or bin command depending on name
+	open_pipes(vars, command);
+	open_redirections(command);
 	if (is_our_implementation(command->name))
 		execute_our_implementation(command, vars);
 	else
@@ -91,15 +70,10 @@ void	execute_command(t_vars *vars, t_command *command)
 				execute_bin_command(command, vars);
 		}
 		else
-			puterror_three("Error: ", command->name,": command not found\n", 127);
+			puterror_three("Error: ", command->name,
+				": command not found\n", 127);
 	}
-
-	// closes redirections if there was ones
-	if (command->fd_in || command->fd_out)
-	{
-		dup2(vars->stdout_copy, STD_OUT);
-		dup2(vars->stdin_copy, STD_IN);
-	}
+	close_redirections(vars, command);
 }
 
 void	execute_raw_command(t_vars *vars, t_raw_command *raw_command)

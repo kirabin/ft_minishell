@@ -49,7 +49,8 @@ int	spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_raw_command *com)
 		strong_brackets(vars);
 	else if (**cur_ptr == '\"')
 		soft_brackets(vars);
-	else if ((**cur_ptr == '>' || **cur_ptr == '<') && redirect_parse(cur_ptr, com, buf))
+	else if ((**cur_ptr == '>' || **cur_ptr == '<')
+		&& redirect_parse(cur_ptr, com, buf))
 		return (1);
 	return (0);
 }

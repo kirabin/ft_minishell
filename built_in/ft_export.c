@@ -52,10 +52,27 @@ static bool	create_new_env_arg(char *key, char identifier,
 	return (true);
 }
 
+static void	key_exists_case(t_env_list **env_list, t_env_item *item)
+{
+	t_env_item	*tmp_item;
+
+	if (item->identifier == 1)
+		ft_env_list_replace(*env_list, item);
+	else if (item->identifier == 2)
+	{
+		tmp_item = ft_get_env_item_with_key(*env_list, item->key);
+		tmp_item->value = ft_strjoin_free(tmp_item->value,
+				item->value);
+	}
+	else if (item->identifier == 0)
+		;
+	else
+		ft_putstr_fd("Unknown item->identifier\n", 2);
+}
+
 void	ft_export(char **args, t_env_list **env_list)
 {
 	t_env_item	*item;
-	t_env_item	*tmp_item;
 
 	g_errno = 0;
 	if (!*args)
@@ -68,20 +85,7 @@ void	ft_export(char **args, t_env_list **env_list)
 		if (item->identifier == -1)
 			identifier_error(*args);
 		else if (ft_env_key_exists(*env_list, item->key))
-		{
-			if (item->identifier == 1)
-				ft_env_list_replace(*env_list, item);
-			else if (item->identifier == 2)
-			{
-				tmp_item = ft_get_env_item_with_key(*env_list, item->key);
-				tmp_item->value = ft_strjoin_free(tmp_item->value,
-						item->value);
-			}
-			else if (item->identifier == 0)
-				;
-			else
-				ft_putstr_fd("Unknown item->identifier\n", 2);
-		}
+			key_exists_case(env_list, item);
 		else
 		{
 			if (!create_new_env_arg(item->key, item->identifier,

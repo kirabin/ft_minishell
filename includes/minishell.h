@@ -154,7 +154,7 @@ int						check_brackets(char *str);
 int						puterror(char *err_msg, int code);
 
 void					execute(t_vars *vars, t_raw_command *com);
-void					ft_putprompt();
+void					ft_putprompt(void);
 
 /*
 **	Built_IN
@@ -192,8 +192,9 @@ bool					is_command_executable(char *path);
 bool					is_our_implementation(char *command);
 void					manage_out_pipe(t_command *command, t_vars *vars);
 void					manage_in_pipe(t_command *command, t_vars *vars);
-void					manage_redirections(t_command *command);
-
+void					open_redirections(t_command *command);
+void					close_redirections(t_vars *vars, t_command *command);
+void					open_pipes(t_vars *vars, t_command *command);
 /*
 ** Command
 */
@@ -202,7 +203,6 @@ t_command				*get_command_from_raw(t_vars *vars,
 							t_raw_command *raw_command);
 char					*get_command_name(char *path);
 char					*get_command_path(char *command, t_env_list *list);
-
 /*
 ** Errors Put
 */

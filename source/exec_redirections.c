@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	manage_redirections(t_command *command)
+void	open_redirections(t_command *command)
 {
 	if (command->fd_in != -1)
 	{
@@ -11,5 +11,14 @@ void	manage_redirections(t_command *command)
 	{
 		close(STD_OUT);
 		dup2(command->fd_out, STD_OUT);
+	}
+}
+
+void	close_redirections(t_vars *vars, t_command *command)
+{
+	if (command->fd_in || command->fd_out)
+	{
+		dup2(vars->stdout_copy, STD_OUT);
+		dup2(vars->stdin_copy, STD_IN);
 	}
 }

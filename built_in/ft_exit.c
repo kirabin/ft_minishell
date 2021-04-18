@@ -75,5 +75,3 @@ void	ft_exit(char **args)
 		exit(255);
 	}
 }
-
-// TODO: $/  ??
