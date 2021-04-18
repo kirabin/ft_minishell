@@ -33,8 +33,8 @@ void	handle_signals(int signal_code)
 	}
 	else
 	{
-			ft_putendl(NULL);
-			ft_putprompt();
+		ft_putendl(NULL);
+		ft_putprompt();
 	}
 }
 

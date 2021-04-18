@@ -190,6 +190,9 @@ bool					is_directory(char *path);
 bool					has_execute_permission(char *path);
 bool					is_command_executable(char *path);
 bool					is_our_implementation(char *command);
+void					manage_out_pipe(t_command *command, t_vars *vars);
+void					manage_in_pipe(t_command *command, t_vars *vars);
+void					manage_redirections(t_command *command);
 
 /*
 ** Command

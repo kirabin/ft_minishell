@@ -38,7 +38,7 @@ SRC_ENV=	ft_env_list_new \
 			ft_get_env_item_with_key \
 			ft_env_item_free
 
-SRC_SRC=	exec exec_support exec_support2 command exec_pipes errors_put \
+SRC_SRC=	exec exec_support exec_support2 command exec_pipes exec_redirections errors_put \
 			signal parse history errors write_hist parse_command read_input redirect \
 			utils utils1 utils2
 

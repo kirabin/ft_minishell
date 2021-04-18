@@ -42,16 +42,17 @@ void	increment_shell_level(t_env_list *lst)
 
 void	init_vars(char **envp, t_vars *vars)
 {
-	int		fd[2];
+
 
 	vars->env_list = ft_envp_to_env_list(envp);
 	increment_shell_level(vars->env_list);
 	signal(SIGINT, handle_signals);
 	signal(SIGQUIT, handle_signals);
 	init_history(vars);
-	pipe(fd);
-	vars->stdin_copy = dup2(STD_IN, fd[0]);
-	vars->stdout_copy = dup2(STD_OUT, fd[1]);
+
+	vars->stdin_copy = dup(STD_IN);
+	vars->stdout_copy = dup(STD_OUT);
+
 	vars->term_name = "xterm-256color";
 	if (tcgetattr(0, &vars->term) || tcgetattr(0, &vars->term_orig_attr))
 		puterror("Error: tcgetattr\n", 1);
@@ -62,9 +63,14 @@ void	init_vars(char **envp, t_vars *vars)
 int	main(int argc, char **argv, char **envp)
 {
 	t_vars	vars;
+	// int		fd[2];
 
 	if (argc && argv)
 		;
+	g_errno = 0;
+	// pipe(fd);
+	// vars.stdin_copy = dup2(STD_IN, fd[0]);
+	// vars.stdout_copy = dup2(STD_OUT, fd[1]);
 	init_vars(envp, &vars);
 	while (1)
 	{
