@@ -46,8 +46,8 @@ void	init_vars(char **envp, t_vars *vars)
 
 	vars->env_list = ft_envp_to_env_list(envp);
 	increment_shell_level(vars->env_list);
-	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, handle_sigquit);
+	signal(SIGINT, handle_signals);
+	signal(SIGQUIT, handle_signals);
 	init_history(vars);
 	pipe(fd);
 	vars->stdin_copy = dup2(STD_IN, fd[0]);

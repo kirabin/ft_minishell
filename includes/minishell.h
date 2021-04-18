@@ -89,8 +89,6 @@ typedef struct s_vars
 	int					cursor_pos;
 	int					brackets;
 	char				*rules;
-	bool				pipein;
-	bool				pipeout;
 	int					fd[2];
 	int					stdin_copy;
 	int					stdout_copy;
@@ -182,9 +180,7 @@ int						find_name_len(const char *str);
 /*
 ** Signals
 */
-void					handle_sigint(int signal_code);
-void					handle_sigquit(int signal_code);
-void					child_handle_signal(int signal_code);
+void					handle_signals(int signal_code);
 
 /*
 ** Exec

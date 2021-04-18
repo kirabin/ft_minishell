@@ -12,36 +12,30 @@
 
 #include "minishell.h"
 
-void	handle_sigint(int signal_code)
+void	handle_signals(int signal_code)
 {
-	int	pid;
-	int	status;
+	int		status;
 
-	pid = waitpid(-1, &status, WNOHANG); // TODO: what is going on here?
-	printf("%d", pid);
-	signal_code += 0;
-	if (pid == 0)
-		ft_putstr_fd("^C\n", 1);
+	wait(&status);
+	if (status == SIGINT || status == SIGQUIT)
+	{
+		if (signal_code == SIGINT)
+		{
+			g_errno = 130;
+			ft_putendl(NULL);
+		}
+		else if (signal_code == SIGQUIT)
+		{
+			g_errno = 131;
+			ft_putstr_fd("Quit: 3\n", 1);
+			ft_putendl(NULL);
+		}
+	}
 	else
 	{
-		ft_putendl(NULL);
-		ft_putprompt();
+			ft_putendl(NULL);
+			ft_putprompt();
 	}
 }
 
-void	handle_sigquit(int signal_code)
-{
-	int	pid;
-	int	status;
-
-	pid = waitpid(-1, &status, WNOHANG);
-	printf("%d", pid);
-	signal_code += 0;
-	if (pid == 0)
-		ft_putstr_fd("^\\Quit: 3\n", 1);
-	else
-	{
-		ft_putendl(NULL);
-		ft_putstr(PROMPT);
-	}
-}
+// TODO: find where g_errno is getting replaces to 0

@@ -41,7 +41,7 @@ void	ft_unset(t_env_list **list, char **keys)
 		if (!is_name(*keys))
 			identifier_error(*keys);
 		else if (!ft_env_list_remove(list, *keys))
-			g_errno = 1;
+			;
 		keys++;
 	}
 }

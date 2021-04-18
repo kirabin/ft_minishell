@@ -18,11 +18,13 @@ static void	manage_out_pipe(t_command *command, t_vars *vars)
 {
 	if (command->pipe_right)
 	{
+		close(STD_OUT);
 		dup2(vars->fd[1], STD_OUT);
-		close(vars->fd[1]);
+		// close(vars->fd[1]);
 	}
 	else if (command->pipe_left)
 	{
+		close(STD_OUT);
 		dup2(vars->stdout_copy, STD_OUT);
 	}
 }
@@ -31,12 +33,16 @@ static void	manage_in_pipe(t_command *command, t_vars *vars)
 {
 	if (command->pipe_right)
 	{
+		close(STD_IN);
 		dup2(vars->fd[0], STD_IN);
 		close(vars->fd[0]);
 		close(vars->fd[1]);
 	}
 	else if (command->pipe_left)
+	{
+		close(STD_IN);
 		dup2(vars->stdin_copy, STD_IN);
+	}
 }
 
 static void	manage_redirections(t_command *command)
@@ -80,7 +86,6 @@ int	execute_bin_command(t_command *command, t_vars *vars)
 {
 	pid_t	pid;
 
-	// TODO: manage g_errno
 	// TODO: close fds
 	pid = fork();
 	if (is_child(pid))
@@ -88,13 +93,13 @@ int	execute_bin_command(t_command *command, t_vars *vars)
 		ft_putstr_fd("Executing command\n", 1);  // rm line
 		manage_out_pipe(command, vars);
 		execve(command->path, command->argv, command->envp); // TODO: execute executables without #! at the start
-		g_errno = errno; // TODO: error management
-		exit(0);
+		ft_exit(NULL);
 	}
 	else if (is_parent(pid))
 	{
 		// if (ft_strcmp(command->name, "cat") != 0)
-		wait(&pid);
+		waitpid(-1, &g_errno, 0);
+		g_errno /= 256;
 		manage_in_pipe(command, vars);
 	}
 	else
@@ -108,7 +113,10 @@ void	execute_command(t_vars *vars, t_command *command)
 	if (command->pipe_right)
 	{
 		if (pipe(vars->fd) == -1)
+		{
+			g_errno = errno;
 			ft_putstr_fd("Pipe, failed, initializing undefined behavior", 2);  // TODO: exit strategy
+		}
 	}
 	// opens redirections if there are ones
 	manage_redirections(command);

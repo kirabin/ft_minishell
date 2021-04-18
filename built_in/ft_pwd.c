@@ -33,6 +33,8 @@ void	ft_pwd(void)
 	g_errno = errno;
 	if (!buf)
 		ft_putstr_fd(strerror(g_errno), 2);
+	else
+		g_errno = 0;
 	ft_putstr_fd(buf, 1);
 	ft_putc_fd('\n', 1);
 	free(buf);

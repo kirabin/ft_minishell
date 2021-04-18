@@ -45,6 +45,8 @@ static int	charpp_len(char **args)
 	int	len;
 
 	len = 0;
+	if (!args)
+		return (0);
 	while (args[len])
 		len++;
 	return (len);
@@ -60,7 +62,7 @@ void	ft_exit(char **args)
 		too_many_args_error();
 		return ;
 	}
-	if (!*args)
+	if (!args || !*args)
 		exit(g_errno);
 	if (is_long_long(*args))
 	{
@@ -73,3 +75,5 @@ void	ft_exit(char **args)
 		exit(255);
 	}
 }
+
+// TODO: $/  ??
