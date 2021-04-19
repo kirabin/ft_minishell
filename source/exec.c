@@ -74,7 +74,7 @@ void	execute_command(t_vars *vars, t_command *command)
 		else
 		{
 			puterror_three("Error: ", command->name,
-			": command not found", 127);
+				": command not found", 127);
 		}
 	}
 	close_redirections(vars, command);

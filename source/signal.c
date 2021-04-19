@@ -31,7 +31,8 @@ void	handle_signals(int signal_code)
 			ft_putendl(NULL);
 		}
 	}
-	else if ((signal_code == 2 && status != 0) || (signal_code != 2 && status == 0))
+	else if ((signal_code == 2 && status != 0)
+		|| (signal_code != 2 && status == 0))
 	{
 		ft_putendl(NULL);
 		ft_putprompt();
