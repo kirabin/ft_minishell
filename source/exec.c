@@ -41,14 +41,16 @@ int	execute_bin_command(t_command *command, t_vars *vars)
 	if (is_child(pid))
 	{
 		manage_out_pipe(command, vars);
-		close(vars->fd[1]);
+		if (vars->fd[1] > 1)
+			close(vars->fd[1]);
 		execve(command->path, command->argv, command->envp);
 		ft_exit(NULL);
 	}
 	else if (is_parent(pid))
 	{
 		wait(&g_errno);
-		g_errno /= 256;
+		if (g_errno == 256)
+			g_errno = 1;
 		manage_in_pipe(command, vars);
 	}
 	else
@@ -70,8 +72,10 @@ void	execute_command(t_vars *vars, t_command *command)
 				execute_bin_command(command, vars);
 		}
 		else
+		{
 			puterror_three("Error: ", command->name,
-				": command not found\n", 127);
+			": command not found", 127);
+		}
 	}
 	close_redirections(vars, command);
 }
