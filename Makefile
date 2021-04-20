@@ -36,7 +36,8 @@ SRC_ENV=	ft_env_list_new \
 			ft_envp_to_env_list \
 			ft_env_to_charpp \
 			ft_get_env_item_with_key \
-			ft_env_item_free
+			ft_env_item_free \
+			ft_env_list_copy
 
 SRC_SRC=	exec exec_support command exec_pipes exec_redirections errors_put \
 			signal parse history errors write_hist parse_command read_input redirect \

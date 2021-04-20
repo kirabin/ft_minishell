@@ -40,7 +40,9 @@ int	find_name_len(const char *str)
 	int	len;
 
 	len = 0;
-	if (!str && *str != '_' && !ft_isalpha(*str))
+	if (!str)
+		return (0);
+	if (!(*str == '_' || ft_isalpha(*str)))
 		return (0);
 	len++;
 	while (str[len] && (str[len] == '_' || ft_isalnum(str[len])))

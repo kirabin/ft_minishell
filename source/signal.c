@@ -31,9 +31,11 @@ void	handle_signals(int signal_code)
 			ft_putendl(NULL);
 		}
 	}
-	else
+	else if ((signal_code == 2 && status != 0)
+		|| (signal_code != 2 && status == 0))
 	{
 		ft_putendl(NULL);
 		ft_putprompt();
+		tputs(save_cursor, 1, ft_putint);
 	}
 }

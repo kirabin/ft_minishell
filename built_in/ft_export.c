@@ -33,7 +33,7 @@ static void	identifier_error(char *str)
 	g_errno = 1;
 }
 
-static bool	create_new_env_arg(char *key, char identifier,
+static bool	create_new_env_arg(char *key, int identifier,
 	char *value, t_env_list **env_list)
 {
 	t_env_item	*new_item;
@@ -82,7 +82,7 @@ void	ft_export(char **args, t_env_list **env_list)
 		item = get_env_item_from_envp_string(*args);
 		if (!item)
 			break ;
-		if (item->identifier == -1)
+		if (item->identifier == -1 || ft_strlen(item->key) == 0)
 			identifier_error(*args);
 		else if (ft_env_key_exists(*env_list, item->key))
 			key_exists_case(env_list, item);

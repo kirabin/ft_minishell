@@ -16,7 +16,7 @@ void	open_redirections(t_command *command)
 
 void	close_redirections(t_vars *vars, t_command *command)
 {
-	if (command->fd_in || command->fd_out)
+	if (command->fd_in != -1 || command->fd_out != -1)
 	{
 		dup2(vars->stdout_copy, STD_OUT);
 		dup2(vars->stdin_copy, STD_IN);

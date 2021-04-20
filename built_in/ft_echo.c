@@ -30,7 +30,7 @@
 
 static bool	is_suppressed_option(char *str)
 {
-	if (ft_strcmp(str, "-n") == 0)
+	if (ft_strncmp(str, "-n", 2) == 0)
 		return (true);
 	return (false);
 }
@@ -45,6 +45,8 @@ void	ft_echo(char **args)
 		return ;
 	}
 	is_suppressed = is_suppressed_option(*args);
+	while (*args && ft_strcmp("-n", *args) == 0)
+		args++;
 	while (*args)
 	{
 		ft_putstr_fd(*args, 1);

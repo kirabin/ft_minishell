@@ -155,6 +155,7 @@ int						puterror(char *err_msg, int code);
 
 void					execute(t_vars *vars, t_raw_command *com);
 void					ft_putprompt(void);
+t_env_list				*ft_env_list_copy(t_env_list *list);
 
 /*
 **	Built_IN
