@@ -57,6 +57,8 @@ void	ft_exit(char **args)
 	long long	code;
 
 	ft_putstr_fd("exit\n", 2);
+	if (!args || !*args)
+		exit(g_errno);
 	if (!(is_numeral(*args) && is_long_long(*args)))
 	{
 		numeric_arg_error(*args);
@@ -67,8 +69,6 @@ void	ft_exit(char **args)
 		too_many_args_error();
 		return ;
 	}
-	if (!args || !*args)
-		exit(g_errno);
 	if (is_numeral(*args) && is_long_long(*args))
 	{
 		code = ft_atoi_long_long(*args);
