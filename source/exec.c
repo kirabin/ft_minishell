@@ -14,8 +14,6 @@
 
 void	execute_our_implementation(t_command *command, t_vars *vars)
 {
-	manage_out_pipe(command, vars);
-	open_redirections(command);
 	if (ft_strcmp(command->name, "cd") == 0)
 		ft_cd(command->argv[1], vars->env_list);
 	else if (ft_strcmp(command->name, "echo") == 0)
@@ -30,19 +28,15 @@ void	execute_our_implementation(t_command *command, t_vars *vars)
 		ft_pwd();
 	else if (ft_strcmp(command->name, "unset") == 0)
 		ft_unset(&vars->env_list, command->argv + 1);
-	manage_in_pipe(command, vars);
 }
 
-int	execute_bin_command(t_command *command, t_vars *vars)
+int	execute_bin_command(t_command *command)
 {
 	pid_t	pid;
 
 	pid = fork();
 	if (is_child(pid))
 	{
-		manage_out_pipe(command, vars);
-		if (vars->fd[1] > 1)
-			close(vars->fd[1]);
 		execve(command->path, command->argv, command->envp);
 		ft_exit(NULL);
 	}
@@ -51,7 +45,6 @@ int	execute_bin_command(t_command *command, t_vars *vars)
 		wait(&g_errno);
 		if (g_errno == 256)
 			g_errno = 1;
-		manage_in_pipe(command, vars);
 	}
 	else
 		ft_putstr_fd("Can't execute command, fork failed\n", 2);
@@ -62,6 +55,7 @@ void	execute_command(t_vars *vars, t_command *command)
 {
 	open_pipes(vars, command);
 	open_redirections(command);
+	manage_out_pipe(command, vars);
 	if (is_our_implementation(command->name))
 		execute_our_implementation(command, vars);
 	else
@@ -69,15 +63,15 @@ void	execute_command(t_vars *vars, t_command *command)
 		if (command->path)
 		{
 			if (is_command_executable(command->raw_path))
-				execute_bin_command(command, vars);
+				execute_bin_command(command);
 		}
 		else
 		{
 			puterror_three("Error: ", command->name,
 				": command not found", 127);
-			manage_in_pipe(command, vars);
 		}
 	}
+	manage_in_pipe(command, vars);
 	close_redirections(vars, command);
 }
 
