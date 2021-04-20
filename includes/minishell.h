@@ -165,7 +165,7 @@ void					ft_pwd(void);
 void					ft_echo(char **args);
 void					ft_exit(char **args);
 void					ft_unset(t_env_list **list, char **keys);
-void					ft_cd(const char *new_path, t_env_list *list);
+void					ft_cd(const char *new_path, t_env_list **list);
 void					ft_env(t_env_list *env_list);
 void					ft_export(char **args, t_env_list **env_list);
 void					execute_raw_command(t_vars *vars,

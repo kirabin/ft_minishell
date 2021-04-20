@@ -4,8 +4,13 @@ void	manage_out_pipe(t_command *command, t_vars *vars)
 {
 	if (command->pipe_right)
 	{
-		close(STD_OUT);
-		dup2(vars->fd[1], STD_OUT);
+		if (command->fd_out != -1)
+			write(vars->fd[1], "\0", 1);
+		else
+		{
+			close(STD_OUT);
+			dup2(vars->fd[1], STD_OUT);
+		}
 	}
 	else if (command->pipe_left)
 	{
