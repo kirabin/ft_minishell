@@ -31,7 +31,7 @@ static void	wait_all(void)
 void	execute_our_implementation(t_command *command, t_vars *vars)
 {
 	if (ft_strcmp(command->name, "cd") == 0)
-		ft_cd(command->argv[1], vars->env_list);
+		ft_cd(command->argv[1], &vars->env_list);
 	else if (ft_strcmp(command->name, "echo") == 0)
 		ft_echo(command->argv + 1);
 	else if (ft_strcmp(command->name, "env") == 0)
