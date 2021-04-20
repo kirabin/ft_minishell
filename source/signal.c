@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 09:21:40 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 18:21:19 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/20 17:49:54 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	handle_signals(int signal_code)
 	else if ((signal_code == 2 && status != 0)
 		|| (signal_code != 2 && status == 0))
 	{
-		ft_putendl(NULL);
+		write(1, "\n", 1);
 		ft_putprompt();
 		tputs(save_cursor, 1, ft_putint);
 	}
