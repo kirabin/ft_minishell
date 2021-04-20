@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/20 13:25:50 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/20 15:32:07 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,8 @@ bool					is_child(pid_t pid);
 bool					is_parent(pid_t pid);
 int						find_name_len(const char *str);
 int						is_unprint(char *str);
+bool					is_name_till_symbol(const char *str,
+											const char *symbols);
 
 /*
 ** Signals

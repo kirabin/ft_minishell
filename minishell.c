@@ -31,6 +31,13 @@ void	increment_shell_level(t_env_list *lst)
 		{
 			tmp = ft_itoa(ft_atoi(lst->item->value) + 1);
 			free(lst->item->value);
+			if (ft_atoi(tmp) == 1000)
+			{
+				free(tmp);
+				tmp = NULL;
+			}
+			else if (tmp == NULL)
+				tmp = ft_strdup("1");
 			lst->item->value = tmp;
 			return ;
 		}

@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/20 13:27:27 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/20 15:39:10 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	parse_command(char **cur_ptr, char **buf, t_raw_command *com, t_vars *vars)
 	{
 		if ((ft_strchr("\0\n", **cur_ptr) || **cur_ptr == '#') && !vars->brackets)
 			break ;
-		if (**cur_ptr == ';')
+		if (**cur_ptr == ';' && !vars->brackets)
 			return (semicolon(cur_ptr, vars));
 		else if (**cur_ptr == '|' && pipe_hdl(com, cur_ptr))
 			return (0);

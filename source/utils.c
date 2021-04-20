@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 11:58:11 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/17 12:15:30 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/20 15:32:45 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 	tmp = NULL;
 	ft_bzero(buffer, 9999);
 	(*input)++;
+	if (!is_name_till_symbol(*input, " |$><\'\"\\~#\0\n\t\r"))
+		return ;
 	if (**input == '?')
 	{
 		joinstr(buf, ft_itoa(g_errno));

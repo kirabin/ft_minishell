@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   names.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 08:22:35 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/16 18:34:38 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/20 15:31:31 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,22 @@ bool	is_name(const char *str)
 	{
 		str++;
 		while (*str)
+		{
+			if (*str != '_' && !ft_isalnum(*str))
+				return (false);
+			str++;
+		}
+		return (true);
+	}
+	return (false);
+}
+
+bool	is_name_till_symbol(const char *str, const char *symbols)
+{
+	if (*str == '_' || ft_isalpha(*str))
+	{
+		str++;
+		while (*str && !ft_strchr(symbols, *str))
 		{
 			if (*str != '_' && !ft_isalnum(*str))
 				return (false);
