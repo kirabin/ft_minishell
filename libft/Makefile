@@ -43,7 +43,8 @@ SRC_STR=	ft_atoi \
 			ft_strskip_char \
 			ft_strtrim \
 			ft_substr \
-			is_long_long
+			is_long_long \
+			is_numeral
 
 SRC_LST=	ft_lst_bubble_sort \
 			ft_lst_put \

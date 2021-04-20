@@ -36,6 +36,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	int				comp_value;
 
 	index = 0;
+	if (!s1)
+		return (0 - *s2);
 	while ((s1[index] || s2[index]) && index < n)
 	{
 		comp_value = (unsigned char)s1[index] - (unsigned char)s2[index];

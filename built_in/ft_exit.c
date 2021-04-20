@@ -30,7 +30,7 @@ static void	numeric_arg_error(char *str)
 {
 	ft_putstr_fd("exit: ", 2);
 	ft_putstr_fd(str, 2);
-	ft_putstr_fd("': numeric argument required\n", 2);
+	ft_putstr_fd(": numeric argument required\n", 2);
 	g_errno = 1;
 }
 
@@ -57,6 +57,11 @@ void	ft_exit(char **args)
 	long long	code;
 
 	ft_putstr_fd("exit\n", 2);
+	if (!(is_numeral(*args) && is_long_long(*args)))
+	{
+		numeric_arg_error(*args);
+		exit(255);
+	}
 	if (charpp_len(args) > 1)
 	{
 		too_many_args_error();
@@ -64,7 +69,7 @@ void	ft_exit(char **args)
 	}
 	if (!args || !*args)
 		exit(g_errno);
-	if (is_long_long(*args))
+	if (is_numeral(*args) && is_long_long(*args))
 	{
 		code = ft_atoi_long_long(*args);
 		exit(code & 0xFF);

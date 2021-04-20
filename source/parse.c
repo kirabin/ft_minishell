@@ -77,6 +77,7 @@ void	parse_row_string(t_vars *vars)
 
 	vars->term.c_lflag |= (ECHO);
 	vars->term.c_lflag |= (ICANON);
+	vars->term.c_lflag |= (ISIG);
 	tcsetattr(0, TCSANOW, &vars->term);
 	string = ft_strdup(vars->history->com);
 	comment_trim(string);

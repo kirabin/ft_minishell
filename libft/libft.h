@@ -79,6 +79,7 @@ const char			*ft_strskip(const char *s, int (*is_that)(int));
 bool				ft_string_is_path(char *string);
 bool				ft_string_is_absolute_path(char *string);
 bool				ft_string_is_relative_path(char *string);
+bool				is_numeral(char *str);
 
 /*
 **  ft_chr

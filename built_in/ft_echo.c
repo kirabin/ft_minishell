@@ -30,7 +30,7 @@
 
 static bool	is_suppressed_option(char *str)
 {
-	if (ft_strncmp(str, "-n", 2) == 0)
+	if (ft_strcmp(str, "-n") == 0)
 		return (true);
 	return (false);
 }
