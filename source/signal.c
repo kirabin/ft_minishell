@@ -28,7 +28,6 @@ void	handle_signals(int signal_code)
 		{
 			g_errno = 131;
 			ft_putstr_fd("Quit: 3\n", 1);
-			ft_putendl(NULL);
 		}
 	}
 	else if ((signal_code == 2 && status != 0)

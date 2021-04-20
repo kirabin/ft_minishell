@@ -38,6 +38,7 @@
 void	ft_cd(const char *new_path, t_env_list *list)
 {
 	t_env_item	*node;
+	char		*buf;
 
 	if (new_path == NULL)
 		new_path = ft_env_list_get_value(list, "HOME");
@@ -50,6 +51,8 @@ void	ft_cd(const char *new_path, t_env_list *list)
 	}
 	node = ft_get_env_item_with_key(list, "PWD");
 	free(node->value);
-	node->value = ft_strdup(new_path);
+	buf = getcwd(NULL, 0);
+	node->value = ft_strdup(buf);
+	free(buf);
 	g_errno = 0;
 }
