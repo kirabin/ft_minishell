@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:18:29 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 14:41:43 by dmilan           ###   ########.fr       */
+/*   Updated: 2021/04/19 11:40:43 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	execute_bin_command(t_command *command, t_vars *vars)
 	if (is_child(pid))
 	{
 		manage_out_pipe(command, vars);
-		close(vars->fd[1]);
+		if (vars->fd[1] > 1)
+			close(vars->fd[1]);
 		execve(command->path, command->argv, command->envp);
 		ft_exit(NULL);
 	}

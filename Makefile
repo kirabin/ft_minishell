@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
+#    By: msamual <msamual@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2021/04/17 14:38:07 by dmilan           ###   ########.fr        #
+#    Updated: 2021/04/19 11:36:05 by msamual          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRC_ENV=	ft_env_list_new \
 			ft_get_env_item_with_key \
 			ft_env_item_free
 
-SRC_SRC=	exec exec_support exec_support2 command exec_pipes exec_redirections errors_put \
+SRC_SRC=	exec exec_support command exec_pipes exec_redirections errors_put \
 			signal parse history errors write_hist parse_command read_input redirect \
 			utils utils1 utils2
 
