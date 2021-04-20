@@ -63,6 +63,7 @@ static void	key_exists_case(t_env_list **env_list, t_env_item *item)
 		tmp_item = ft_get_env_item_with_key(*env_list, item->key);
 		tmp_item->value = ft_strjoin_free(tmp_item->value,
 				item->value);
+		tmp_item->identifier = 1;
 	}
 	else if (item->identifier == 0)
 		;

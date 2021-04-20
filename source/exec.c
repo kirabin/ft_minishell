@@ -16,19 +16,19 @@ void	execute_our_implementation(t_command *command, t_vars *vars)
 {
 	manage_out_pipe(command, vars);
 	open_redirections(command);
-	if (ft_strncmp(command->name, "cd", 2) == 0)
+	if (ft_strcmp(command->name, "cd") == 0)
 		ft_cd(command->argv[1], vars->env_list);
-	else if (ft_strncmp(command->name, "echo", 4) == 0)
+	else if (ft_strcmp(command->name, "echo") == 0)
 		ft_echo(command->argv + 1);
-	else if (ft_strncmp(command->name, "env", 3) == 0)
+	else if (ft_strcmp(command->name, "env") == 0)
 		ft_env(vars->env_list);
-	else if (ft_strncmp(command->name, "exit", 4) == 0)
+	else if (ft_strcmp(command->name, "exit") == 0)
 		ft_exit(command->argv + 1);
-	else if (ft_strncmp(command->name, "export", 6) == 0)
+	else if (ft_strcmp(command->name, "export") == 0)
 		ft_export(command->argv + 1, &vars->env_list);
-	else if (ft_strncmp(command->name, "pwd", 3) == 0)
+	else if (ft_strcmp(command->name, "pwd") == 0)
 		ft_pwd();
-	else if (ft_strncmp(command->name, "unset", 5) == 0)
+	else if (ft_strcmp(command->name, "unset") == 0)
 		ft_unset(&vars->env_list, command->argv + 1);
 	manage_in_pipe(command, vars);
 }

@@ -64,19 +64,19 @@ bool	is_command_executable(char *path)
 
 bool	is_our_implementation(char *command)
 {
-	if (ft_strncmp(command, "cd", 2) == 0)
+	if (ft_strcmp(command, "cd") == 0)
 		return (true);
-	else if (ft_strncmp(command, "echo", 4) == 0)
+	else if (ft_strcmp(command, "echo") == 0)
 		return (true);
-	else if (ft_strncmp(command, "env", 3) == 0)
+	else if (ft_strcmp(command, "env") == 0)
 		return (true);
-	else if (ft_strncmp(command, "exit", 4) == 0)
+	else if (ft_strcmp(command, "exit") == 0)
 		return (true);
-	else if (ft_strncmp(command, "export", 6) == 0)
+	else if (ft_strcmp(command, "export") == 0)
 		return (true);
-	else if (ft_strncmp(command, "pwd", 3) == 0)
+	else if (ft_strcmp(command, "pwd") == 0)
 		return (true);
-	else if (ft_strncmp(command, "unset", 5) == 0)
+	else if (ft_strcmp(command, "unset") == 0)
 		return (true);
 	return (false);
 }
