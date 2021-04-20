@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:50:48 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/17 18:24:59 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/20 13:27:27 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ int	spec_symb(char **cur_ptr, char ***buf, t_vars *vars, t_raw_command *com)
 	return (0);
 }
 
-int	semicolon(char **cur_ptr)
+int	semicolon(char **cur_ptr, t_vars *vars)
 {
 	(*cur_ptr)++;
+	vars->semicolon = 1;
 	return (0);
 }
 
@@ -71,7 +72,7 @@ int	parse_command(char **cur_ptr, char **buf, t_raw_command *com, t_vars *vars)
 		if ((ft_strchr("\0\n", **cur_ptr) || **cur_ptr == '#') && !vars->brackets)
 			break ;
 		if (**cur_ptr == ';')
-			return (semicolon(cur_ptr));
+			return (semicolon(cur_ptr, vars));
 		else if (**cur_ptr == '|' && pipe_hdl(com, cur_ptr))
 			return (0);
 		else if (is_separator(**cur_ptr) && !vars->brackets)

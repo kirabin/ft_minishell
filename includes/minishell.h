@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/20 12:51:58 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/20 13:25:50 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_vars
 	int					fd[2];
 	int					stdin_copy;
 	int					stdout_copy;
+	int					semicolon;
 }						t_vars;
 
 # define BUFF_SIZE 999
