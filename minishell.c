@@ -66,6 +66,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		vars.term.c_lflag &= ~(ECHO);
 		vars.term.c_lflag &= ~(ICANON);
+		vars.term.c_lflag &= ~(ISIG);
 		tcsetattr(0, TCSANOW, &vars.term);
 		ft_putprompt();
 		tputs(save_cursor, 1, ft_putint);

@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 12:24:48 by dmilan            #+#    #+#             */
-/*   Updated: 2021/04/17 16:51:52 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/20 12:51:58 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void					replacement(t_vars *vars);
 int						parse_command(char **cur_ptr, char **buf,
 							t_raw_command *com, t_vars *vars);
 int						pipe_hdl(t_raw_command *com, char **cur_ptr);
-void					read_input(t_vars *vars);
+int						read_input(t_vars *vars);
 int						is_separator(char c);
 void					print_tab(t_raw_command *com);
 
@@ -177,6 +177,7 @@ bool					is_name(const char *str);
 bool					is_child(pid_t pid);
 bool					is_parent(pid_t pid);
 int						find_name_len(const char *str);
+int						is_unprint(char *str);
 
 /*
 ** Signals

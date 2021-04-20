@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 12:20:11 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/17 14:10:34 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/20 12:53:57 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,11 @@ void	backspace(t_vars *vars, char *command)
 			vars->cursor_pos--;
 		}
 	}
+}
+
+int	is_unprint(char *str)
+{
+	if (*str < 32 && (*str != '\n' && *str != 3 && *str != 4))
+		return (1);
+	return (0);
 }

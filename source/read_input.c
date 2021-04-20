@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 11:21:11 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/17 17:57:19 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/20 12:52:26 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,14 @@ void	navigate(t_vars *vars, char *str)
 		history_next(vars);
 }
 
-void	read_input(t_vars *vars)
+int	ctrl_c(t_vars *vars)
+{
+	remove_elem_hist(&vars->history);
+	write(1, "\n", 1);
+	return (0);
+}
+
+int	read_input(t_vars *vars)
 {
 	char	str[100];
 	int		ret;
@@ -67,14 +74,13 @@ void	read_input(t_vars *vars)
 		str[ret] = 0;
 		if (!ft_strcmp(str, "\e[A") || !ft_strcmp(str, "\e[B"))
 			navigate(vars, str);
-		else if (!ft_strcmp(str, "\e[D") || !ft_strcmp(str, "\e[C")
-			|| !ft_strcmp(str, "\t"))
-			;
+		else if (!ft_strcmp(str, "\3"))
+			return (ctrl_c(vars));
 		else if (!ft_strcmp("\4", str))
 			ctrl_d(vars);
 		else if (!ft_strcmp(str, "\177") || *str == '\b')
 			backspace(vars, vars->history->com);
-		else if (str[0] == 27 && !ft_isalnum(str[0]))
+		else if (is_unprint(str))
 			continue ;
 		else if (ft_strcmp(str, "\n"))
 			add_to_command(vars, str, ret, vars->history->com);
@@ -82,4 +88,5 @@ void	read_input(t_vars *vars)
 			break ;
 	}
 	parsing(vars);
+	return (0);
 }
