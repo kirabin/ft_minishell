@@ -12,6 +12,22 @@
 
 #include "minishell.h"
 
+static void	wait_all(void)
+{
+	int		order;
+	int		status;
+
+	order = 0;
+	while (wait(&status) > 0)
+	{
+		order++;
+		if (order == 0)
+			g_errno = status;
+	}
+	if (g_errno == 256)
+		g_errno = 1;
+}
+
 void	execute_our_implementation(t_command *command, t_vars *vars)
 {
 	if (ft_strcmp(command->name, "cd") == 0)
@@ -30,7 +46,7 @@ void	execute_our_implementation(t_command *command, t_vars *vars)
 		ft_unset(&vars->env_list, command->argv + 1);
 }
 
-int	execute_bin_command(t_command *command)
+int	execute_bin_command(t_command *command, t_vars *vars)
 {
 	pid_t	pid;
 
@@ -42,9 +58,10 @@ int	execute_bin_command(t_command *command)
 	}
 	else if (is_parent(pid))
 	{
-		wait(&g_errno);
-		if (g_errno == 256)
-			g_errno = 1;
+		if (vars->semicolon)
+		{
+			wait_all();
+		}
 	}
 	else
 		ft_putstr_fd("Can't execute command, fork failed\n", 2);
@@ -63,7 +80,7 @@ void	execute_command(t_vars *vars, t_command *command)
 		if (command->path)
 		{
 			if (is_command_executable(command->raw_path))
-				execute_bin_command(command);
+				execute_bin_command(command, vars);
 		}
 		else
 		{
