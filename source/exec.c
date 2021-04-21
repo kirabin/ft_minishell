@@ -14,14 +14,11 @@
 
 static void	wait_all(void)
 {
-	int		order;
 	int		status;
 
-	order = 0;
 	while (wait(&status) > 0)
 	{
-		order++;
-		if (order == 0)
+		if (!(g_errno == 130 || g_errno == 131))
 			g_errno = status;
 	}
 	if (g_errno == 256)

@@ -42,14 +42,14 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 	tmp = NULL;
 	ft_bzero(buffer, 9999);
 	(*input)++;
-	if (!is_name_till_symbol(*input, " |$><\'\"\\~#\0\n\t\r"))
-		return ;
 	if (**input == '?')
 	{
 		joinstr(buf, ft_itoa(g_errno));
 		free(tmp);
 		return ;
 	}
+	if (!is_name_till_symbol(*input, " |$><\'\"\\~#\0\n\t\r"))
+		return ;
 	while (!ft_strchr(" |$><\'\"\\~#\0\n\t\r", **input))
 		joinchar(buffer, *(*input)++);
 	(*input)--;
