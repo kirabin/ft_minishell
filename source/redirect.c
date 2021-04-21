@@ -18,7 +18,7 @@ int	redirect(t_raw_command *com, char *f)
 	{
 		if (com->redirect_out != -1)
 			close(com->redirect_out);
-		com->redirect_out = open(f, O_APPEND | O_CREAT, S_IRWXU);
+		com->redirect_out = open(f, O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
 		if (com->redirect_out == -1)
 			return (puterror_three(f, ": ", strerror(errno), errno));
 	}

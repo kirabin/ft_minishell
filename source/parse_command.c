@@ -18,7 +18,10 @@ int	redirect_parse(char **cur_ptr, t_raw_command *com, char ***buf)
 
 	ft_bzero(buffer, 9999);
 	if (**cur_ptr == '>' && *(*cur_ptr + 1) == '>')
+	{
+		(*cur_ptr)++;
 		com->redirect = 3;
+	}
 	else if (**cur_ptr == '>')
 		com->redirect = 2;
 	else
