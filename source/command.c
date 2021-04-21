@@ -25,7 +25,9 @@ char	*get_command_path(char *command, t_env_list *list)
 	i = -1;
 	extended_path = NULL;
 	paths = ft_split(ft_env_list_get_value(list, "PATH"), ':');
-	while (paths && paths[++i])
+	if (!paths || **paths == '\0')
+		return (ft_strjoin("./", command));
+	while (paths[++i])
 	{
 		extended_path = ft_strjoin_three(paths[i], "/", command);
 		if (is_file_exists(extended_path))

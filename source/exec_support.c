@@ -39,25 +39,23 @@ bool	has_execute_permission(char *path)
 	return (false);
 }
 
-bool	is_command_executable(char *path)
+bool	is_command_executable(t_command *command)
 {
-	if (ft_string_is_relative_path(path) || ft_string_is_absolute_path(path))
+	if (is_directory(command->path))
 	{
-		if (is_directory(path))
-		{
-			puterror_three(NULL, path, ": is a directory", 126);
-			return (false);
-		}
-		else if (!is_file_exists(path))
-		{
-			puterror_three(NULL, path, ": No such file or directory", 127);
-			return (false);
-		}
-		else if (!has_execute_permission(path))
-		{
-			puterror_three(NULL, path, ": Permission denied", 126);
-			return (false);
-		}
+		puterror_three(NULL, command->raw_path, ": is a directory", 126);
+		return (false);
+	}
+	else if (!is_file_exists(command->path))
+	{
+		puterror_three(NULL, command->raw_path,
+			": No such file or directory", 127);
+		return (false);
+	}
+	else if (!has_execute_permission(command->path))
+	{
+		puterror_three(NULL, command->raw_path, ": Permission denied", 126);
+		return (false);
 	}
 	return (true);
 }
