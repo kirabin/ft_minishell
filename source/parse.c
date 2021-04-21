@@ -90,14 +90,16 @@ void	parse_row_string(t_vars *vars)
 	comment_trim(string);
 	save = ft_strtrim(string, " \t\r");
 	cur_ptr = save;
-	if (check_unexpected_token(cur_ptr))
-		return ;
-	if (check_brackets(cur_ptr))
-		return ;
-	vars->brackets = 0;
-	vars->end = 0;
-	vars->rules = ft_strdup("$><\'\"\\~");
-	parsing_loop(vars, &cur_ptr);
+	if (check_unexpected_token(cur_ptr)
+		|| check_brackets(cur_ptr))
+		;
+	else
+	{
+		vars->brackets = 0;
+		vars->end = 0;
+		vars->rules = ft_strdup("$><\'\"\\~");
+		parsing_loop(vars, &cur_ptr);
+	}
 	free(string);
 	free(save);
 	free(vars->rules);

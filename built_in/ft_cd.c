@@ -64,6 +64,9 @@ void	ft_cd(const char *new_path, t_env_list **list)
 	if (chdir(new_path) == -1)
 	{
 		g_errno = errno;
+		ft_putstr_fd("cd: ", 2);
+		ft_putstr_fd((char *)new_path, 2);
+		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(strerror(g_errno), 2);
 		ft_putstr_fd("\n", 2);
 		return ;

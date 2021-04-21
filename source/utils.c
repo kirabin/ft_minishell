@@ -38,14 +38,16 @@ void	dollar_handle(t_vars *vars, char *buf, char **input)
 	char	buffer[9999];
 	char	*var;
 	char	*tmp;
+	char	*str_errno;
 
 	tmp = NULL;
 	ft_bzero(buffer, 9999);
 	(*input)++;
 	if (**input == '?')
 	{
-		joinstr(buf, ft_itoa(g_errno));
-		free(tmp);
+		str_errno = ft_itoa(g_errno);
+		joinstr(buf, str_errno);
+		free(str_errno);
 		return ;
 	}
 	if (!is_name_till_symbol(*input, " |$><\'\"\\~#\0\n\t\r"))
