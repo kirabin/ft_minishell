@@ -8,17 +8,17 @@ void	ft_putprompt(void)
 	str = "minishell";
 	x = 2;
 	if (x == 2)
-		ft_putstr("\033[35m");
+		ft_putstr_fd("\033[35m", 2);
 	else if (x == 3)
-		ft_putstr("\033[34m");
+		ft_putstr_fd("\033[34m", 2);
 	else if (x == 4)
-		ft_putstr("\033[32m");
+		ft_putstr_fd("\033[32m", 2);
 	else if (x == 5)
-		ft_putstr("\033[33m");
+		ft_putstr_fd("\033[33m", 2);
 	else if (x > 5)
-		ft_putstr("\033[31m");
-	ft_putstr(str);
-	ft_putstr(" \033[31m>>>\033[0m ");
+		ft_putstr_fd("\033[31m", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(" \033[31m>>>\033[0m ", 2);
 }
 
 void	increment_shell_level(t_env_list *lst)
