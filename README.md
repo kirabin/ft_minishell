@@ -12,9 +12,6 @@ Our shell writen on
 ## TODO
 1. Refactor ft_export, get rid of .identifier
 2. Refactor ft_echo
-4. Execute executables without #! at the start
-5. Change OLDPWD in
-6. Handle in-out redirection cases
 
 
 ## Cases

@@ -79,7 +79,7 @@ void	execute_command(t_vars *vars, t_command *command)
 	{
 		if (command->path)
 		{
-			if (is_command_executable(command->raw_path))
+			if (is_command_executable(command))
 				execute_bin_command(command, vars);
 		}
 		else
