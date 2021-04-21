@@ -59,7 +59,11 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	buf = com.com;
 	vars->semicolon = 0;
 	if (parse_command(cur_ptr, buf, &com, vars))
+	{
+		clear_tab(com.com);
+		free(com.com);
 		return ;
+	}
 	if (ft_strchr("\0\n", **cur_ptr) || **cur_ptr == '#')
 		vars->semicolon = 1;
 	execute_raw_command(vars, &com);
