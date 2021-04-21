@@ -6,7 +6,7 @@
 /*   By: msamual <msamual@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:43:12 by msamual           #+#    #+#             */
-/*   Updated: 2021/04/20 18:42:22 by msamual          ###   ########.fr       */
+/*   Updated: 2021/04/21 12:03:57 by msamual          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	redirect(t_raw_command *com, char *f)
 	{
 		if (com->redirect_out != -1)
 			close(com->redirect_out);
-		com->redirect_out = open(f, O_WRONLY | O_TRUNC, S_IRWXU);
+		com->redirect_out = open(f, O_WRONLY | O_TRUNC | O_CREAT, S_IRWXU);
 		if (com->redirect_out == -1)
 			return (puterror_three(f, ": ", strerror(errno), errno));
 	}
