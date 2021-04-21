@@ -93,6 +93,11 @@ void	execute_raw_command(t_vars *vars, t_raw_command *raw_command)
 {
 	t_command	*command;
 
+	if (raw_command->com == NULL
+		|| raw_command->com[0] ==NULL
+		|| raw_command->com[0][0] == '\0'
+		|| raw_command->com[0][0] == '\n')
+		return ;
 	command = get_command_from_raw(vars, raw_command);
 	if (!command)
 		return ;

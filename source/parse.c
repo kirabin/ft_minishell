@@ -39,13 +39,21 @@ int	pipe_hdl(t_raw_command *com, char **cur_ptr)
 	}
 }
 
-void	clear_tab(char	**buf)
+void	clear_tab(t_raw_command *com)
 {
-	while (*buf)
+	char	**str;
+
+	str = com->com;
+	if (com->redirect_in != -1)
+		close(com->redirect_in);
+	if (com->redirect_out != -1)
+		close(com->redirect_out);
+	while (*str)
 	{
-		free(*buf);
-		buf++;
+		free(*str);
+		str++;
 	}
+	free(com->com);
 }
 
 void	parsing_loop(t_vars *vars, char **cur_ptr)
@@ -60,19 +68,16 @@ void	parsing_loop(t_vars *vars, char **cur_ptr)
 	vars->semicolon = 0;
 	if (parse_command(cur_ptr, buf, &com, vars))
 	{
-		clear_tab(com.com);
-		free(com.com);
+		clear_tab(&com);
 		return ;
 	}
 	if (ft_strchr("\0\n", **cur_ptr) || **cur_ptr == '#')
+	{
+		vars->end = 1;
 		vars->semicolon = 1;
+	}
 	execute_raw_command(vars, &com);
-	if (com.redirect_in != -1)
-		close(com.redirect_in);
-	if (com.redirect_out != -1)
-		close(com.redirect_out);
-	clear_tab(com.com);
-	free(com.com);
+	clear_tab(&com);
 	parsing_loop(vars, cur_ptr);
 }
 
