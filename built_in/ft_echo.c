@@ -39,7 +39,7 @@ void	ft_echo(char **args)
 {
 	bool	is_suppressed;
 
-	if (!args)
+	if (!args || !*args)
 	{
 		ft_putc_fd('\n', 1);
 		return ;
